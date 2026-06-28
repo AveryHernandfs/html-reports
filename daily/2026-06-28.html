@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⭐ 每日资讯日报 — 2026-06-28</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface-hover: #222632;
+      --border: #2a2e3a;
+      --text: #e4e6eb;
+      --text-muted: #8b8fa3;
+      --accent: #6c5ce7;
+      --accent-light: #a29bfe;
+      --green: #00b894;
+      --orange: #fdcb6e;
+      --red: #e17055;
+      --blue: #74b9ff;
+      --pink: #fd79a8;
+      --cyan: #81ecec;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    .header .date {
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .header .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 2.5rem;
+    }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+      min-width: 140px;
+    }
+    .stat .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stat .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-header .icon {
+      font-size: 1.3rem;
+    }
+    .section-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .section-header .badge {
+      margin-left: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+      transform: translateY(-1px);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      border-radius: 3px 0 0 3px;
+    }
+    .card.ai::before { background: var(--accent); }
+    .card.security::before { background: var(--red); }
+    .card.github::before { background: var(--green); }
+    .card.opensource::before { background: var(--blue); }
+    .card.cve::before { background: var(--orange); }
+    .card.comfort::before { background: var(--pink); }
+    .card.math::before { background: var(--cyan); }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent-light);
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .card-meta .tag {
+      background: rgba(108, 92, 231, 0.15);
+      color: var(--accent-light);
+      padding: 0.15rem 0.6rem;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    .card-meta .tag.security { background: rgba(225, 112, 85, 0.15); color: var(--red); }
+    .card-meta .tag.github { background: rgba(0, 184, 148, 0.15); color: var(--green); }
+    .card-meta .tag.cve { background: rgba(253, 203, 110, 0.15); color: var(--orange); }
+    .card-meta .tag.comfort { background: rgba(253, 121, 168, 0.15); color: var(--pink); }
+    .card-meta .tag.math { background: rgba(129, 236, 236, 0.15); color: var(--cyan); }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* GitHub stars badge */
+    .stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    /* Math section */
+    .math-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .math-progress {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    .progress-fill.algebra { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+    .progress-fill.calc { background: linear-gradient(90deg, var(--green), var(--cyan)); }
+    .progress-fill.prob { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+
+    .quiz {
+      background: rgba(129, 236, 236, 0.05);
+      border: 1px solid rgba(129, 236, 236, 0.2);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-top: 1rem;
+    }
+    .quiz-title {
+      font-size: 0.85rem;
+      color: var(--cyan);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .quiz-question {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+    .quiz-answer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-answer:hover {
+      border-color: var(--cyan);
+    }
+    .quiz-answer .hidden {
+      filter: blur(4px);
+      transition: filter 0.3s;
+    }
+    .quiz-answer.revealed .hidden {
+      filter: blur(0);
+    }
+
+    /* Video embed */
+    .video-embed {
+      margin-top: 1rem;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .video-embed iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation: fadeInUp 0.4s ease forwards; }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.2s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.3s; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .container { padding: 1rem; }
+      .header h1 { font-size: 1.6rem; }
+      .stats-bar { gap: 0.8rem; }
+      .stat { min-width: 100px; padding: 0.6rem 1rem; }
+      .stat .num { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="date">2026 年 6 月 28 日 · 星期日</div>
+      <h1>⭐ 每日资讯日报</h1>
+      <div class="subtitle">AI · 安全 · 开源 · CS · 创业 · 数学</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="num" style="color: var(--accent-light)">12</div>
+        <div class="label">今日条目</div>
+      </div>
+      <div class="stat">
+        <div class="num" style="color: var(--green)">6.5k</div>
+        <div class="label">Trending Stars</div>
+      </div>
+      <div class="stat">
+        <div class="num" style="color: var(--red)">5</div>
+        <div class="label">新 CVE</div>
+      </div>
+      <div class="stat">
+        <div class="num" style="color: var(--cyan)">Day 1</div>
+        <div class="label">数学进度</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ 80% 主要关注 ═══════════════ -->
+
+    <!-- AI 动态 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="icon">🤖</span>
+        <h2>AI & 大模型</h2>
+        <span class="badge">3 条</span>
+      </div>
+      <div class="card-grid">
+        <div class="card ai">
+          <div class="card-title"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank">DeepSeek 发布 DeepSpec：Speculative Decoding 全栈训练与评估框架</a></div>
+          <div class="card-desc">DeepSpec 是一个完整的代码库，用于训练和评估 speculative decoding 算法。该技术通过让小模型"猜测"大模型的输出来加速推理，是当前 LLM serving 的热门优化方向。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 1,855</span>
+            <span class="tag">GitHub Trending</span>
+            <span>deepseek-ai</span>
+          </div>
+        </div>
+        <div class="card ai">
+          <div class="card-title"><a href="https://github.com/QwenLM/Qwen-AgentWorld" target="_blank">Qwen-AgentWorld：面向通用 Agent 的 Language World Models</a></div>
+          <div class="card-desc">通义千问团队发布 AgentWorld，将 Language Model 与 World Model 结合，让 AI Agent 能够在虚拟世界中进行规划和推理。这是 Agent 从"对话"走向"行动"的重要一步。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 612</span>
+            <span class="tag">GitHub Trending</span>
+            <span>QwenLM</span>
+          </div>
+        </div>
+        <div class="card ai">
+          <div class="card-title"><a href="https://github.com/HKUDS/AgentSpace" target="_blank">AgentSpace：Human + Agents 协作工作空间</a></div>
+          <div class="card-desc">香港大学数据科学团队发布 AgentSpace，构建人与 AI Agent 协作的统一工作空间。支持多 Agent 协同、任务分配和状态同步。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 505</span>
+            <span class="tag">GitHub Trending</span>
+            <span>HKUDS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 安全 & 逆向 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="icon">🔒</span>
+        <h2>安全 & 逆向工程</h2>
+        <span class="badge">3 条</span>
+      </div>
+      <div class="card-grid">
+        <div class="card security">
+          <div class="card-title"><a href="https://github.com/bikini/exploitarium" target="_blank">Exploitarium：公开 Exploit PoC 和漏洞研究报告合集</a></div>
+          <div class="card-desc">一个归档公开 exploit PoC（Proof of Concept）和安全研究 writeup 的仓库。对于学习逆向工程和漏洞分析非常有价值的参考资源。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 1,752</span>
+            <span class="tag github">GitHub Trending</span>
+            <span>安全研究</span>
+          </div>
+        </div>
+        <div class="card security">
+          <div class="card-title"><a href="https://devblogs.microsoft.com/oldnewthing/20260625-00/?p=112467" target="_blank">DLL 未从内存中移除但已正式卸载的奇特案例</a></div>
+          <div class="card-desc">Raymond Chen 的经典 Windows 内核分析文章。深入探讨 DLL unload 的内存管理机制，对理解操作系统底层和逆向工程很有帮助。</div>
+          <div class="card-meta">
+            <span class="tag security">HN 62⬆</span>
+            <span>Microsoft DevBlogs</span>
+          </div>
+        </div>
+        <div class="card cve">
+          <div class="card-title">今日新 CVE</div>
+          <div class="card-desc" style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.8;">
+            CVE-2026-13331 · CVE-2026-13333 · CVE-2026-11356<br>
+            <span style="color: var(--text-muted)">NVD 数据库已收录，详情待补充。建议关注 NVD 和 GitHub Security Advisory 获取完整 CVSS 评分。</span>
+          </div>
+          <div class="card-meta">
+            <span class="tag cve">CVE</span>
+            <span>NVD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub Trending -->
+    <div class="section">
+      <div class="section-header">
+        <span class="icon">📈</span>
+        <h2>GitHub Trending</h2>
+        <span class="badge">3 条</span>
+      </div>
+      <div class="card-grid">
+        <div class="card github">
+          <div class="card-title"><a href="https://github.com/bozhouDev/codex-orange-book" target="_blank">Codex 橙皮书：从安装到实战的全链路使用指南</a></div>
+          <div class="card-desc">非官方开源的 Codex 完全指南，包含安装、配置、实战案例，附可下载 PDF。适合想深入使用 OpenAI Codex 的开发者。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 2,255</span>
+            <span class="tag github">GitHub Trending</span>
+            <span>今日最热</span>
+          </div>
+        </div>
+        <div class="card github">
+          <div class="card-title"><a href="https://github.com/benchflow-ai/awesome-evals" target="_blank">Awesome Evals：AI Agent 评估资源精选合集</a></div>
+          <div class="card-desc">精选的 AI Agent 评估最佳资源，包含论文、博客和工具。没有水分，每一条都经过筛选。对于做 Agent 开发和评测非常有用。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 547</span>
+            <span class="tag github">GitHub Trending</span>
+          </div>
+        </div>
+        <div class="card github">
+          <div class="card-title"><a href="https://github.com/Yu9191/wloc" target="_blank">wloc：修改 Apple 网络定位（gs-loc）返回坐标</a></div>
+          <div class="card-desc">支持 Surge / Quantumult X / Loon / Stash，快捷指令一键设置/恢复定位。安全研究和 iOS 逆向的好例子。</div>
+          <div class="card-meta">
+            <span class="stars">⭐ 979</span>
+            <span class="tag github">GitHub Trending</span>
+            <span>iOS / 逆向</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HN 精选 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="icon">🔶</span>
+        <h2>Hacker News 精选</h2>
+        <span class="badge">3 条</span>
+      </div>
+      <div class="card-grid">
+        <div class="card ai">
+          <div class="card-title"><a href="https://github.com/openai/codex/issues/2847" target="_blank">OpenAI Codex 敏感文件排除机制仍存在 Issue</a></div>
+          <div class="card-desc">社区反馈 Codex 在处理敏感文件（如 .env、密钥文件）时的排除机制仍有缺陷。对于使用 AI coding agent 的开发者值得关注，提醒大家检查 .codexignore 配置。</div>
+          <div class="card-meta">
+            <span class="tag">HN 66⬆</span>
+            <span>AI 安全</span>
+          </div>
+        </div>
+        <div class="card opensource">
+          <div class="card-title"><a href="https://github.com/open-energy-transition/open-tyndp" target="_blank">EU 开源十年网络发展规划工具</a></div>
+          <div class="card-desc">欧盟开源的能源网络规划工具，代码和数据完全开放。展示了大型公共项目如何通过开源协作推进。</div>
+          <div class="card-meta">
+            <span class="tag">HN 23⬆</span>
+            <span>开源 / 能源</span>
+          </div>
+        </div>
+        <div class="card ai">
+          <div class="card-title"><a href="https://www.marfapublicradio.org/podcast/marfa-public-radio-puts-you-to-sleep" target="_blank">Marfa Public Radio：让你入睡的电台</a></div>
+          <div class="card-desc">今日 HN 最热帖。一个用 AI 生成持续环境音的实验性广播项目，探索 AI 在创意和放松场景的应用。</div>
+          <div class="card-meta">
+            <span class="tag">HN 319⬆</span>
+            <span>今日最热</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ 10% 跳出舒适圈 ═══════════════ -->
+
+    <div class="section">
+      <div class="section-header">
+        <span class="icon">🌍</span>
+        <h2>跳出舒适圈</h2>
+        <span class="badge">商业 · 创业 · 金融</span>
+      </div>
+      <div class="card-grid">
+        <div class="card comfort">
+          <div class="card-title"><a href="https://www.dnews.gr/eidhseis/news-in-english/596650/greece-is-richer-so-why-do-so-many-greeks-still-feel-poor" target="_blank">希腊变富了，但为什么希腊人还觉得自己穷？</a></div>
+          <div class="card-desc">一篇关于 GDP 增长与居民实际感受脱节的深度分析。对理解经济指标与主观幸福感的关系有启发，创业者和管理者值得思考。</div>
+          <div class="card-meta">
+            <span class="tag comfort">跳出舒适圈</span>
+            <span>经济 / 商业</span>
+          </div>
+        </div>
+        <div class="card comfort">
+          <div class="card-title"><a href="https://aresluna.org/the-curious-case-of-the-disappearing-polish-s/" target="_blank">波兰语中消失的 S：一个语言学谜题</a></div>
+          <div class="card-desc">语言学视角的趣味文章。语言演变背后往往藏着文化和历史的密码，对想跳出技术圈看看世界的人来说是不错的读物。</div>
+          <div class="card-meta">
+            <span class="tag comfort">跳出舒适圈</span>
+            <span>语言学 / 文化</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ 10% 数学学习 ═══════════════ -->
+
+    <div class="section">
+      <div class="section-header">
+        <span class="icon">📐</span>
+        <h2>数学学习进度</h2>
+        <span class="badge">Day 1 / 线性代数</span>
+      </div>
+
+      <!-- Progress -->
+      <div class="math-panel">
+        <div style="font-weight: 600; margin-bottom: 1rem;">学习进度</div>
+        <div class="math-progress">
+          <span style="font-size: 0.8rem; min-width: 80px;">线性代数</span>
+          <div class="progress-bar"><div class="progress-fill algebra" style="width: 5%"></div></div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">5%</span>
+        </div>
+        <div class="math-progress">
+          <span style="font-size: 0.8rem; min-width: 80px;">高等数学</span>
+          <div class="progress-bar"><div class="progress-fill calc" style="width: 0%"></div></div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">未开始</span>
+        </div>
+        <div class="math-progress">
+          <span style="font-size: 0.8rem; min-width: 80px;">概率论</span>
+          <div class="progress-bar"><div class="progress-fill prob" style="width: 0%"></div></div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">未开始</span>
+        </div>
+      </div>
+
+      <!-- Today's Quiz -->
+      <div class="math-panel">
+        <div style="font-weight: 600; margin-bottom: 0.5rem;">📝 今日一题：向量基础</div>
+        <div class="quiz">
+          <div class="quiz-title">题目</div>
+          <div class="quiz-question">
+            已知向量 <strong>a</strong> = (2, 3, 1)，<strong>b</strong> = (1, -1, 2)。<br>
+            求：<strong>a</strong> · <strong>b</strong>（点积）的值。
+          </div>
+          <div class="quiz-answer" onclick="this.classList.toggle('revealed')">
+            <span class="hidden">答案：a · b = 2×1 + 3×(-1) + 1×2 = 2 - 3 + 2 = <strong style="color: var(--cyan)">1</strong></span>
+          </div>
+        </div>
+
+        <div class="quiz" style="margin-top: 0.8rem;">
+          <div class="quiz-title">今日概念</div>
+          <div class="quiz-question" style="font-family: 'Noto Sans SC', sans-serif;">
+            <strong>向量点积（Dot Product）</strong><br>
+            两个向量的点积 = 对应分量乘积之和。<br>
+            几何意义：<strong>a</strong> · <strong>b</strong> = |<strong>a</strong>| |<strong>b</strong>| cos θ<br>
+            如果点积为 0，说明两个向量垂直（正交）。
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Video -->
+      <div class="math-panel">
+        <div style="font-weight: 600; margin-bottom: 0.5rem;">🎬 推荐视频</div>
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/fNk_zzaMoSs" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+          3Blue1Brown — <em>Dot products and duality</em><br>
+          用动画直观理解点积的几何意义，强烈推荐作为线代入门第一步。
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      ⭐ Powered by OpenClaw · 爱星智联科技有限公司<br>
+      数据来源：Hacker News · GitHub Trending · NVD · ArXiv<br>
+      <a href="https://github.com/AveryHernandfs/html-reports">GitHub Repo</a>
+    </div>
+  </div>
+</body>
+</html>
