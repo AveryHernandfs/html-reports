@@ -6,458 +6,570 @@
   <title>每日资讯 — 2026.06.28</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
-
     :root {
       --ink: #1a1714;
       --paper: #f5f0e8;
       --paper-alt: #ece6db;
       --accent: #c0392b;
-      --accent-dim: rgba(192, 57, 43, 0.08);
+      --accent-dim: rgba(192,57,43,0.08);
+      --green: #27ae60;
+      --green-dim: rgba(39,174,96,0.08);
+      --blue: #2980b9;
+      --blue-dim: rgba(52,152,219,0.08);
+      --orange: #e67e22;
+      --orange-dim: rgba(230,126,34,0.08);
       --muted: #7a7168;
       --rule: #d4cdc2;
-      --serif: 'Instrument Serif', 'Noto Serif SC', Georgia, serif;
-      --sans: 'DM Sans', 'Noto Sans SC', system-ui, sans-serif;
+      --serif: 'Instrument Serif','Noto Serif SC',Georgia,serif;
+      --sans: 'DM Sans','Noto Sans SC',system-ui,sans-serif;
     }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2.2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-summary strong { color:var(--ink); font-weight:500; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:var(--green-dim); color:var(--green); }
+    .tag.blue { background:var(--blue-dim); color:var(--blue); }
+    .tag.orange { background:var(--orange-dim); color:var(--orange); }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Detail toggle */
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; margin-top:0.3rem; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
 
-    body {
-      font-family: var(--sans);
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.65;
-      font-size: 15px;
-      -webkit-font-smoothing: antialiased;
-    }
+    /* CVE */
+    .cve-card { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .cve-card:last-child { border-bottom:none; }
+    .cve-id { font-family:var(--serif); font-size:1.1rem; font-weight:400; }
+    .cve-score { display:inline-block; font-size:0.78rem; font-weight:600; padding:0.1rem 0.5rem; border-radius:3px; margin-left:0.5rem; }
+    .cve-score.critical { background:#c0392b; color:white; }
+    .cve-score.high { background:var(--orange); color:white; }
+    .cve-score.medium { background:var(--blue); color:white; }
+    .cve-desc { font-size:0.88rem; color:var(--ink); line-height:1.65; margin-top:0.4rem; }
+    .cve-what { font-size:0.82rem; color:var(--muted); line-height:1.6; margin-top:0.4rem; padding:0.6rem 0.8rem; background:var(--accent-dim); border-radius:4px; }
+    .cve-what strong { color:var(--accent); }
 
-    .page { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
-
-    /* ── Masthead ── */
-    .masthead { text-align: center; padding: 2rem 0 1.5rem; border-bottom: 3px double var(--rule); margin-bottom: 2rem; }
-    .masthead-date { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
-    .masthead h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 0.3rem; }
-    .masthead-sub { font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; }
-
-    /* ── Section ── */
-    .section { margin-bottom: 2rem; }
-    .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
-
-    /* ── Story Card ── */
-    .story { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
-    .story:last-child { border-bottom: none; }
-
-    .story-headline { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; line-height: 1.35; margin-bottom: 0.35rem; }
-    .story-headline a { color: var(--ink); text-decoration: none; }
-    .story-headline a:hover { color: var(--accent); }
-
-    /* 摘要直接展示 */
-    .story-summary { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.4rem; }
-
-    /* 详情展开区 */
-    .story-detail { display: none; font-size: 0.85rem; color: var(--ink); line-height: 1.7; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px dashed var(--rule); }
-    .story-toggle { display: inline-block; font-size: 0.72rem; color: var(--accent); cursor: pointer; border: none; background: none; font-family: var(--sans); padding: 0; letter-spacing: 0.5px; }
-    .story-toggle:hover { text-decoration: underline; }
-
-    /* 用 checkbox hack 做展开，手机兼容 */
-    .detail-check { display: none; }
-    .detail-check:checked ~ .story-detail { display: block; }
-    .detail-check:checked ~ .story-toggle::after { content: '收起 ▴'; }
-    .story-toggle::after { content: '详情 ▾'; }
-
-    .story-meta { display: flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; color: var(--muted); flex-wrap: wrap; margin-top: 0.3rem; }
-    .story-meta .tag { background: var(--accent-dim); color: var(--accent); padding: 0.1rem 0.5rem; border-radius: 3px; font-weight: 500; font-size: 0.68rem; letter-spacing: 0.5px; }
-    .story-meta .tag.green { background: rgba(39,174,96,0.08); color: #27ae60; }
-    .story-meta .tag.blue { background: rgba(52,152,219,0.08); color: #2980b9; }
-
-    /* ── Math ── */
-    .math-box { background: var(--paper-alt); border: 1px solid var(--rule); border-radius: 6px; padding: 1.2rem; margin-bottom: 1rem; }
-    .math-box h3 { font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
-
-    .progress-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; font-size: 0.8rem; }
-    .progress-row .name { min-width: 50px; color: var(--muted); }
-    .progress-track { flex: 1; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--ink); border-radius: 2px; }
-    .progress-row .pct { font-size: 0.72rem; color: var(--muted); min-width: 28px; text-align: right; }
-
-    /* Quiz - checkbox hack for mobile */
-    .quiz-item { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dashed var(--rule); }
-    .quiz-q { font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.5; margin-bottom: 0.5rem; }
-    .quiz-options { list-style: none; margin: 0.5rem 0; }
-    .quiz-options li { margin-bottom: 0.3rem; }
-    .quiz-options input[type="radio"] { display: none; }
-    .quiz-options label { display: block; font-size: 0.85rem; padding: 0.5rem 0.8rem; border: 1px solid var(--rule); border-radius: 4px; cursor: pointer; transition: all 0.15s; }
-    .quiz-options label:hover { background: var(--accent-dim); border-color: var(--accent); }
-    .quiz-options input[type="radio"]:checked + label { background: var(--accent-dim); border-color: var(--accent); font-weight: 500; }
-
-    .quiz-feedback { display: none; font-size: 0.82rem; line-height: 1.6; margin-top: 0.5rem; padding: 0.6rem 0.8rem; border-radius: 4px; }
-    .quiz-fb-correct { background: rgba(39,174,96,0.08); color: #27ae60; }
-    .quiz-fb-wrong { background: rgba(192,57,43,0.08); color: var(--accent); }
-
-    /* 每个选项组对应一个 feedback */
-    .quiz-options input[value="a"]:checked ~ .fb-a,
-    .quiz-options input[value="b"]:checked ~ .fb-b,
-    .quiz-options input[value="c"]:checked ~ .fb-c,
-    .quiz-options input[value="d"]:checked ~ .fb-d { display: block; }
-
-    /* Concept card */
-    .concept { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.2rem; margin-top: 1rem; }
-    .concept-title { font-family: var(--serif); font-size: 1rem; margin-bottom: 0.4rem; }
-    .concept-body { font-size: 0.85rem; color: var(--ink); line-height: 1.7; }
-    .concept-formula { font-family: 'DM Sans', monospace; font-size: 0.9rem; background: var(--paper); padding: 0.8rem 1rem; border-radius: 4px; margin: 0.5rem 0; text-align: center; border: 1px solid var(--rule); }
-
-    .video-box { margin-top: 1rem; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
-    .video-box iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
-    .video-caption { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; }
-
-    /* ── Divider ── */
-    .divider { border: none; border-top: 3px double var(--rule); margin: 2rem 0; }
-
-    /* ── Footer ── */
-    .footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: 0.72rem; color: var(--muted); line-height: 1.8; }
-    .footer a { color: var(--ink); }
-
-    @media print { body { background: white; } .page { max-width: 100%; padding: 1rem; } }
+    /* Math */
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .quiz-item { margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed var(--rule); }
+    .quiz-q { font-family:var(--serif); font-style:italic; font-size:0.95rem; line-height:1.5; margin-bottom:0.5rem; }
+    .quiz-options { list-style:none; margin:0.5rem 0; }
+    .quiz-options li { margin-bottom:0.3rem; }
+    .quiz-options input[type="radio"] { display:none; }
+    .quiz-options label { display:block; font-size:0.85rem; padding:0.5rem 0.8rem; border:1px solid var(--rule); border-radius:4px; cursor:pointer; transition:all 0.15s; }
+    .quiz-options label:hover { background:var(--accent-dim); border-color:var(--accent); }
+    .quiz-options input[type="radio"]:checked + label { background:var(--accent-dim); border-color:var(--accent); font-weight:500; }
+    .quiz-feedback { display:none; font-size:0.82rem; line-height:1.6; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:4px; }
+    .quiz-fb-correct { background:var(--green-dim); color:var(--green); }
+    .quiz-fb-wrong { background:var(--accent-dim); color:var(--accent); }
+    .video-box { margin-top:1rem; border-radius:4px; overflow:hidden; border:1px solid var(--rule); }
+    .video-box iframe { width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .video-caption { font-size:0.78rem; color:var(--muted); margin-top:0.4rem; font-style:italic; }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
   </style>
 </head>
 <body>
 <div class="page">
-
   <header class="masthead">
-    <div class="masthead-date">Sunday · June 28, 2026</div>
+    <div class="masthead-date">Sunday · 2026.06.28</div>
     <h1>每日资讯</h1>
     <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
   </header>
 
-  <!-- ═══ AI & 大模型 ═══ -->
+  <!-- ═══════════ AI & 大模型 ═══════════ -->
   <div class="section">
     <div class="section-label">AI & 大模型</div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank">DeepSeek 发布 DeepSpec：Speculative Decoding 全栈框架</a></div>
-      <div class="story-summary">完整代码库用于训练和评估 speculative decoding 算法。核心思路是让小模型先"猜"大模型的输出，大模型只验证猜对的部分，从而加速推理 2-3 倍。这是当前 LLM serving 最热的优化方向之一。</div>
+      <div class="story-headline"><a href="https://semgrep.dev/blog/2026/we-have-mythos-at-home-glm-52-beats-claude-in-our-cyber-benchmarks/" target="_blank">GLM 5.2 在安全基准测试中超越 Claude</a></div>
+      <div class="story-summary">Semgrep 发布安全代码基准测试结果，<strong>智谱 GLM 5.2 在网络安全相关评测中击败了 Claude</strong>。这是中国大模型在安全领域首次被独立第三方验证为领先。测试覆盖了漏洞检测、代码审计、渗透测试辅助等场景。对行业意义重大——安全领域长期由 GPT-4 和 Claude 主导，GLM 的突破意味着更多竞争和更低的成本。</div>
+      <div class="story-meta">
+        <span class="tag">276⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag">Security</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d1">
       <label for="d1" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>为什么重要：</strong>Speculative decoding 不改变模型输出质量，只加速推理。DeepSeek 把训练、评估、部署全链路开源了，降低了这个技术的门槛。<br><br>
-        <strong>关键细节：</strong>支持多种 draft model 架构，提供 benchmark 对比，包含推理引擎集成示例。对于做 LLM serving 的团队来说是直接可用的参考实现。
+        <strong>为什么重要：</strong>Semgrep 是知名的代码安全扫描工具，他们的基准测试方法论相对严谨。GLM 5.2 在 CTF 风格的漏洞挖掘任务中表现出色，特别是在代码审计方面。<br><br>
+        <strong>行业影响：</strong>如果 GLM 在安全场景持续领先，可能改变企业安全工具链的模型选择。目前大多数安全公司默认使用 GPT-4/Claude，价格和合规性是痛点。国产模型可能在合规敏感的政府/金融领域获得更多机会。<br><br>
+        <strong>待观察：</strong>单一基准不代表全面优势，实际部署效果还需验证。
       </div>
-      <div class="story-meta"><span class="tag green">⭐ 1,855</span><span class="tag">GitHub</span>deepseek-ai</div>
     </div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/QwenLM/Qwen-AgentWorld" target="_blank">Qwen-AgentWorld：让 Agent 在虚拟世界中推理</a></div>
-      <div class="story-summary">通义千问团队将 Language Model 与 World Model 结合。Agent 不再只是"对话"，而是在虚拟环境中观察、行动、获得反馈，像人一样通过试错学习。</div>
+      <div class="story-headline"><a href="https://antoine.fi/mri-analysis-using-claude-code-opus" target="_blank">我用 Claude Code 获取了 MRI 的第二意见</a></div>
+      <div class="story-summary">一位用户分享了使用 <strong>Claude Code (Opus)</strong> 分析自己 MRI 扫描结果的经历。Claude 不仅解读了影像报告中的专业术语，还指出了放射科医生可能忽略的异常模式，提供了第二个参考意见。这展示了 AI 在医疗辅助诊断中的实际应用场景。</div>
+      <div class="story-meta">
+        <span class="tag">286⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag">Healthcare</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d2">
       <label for="d2" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>为什么重要：</strong>当前 LLM Agent 的最大瓶颈是缺乏对物理世界的理解。AgentWorld 让 Agent 在安全的虚拟环境中练习，再迁移到真实场景。<br><br>
-        <strong>应用场景：</strong>机器人控制、自动驾驶模拟、游戏 AI、供应链优化等需要空间推理的领域。
+        <strong>关键细节：</strong>作者并非用 AI 替代医生，而是将 AI 作为辅助验证工具。Claude 在分析过程中要求用户提供完整的放射科报告文本，然后逐条解读并给出置信度评估。<br><br>
+        <strong>争议点：</strong>医疗 AI 的监管问题。FDA 对 AI 辅助诊断的审批仍在进行中，目前这类使用属于"off-label"。但用户普遍认为，作为信息参考工具，AI 分析可以降低误诊风险。<br><br>
+        <strong>启示：</strong>LLM 在专业领域的第二意见场景有巨大潜力，关键是如何定位——不是替代专家，而是补充专家。
       </div>
-      <div class="story-meta"><span class="tag green">⭐ 612</span><span class="tag">GitHub</span>QwenLM</div>
     </div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/HKUDS/AgentSpace" target="_blank">AgentSpace：人与 AI Agent 的协作工作空间</a></div>
-      <div class="story-summary">港大数据科学团队发布。多 Agent 可以在同一工作空间中协同，支持任务分配、状态同步和冲突解决。类似"AI 版 Slack"。</div>
+      <div class="story-headline"><a href="https://english.elpais.com/education/2026-06-28/ai-fraud-at-brown-university-academic-integrity-is-at-risk.html" target="_blank">教授公开谴责布朗大学大规模 AI 作弊事件</a></div>
+      <div class="story-summary">布朗大学一位教授发表公开声明，揭露该校近期考试中出现<strong>大规模 AI 舞弊行为</strong>。学生使用 LLM 完成本应独立完成的考试作业，传统检测手段已难以应对。教授呼吁学校紧急更新学术诚信政策。</div>
+      <div class="story-meta">
+        <span class="tag">125⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag orange">Education</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d3">
       <label for="d3" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>为什么重要：</strong>单 Agent 能力有限，多 Agent 协作是趋势。AgentSpace 提供了一个统一的框架，让不同 Agent 各司其职。<br><br>
-        <strong>亮点：</strong>内置了角色分配机制和通信协议，开发者不用从零搭建多 Agent 系统。
+        <strong>背景：</strong>这不是个案——全美高校都在面临 AI 作弊危机。Turnitin 等检测工具的误报率和漏报率都偏高，学校陷入两难。<br><br>
+        <strong>教授立场：</strong>该教授认为根本问题不是技术，而是评估方式。传统的闭卷考试在 LLM 时代已失去意义，教育需要转向开放式、项目制的评估方法。<br><br>
+        <strong>行业趋势：</strong>越来越多的大学开始接受 AI 作为工具，但要求学生标注使用方式。完全禁止已不现实，如何"合理使用"成为新课题。
       </div>
-      <div class="story-meta"><span class="tag green">⭐ 505</span><span class="tag">GitHub</span>HKUDS</div>
     </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- ═══ 安全 & 逆向 ═══ -->
-  <div class="section">
-    <div class="section-label">安全 & 逆向</div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/bikini/exploitarium" target="_blank">Exploitarium：公开 Exploit PoC 与漏洞研究合集</a></div>
-      <div class="story-summary">归档公开 exploit PoC（概念验证代码）和安全研究 writeup。涵盖 Web、内核、二进制等多个方向，逆向工程和漏洞分析的参考资源库。</div>
+      <div class="story-headline"><a href="https://blog.pascalschuster.de/article/do-llms-pass-the-mirror-test" target="_blank">LLM 能通过镜像测试吗？</a></div>
+      <div class="story-summary">一篇深度分析文章探讨了<strong>大语言模型是否具备自我意识</strong>。作者设计了针对 LLM 的"镜像测试"变体，通过一系列认知实验来评估模型是否真正理解"自我"的概念。结果显示 LLM 在模式匹配上表现出色，但在真正的自我认知上仍有本质差距。</div>
+      <div class="story-meta">
+        <span class="tag">35⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag">Consciousness</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d4">
       <label for="d4" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>适合谁：</strong>想学 CTF、漏洞挖掘、二进制安全的开发者。每个 PoC 都附带详细分析。<br><br>
-        <strong>推荐路径：</strong>从 Web 类 PoC 入门（门槛低），再进阶到内核和二进制方向。
+        <strong>镜像测试：</strong>传统镜像测试用于动物认知研究——动物能否认出镜中的是自己。作者将这个概念改编为语言版本：LLM 能否在对话中持续维持一致的"自我模型"？<br><br>
+        <strong>实验设计：</strong>测试包括跨会话身份一致性、对自己能力边界的准确认知、对自身错误的自发修正等。GPT-4 和 Claude 在部分测试中表现优异，但整体仍未能通过严格版本的测试。<br><br>
+        <strong>启示：</strong>当前 LLM 是极其复杂的模式匹配系统，与"意识"或"自我"有本质区别。
       </div>
-      <div class="story-meta"><span class="tag green">⭐ 1,752</span><span class="tag" style="background:rgba(230,126,34,0.08);color:#e67e22">安全</span></div>
     </div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://devblogs.microsoft.com/oldnewthing/20260625-00/?p=112467" target="_blank">DLL 未从内存移除但已正式卸载的奇特案例</a></div>
-      <div class="story-summary">Raymond Chen 深入分析 Windows DLL unload 的内存管理机制。一个 DLL 虽然逻辑上被卸载了，但物理内存中仍然存在——这涉及操作系统的 lazy unload 策略。</div>
+      <div class="story-headline"><a href="https://12gramsofcarbon.com/p/agentics-tech-things-tokenmaxxing" target="_blank">Tokenmaxxing 已死，Tokenmaxxing 万岁</a></div>
+      <div class="story-summary">一篇关于<strong>AI Agent 工程中 token 优化趋势</strong>的深度分析。"Tokenmaxxing"（过度追求长上下文窗口）曾是 2025 年的热点，但业界正转向更精细的 token 管理策略——通过检索增强、分块处理、优先级调度等方法来减少不必要的 token 消耗。</div>
+      <div class="story-meta">
+        <span class="tag">93⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag">Engineering</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d5">
       <label for="d5" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>学到什么：</strong>Windows 内核的内存管理远比想象的复杂。DLL 的"卸载"不等于"释放内存"，理解这个对逆向工程和调试很有帮助。<br><br>
-        <strong>延伸阅读：</strong>Raymond Chen 的 The Old New Thing 系列是 Windows 底层原理的宝库。
+        <strong>核心观点：</strong>上下文窗口从 4K 到 1M 的增长并没有带来线性收益。在 Agent 场景中，大量无关上下文反而干扰模型注意力。<br><br>
+        <strong>新趋势：</strong>RAG (检索增强生成) + 精准上下文管理成为主流。与其把所有信息塞进 prompt，不如让 Agent 有选择地检索需要的信息。这更接近人类处理信息的方式。<br><br>
+        <strong>工程实践：</strong>分层缓存、语义索引、优先级队列等技术正在成为 Agent 架构的标准组件。
       </div>
-      <div class="story-meta"><span class="tag">HN 62⬆</span><span class="tag" style="background:rgba(230,126,34,0.08);color:#e67e22">逆向</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline">CVE-2026-11551 · WordPress Branda 插件权限提升 <span style="color:var(--accent);font-size:0.8rem;">9.8 CRITICAL</span></div>
-      <div class="story-summary">WordPress Branda 插件（≤3.4.29）存在认证绕过漏洞。攻击者无需登录即可修改任意用户密码，实现账号接管。原因是插件在更新密码前未验证用户身份。</div>
-      <div class="story-meta"><span class="tag" style="background:rgba(192,57,43,0.1);color:var(--accent)">严重</span>WordPress 插件</div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline">CVE-2026-9265 · Perl PKCS12 堆越界读取 <span style="color:var(--accent);font-size:0.8rem;">9.1 CRITICAL</span></div>
-      <div class="story-summary">Crypt::OpenSSL::PKCS12（Perl）在解析 UTF8STRING 时存在堆缓冲区越界读取。原因是 strncpy 复制 ASN.1 属性值后没有添加 NUL 终止符，导致后续 strlen 越界。可被利用读取敏感内存数据。</div>
-      <div class="story-meta"><span class="tag" style="background:rgba(192,57,43,0.1);color:var(--accent)">严重</span>密码学库</div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline">CVE-2026-56212~56216 · Capgo 多个高危漏洞链 <span style="color:var(--accent);font-size:0.8rem;">8.3-8.8 HIGH</span></div>
-      <div class="story-summary">Capgo（≤12.128.2）连续爆出 5 个漏洞：认证逻辑缺陷、授权绕过、信息泄露、邮箱篡改、权限提升。攻击者可利用这一系列漏洞从低权限逐步升级到完全控制。Capgo 是一个跨平台 OTA 更新服务。</div>
-      <div class="story-meta"><span class="tag" style="background:rgba(230,126,34,0.1);color:#e67e22">高危</span>OTA 更新服务</div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline">CVE-2026-9843 / CVE-2026-11911 · WordPress 任意文件删除 <span style="color:#e67e22;font-size:0.8rem;">7.5 HIGH</span></div>
-      <div class="story-summary">Contact Form 7 和 Simple File List 两个 WordPress 插件存在路径验证不足，未授权攻击者可删除服务器上的任意文件。严重时可删除 wp-config.php 导致网站重置。</div>
-      <div class="story-meta"><span class="tag" style="background:rgba(230,126,34,0.1);color:#e67e22">高危</span>WordPress 插件</div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ═══ GitHub & HN ═══ -->
+  <!-- ═══════════ 安全 & CVE ═══════════ -->
   <div class="section">
-    <div class="section-label">GitHub Trending & Hacker News</div>
+    <div class="section-label">安全 & CVE</div>
+
+    <div class="cve-card">
+      <div class="cve-id">
+        CVE-2026-12770
+        <span class="cve-score medium">5.4 MEDIUM</span>
+      </div>
+      <div class="cve-desc"><strong>BerriAI litellm ≤1.63.1 — Admin Key 未授权访问</strong></div>
+      <div class="cve-what">
+        <strong>漏洞描述：</strong>litellm 的管理密钥端点（key_management_endpoints.py）存在<strong>权限校验缺陷</strong>。攻击者可以通过构造特殊请求绕过管理员密钥认证，未经授权访问或操作 API 密钥管理接口。由于 litellm 是 LLM 代理网关，管理员密钥泄露可能导致所有后端 LLM API 被滥用。<br>
+        <strong>影响：</strong>远程可利用，无需认证。影响使用 litellm 代理的全部部署实例。<br>
+        <strong>建议：</strong>升级到最新版本，检查是否已暴露管理接口到公网。
+      </div>
+      <div class="story-meta">
+        <span class="tag orange">MEDIUM</span>
+        <span class="tag">NVD</span>
+        <span class="tag blue">AI Infrastructure</span>
+      </div>
+    </div>
+
+    <div class="cve-card">
+      <div class="cve-id">
+        CVE-2026-12773
+        <span class="cve-score high">7.3 HIGH</span>
+      </div>
+      <div class="cve-desc"><strong>BerriAI litellm ≤1.59.8 — MCP Proxy 认证绕过</strong></div>
+      <div class="cve-what">
+        <strong>漏洞描述：</strong>litellm 的 MCP (Model Context Protocol) 代理组件中，<strong>UserAPIKeyAuth 认证函数</strong>（mcp_server/auth/user_api_key_auth_mcp.py）存在严重认证绕过漏洞。攻击者无需有效 API 密钥即可通过 MCP 代理访问受保护的 LLM 资源。MCP 是新兴的模型通信协议，漏洞影响所有启用了 MCP 功能的 litellm 部署。<br>
+        <strong>攻击复杂度：</strong>远程可利用，CVSS 7.3 HIGH。一旦利用成功，攻击者可以完全绕过认证，以任意用户身份调用 LLM。<br>
+        <strong>建议：</strong>紧急升级，如暂时无法升级则禁用 MCP 代理功能，检查访问日志是否已有异常。
+      </div>
+      <div class="story-meta">
+        <span class="tag orange">HIGH</span>
+        <span class="tag">NVD</span>
+        <span class="tag blue">AI Infrastructure</span>
+      </div>
+    </div>
+
+    <div class="cve-card">
+      <div class="cve-id">
+        CVE-2026-12774
+        <span class="cve-score medium">6.3 MEDIUM</span>
+      </div>
+      <div class="cve-desc"><strong>BerriAI litellm ≤1.82.2 — MCP Server SSRF</strong></div>
+      <div class="cve-what">
+        <strong>漏洞描述：</strong>litellm 的 MCP 服务器连接测试功能（rest_endpoints.py）存在<strong>服务端请求伪造（SSRF）</strong>漏洞。_execute_with_mcp_client 函数未对目标 URL 进行充分验证，攻击者可利用此漏洞让 litellm 服务器向内网任意地址发起请求，可能导致内网服务探测、数据泄露或进一步攻击内网系统。<br>
+        <strong>关键点：</strong>SSRF 漏洞在云环境中尤其危险——可以访问云元数据服务（如 AWS 169.254.169.254）获取临时凭证。
+      </div>
+      <div class="story-meta">
+        <span class="tag orange">MEDIUM</span>
+        <span class="tag">NVD</span>
+        <span class="tag blue">SSRF</span>
+      </div>
+    </div>
+
+    <div class="cve-card">
+      <div class="cve-id">
+        CVE-2026-12778 / 12779 / 12780
+        <span class="cve-score high">7.8 HIGH</span>
+      </div>
+      <div class="cve-desc"><strong>AOMEI 内核驱动系列 — 权限提升漏洞</strong></div>
+      <div class="cve-what">
+        <strong>漏洞描述：</strong>AOMEI 三款产品（Partition Assistant、Dynamic Disk Manager、Backupper）的<strong>内核驱动</strong>（ampa10.sys / ddmdrv.sys / amwrtdrv.sys）均存在<strong>不当访问控制</strong>漏洞。攻击者可以在本地利用这些驱动的访问控制缺陷，从普通用户提升到 SYSTEM 权限。<br>
+        <strong>影响范围：</strong>Partition Assistant ≤10.10.1、Dynamic Disk Manager ≤10.10.1、Backupper ≤8.3.0。这三款软件用户量大（数百万级），补丁管理需尽快推进。<br>
+        <strong>攻击方式：</strong>本地提权，需已有低权限账户。在企业环境中，一旦攻击者通过钓鱼等方式获得普通用户权限，即可利用此漏洞完全控制主机。<br>
+        <strong>建议：</strong>立即更新到最新版本。如果无法立即更新，限制普通用户的本地执行权限。
+      </div>
+      <div class="story-meta">
+        <span class="tag orange">HIGH</span>
+        <span class="tag">NVD</span>
+        <span class="tag">Kernel</span>
+      </div>
+    </div>
+
+    <div class="cve-card">
+      <div class="cve-id">
+        CVE-2026-12775
+        <span class="cve-score high">7.3 HIGH</span>
+      </div>
+      <div class="cve-desc"><strong>House-Rental-Management — SQL 注入</strong></div>
+      <div class="cve-what">
+        <strong>漏洞描述：</strong>Montodel House-Rental-Management 系统的登录页面（/login.php）存在<strong>SQL 注入漏洞</strong>。用户名参数（Username）未经过滤直接拼接到 SQL 查询中，攻击者可以构造恶意输入绕过认证、读取数据库内容、甚至在服务器上执行系统命令。<br>
+        <strong>注意：</strong>这是一个典型的安全反模式——在 2026 年仍然存在字符串拼接 SQL 的项目。如果你们在使用类似系统，务必检查是否使用了参数化查询。
+      </div>
+      <div class="story-meta">
+        <span class="tag orange">HIGH</span>
+        <span class="tag">NVD</span>
+        <span class="tag">SQL Injection</span>
+      </div>
+    </div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/bozhouDev/codex-orange-book" target="_blank">Codex 橙皮书：从安装到实战的全链路指南</a></div>
-      <div class="story-summary">非官方开源的 OpenAI Codex 完全指南，涵盖安装配置、prompt engineering、实战案例，附可下载 PDF。今日 GitHub 最热项目。</div>
+      <div class="story-headline"><a href="https://github.com/bikini/exploitarium" target="_blank">Exploitarium — 公开漏洞 PoC 合集</a></div>
+      <div class="story-summary">一个新上线的<strong>公开漏洞利用代码（Exploit PoC）和安全研究 Writeup</strong> 的归档仓库。当前已收录大量 CVE 的概念验证代码。对于安全研究者和渗透测试人员来说是宝贵的参考资源。项目作者表示将持续更新未公开的漏洞信息。</div>
+      <div class="story-meta">
+        <span class="tag green">⭐ 2,078</span>
+        <span class="tag">GitHub</span>
+        <span class="tag blue">Security</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d6">
       <label for="d6" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>内容亮点：</strong>不只教怎么用 Codex，还讲了底层原理和最佳实践。适合已经在用 Codex 但想更深入的开发者。<br><br>
-        <strong>实用度：</strong>附带大量真实项目案例，可以直接参考。
+        <strong>价值：</strong>漏洞 PoC 是安全研究的核心资源。以前需要从各个安全博客和 GitHub 零散收集，现在有了统一归档。<br><br>
+        <strong>使用场景：</strong>CTF 比赛、渗透测试验证、安全培训。在使用前请确认合法授权，未经授权使用 PoC 可能构成违法行为。<br><br>
+        <strong>注意：</strong>仓库声明收录的都是"公开但未被官方报告"的漏洞，使用前请自行验证。
       </div>
-      <div class="story-meta"><span class="tag green">⭐ 2,255</span><span class="tag">GitHub</span>今日最热</div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="https://github.com/openai/codex/issues/2847" target="_blank">Codex 敏感文件排除机制仍有缺陷</a></div>
-      <div class="story-summary">社区反馈 .codexignore 配置不完善，Codex 可能读取并处理 .env、密钥文件等敏感内容。提醒所有使用 AI coding agent 的开发者检查配置。</div>
-      <input type="checkbox" class="detail-check" id="d7">
-      <label for="d7" class="story-toggle"></label>
-      <div class="story-detail">
-        <strong>影响范围：</strong>任何使用 OpenAI Codex 的项目都可能受影响。<br><br>
-        <strong>建议：</strong>立即检查项目的 .codexignore 文件，确保排除了 .env、*.key、*.pem 等敏感文件。同时关注 issue 进展。
-      </div>
-      <div class="story-meta"><span class="tag">HN 66⬆</span><span class="tag blue">AI 安全</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="https://github.com/Yu9191/wloc" target="_blank">wloc：Apple 网络定位修改工具</a></div>
-      <div class="story-summary">修改 Apple 网络定位（gs-loc）返回坐标，支持 Surge / Quantumult X / Loon / Stash，快捷指令一键设置/恢复。iOS 逆向工程的好例子。</div>
-      <input type="checkbox" class="detail-check" id="d8">
-      <label for="d8" class="story-toggle"></label>
-      <div class="story-detail">
-        <strong>逆向价值：</strong>项目展示了如何拦截和修改 iOS 网络请求，是学习 iOS 逆向工程的实用参考。<br><br>
-        <strong>技术点：</strong>涉及 HTTPS 中间人代理、iOS 定位服务原理、快捷指令自动化。
-      </div>
-      <div class="story-meta"><span class="tag green">⭐ 979</span><span class="tag" style="background:rgba(230,126,34,0.08);color:#e67e22">逆向</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="https://www.marfapublicradio.org/podcast/marfa-public-radio-puts-you-to-sleep" target="_blank">Marfa Public Radio：让你入睡的 AI 电台</a></div>
-      <div class="story-summary">今日 HN 最热帖（319⬆）。用 AI 生成持续环境音的实验性广播项目，探索 AI 在创意和放松场景的应用。</div>
-      <div class="story-meta"><span class="tag">HN 319⬆</span></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ═══ ArXiv 论文 ═══ -->
+  <!-- ═══════════ GitHub Trending ═══════════ -->
+  <div class="section">
+    <div class="section-label">GitHub Trending</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/bozhouDev/codex-orange-book" target="_blank">Codex 橙皮书</a></div>
+      <div class="story-summary"><strong>从安装到实战案例的全链路 Codex 使用指南</strong>（非官方开源）。涵盖 OpenAI Codex 的安装配置、最佳实践、常见坑位和可下载 PDF。适合正在评估或使用 Codex 的开发团队。</div>
+      <div class="story-meta">
+        <span class="tag green">⭐ 2,272</span>
+        <span class="tag">HTML</span>
+        <span class="tag blue">AI Coding</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank">DeepSpec</a></div>
+      <div class="story-summary"><strong>DeepSeek 开源的推测解码（Speculative Decoding）训练与评估框架</strong>。Speculative Decoding 是加速 LLM 推理的关键技术——用小模型草拟、大模型验证，在不损失质量的前提下显著提升推理速度。DeepSpec 提供了完整的训练 pipeline 和评测套件。</div>
+      <div class="story-meta">
+        <span class="tag green">⭐ 2,114</span>
+        <span class="tag">Python</span>
+        <span class="tag">Inference</span>
+      </div>
+      <input type="checkbox" class="detail-check" id="d7">
+      <label for="d7" class="story-toggle"></label>
+      <div class="story-detail">
+        <strong>技术亮点：</strong>推测解码是当前 LLM 推理加速的热门方向。DeepSeek 在这个方向上有深厚积累，这次开源的框架包含多种算法实现（如 EAGLE、Medusa 等），可以方便地对比不同方案的效果。<br><br>
+        <strong>适用场景：</strong>如果你的团队在做 LLM 推理优化，这个框架可以作为 baseline 快速验证。对于 AI infra 工程师来说是必备参考。
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/QwenLM/Qwen-AgentWorld" target="_blank">Qwen-AgentWorld</a></div>
+      <div class="story-summary"><strong>通义千问团队的"语言世界模型"项目</strong>——将语言模型与世界模型结合，让 Agent 能够在虚拟环境中自主探索和学习。目标是构建更通用的 AI Agent，能够理解物理世界的基本规律。</div>
+      <div class="story-meta">
+        <span class="tag green">⭐ 624</span>
+        <span class="tag">Python</span>
+        <span class="tag blue">Agent</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/HKUDS/AgentSpace" target="_blank">AgentSpace</a></div>
+      <div class="story-summary"><strong>"人类 + Agent = 一个团队，一个工作区"</strong>。香港大学的 AgentSpace 项目构建了一个协作工作空间，让人类和多个 AI Agent 在统一界面中协同工作，共享上下文和记忆。</div>
+      <div class="story-meta">
+        <span class="tag green">⭐ 520</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Collaboration</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/benchflow-ai/awesome-evals" target="_blank">awesome-evals</a></div>
+      <div class="story-summary"><strong>AI Agent 评估资源精选列表</strong>。涵盖论文、博客、工具和基准测试。对于正在构建或评估 AI Agent 的团队来说，这是目前最全面的评估方法论资源库。</div>
+      <div class="story-meta">
+        <span class="tag green">⭐ 559</span>
+        <span class="tag blue">Awesome List</span>
+        <span class="tag">Evaluation</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════ ArXiv AI/ML 论文精选 ═══════════ -->
   <div class="section">
     <div class="section-label">📄 ArXiv · AI/ML 论文精选</div>
 
     <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27330v1" target="blank">GUI Agent 通过自主经验探索实现任务规划</a></div>
-      <div class="story-summary">让多模态 web agent 通过自主探索积累经验，再利用 "hindsight experience"（事后经验回放）来分解复杂 GUI 任务。核心思路：agent 从失败中学习，比从成功中学习更高效。</div>
-      <div class="story-meta"><span class="tag">Agent</span><span class="tag blue">GUI 自动化</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27369v1" target="_blank">RiVER: 无需 Ground-Truth 的强化学习提升 LLMs</a></div>
+      <div class="story-summary"><strong>核心突破：</strong>传统 RLVR（Reinforcement Learning with Verifiable Rewards）需要 ground-truth 答案来分配奖励，限制了其在开放性任务中的应用。本文提出 <strong>RiVER (Ranking-induced VERifiable framework)</strong>，通过排序机制生成可验证的奖励信号，让 LLM 在没有标准答案的任务上也能通过 RL 持续提升。</div>
+      <div class="story-meta">
+        <span class="tag">2026-06-25</span>
+        <span class="tag blue">9 authors</span>
+        <span class="tag">RLHF</span>
+      </div>
+      <input type="checkbox" class="detail-check" id="d8">
+      <label for="d8" class="story-toggle"></label>
+      <div class="story-detail">
+        <strong>为什么重要：</strong>RLHF 依赖人工标注，RLVR 需要 ground-truth。这两种方式都限制了强化学习在更广泛任务上的应用。RiVER 的排序方法更通用——不需要"标准答案"，只需要"哪个更好"的相对判断。<br><br>
+        <strong>潜在应用：</strong>创意写作、代码生成、多轮对话等难以定义"正确答案"的场景。如果有效，这将大幅降低 RLHF 的数据成本。<br><br>
+        <strong>局限性：</strong>论文在特定任务上验证，泛化能力还需更多实验。
+      </div>
     </div>
 
     <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27306v1" target="blank">多语言推理级联需要更多上下文</a></div>
-      <div class="story-summary">当前多语言推理的做法是：翻译成英文 → 英文推理 → 翻译回来。论文发现这种 "translation cascade" 会丢失文化/语境信息，导致推理质量下降。提出需要保留更多原始语言上下文。</div>
-      <div class="story-meta"><span class="tag">多语言</span><span class="tag blue">推理</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27359v1" target="_blank">LLM 中序列概率与正确性的关系</a></div>
+      <div class="story-summary"><strong>理论分析：</strong>许多 LLM 解码方法本质上是将概率质量"推"向更可能的输出。但<strong>更可能的序列是否一定更正确？</strong>本文从理论角度分析了序列概率与正确性之间的关系，为 beam search、top-k、top-p 等解码策略提供了新的理论基础。</div>
+      <div class="story-meta">
+        <span class="tag">2026-06-25</span>
+        <span class="tag blue">2 authors</span>
+        <span class="tag">Theory</span>
+      </div>
     </div>
 
     <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27242v1" target="blank">词表级别的 Fisher 对齐：免训练的模型选择</a></div>
-      <div class="story-summary">对于共享词表的 LLM 家族（如科学领域的 SMILES/蛋白质/基因组序列），提出一种基于 Fisher 信息的免费方法来选择最优源模型。不需要额外训练，直接计算词表空间的几何对齐度。</div>
-      <div class="story-meta"><span class="tag">LLM</span><span class="tag green">高效训练</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27237v1" target="blank">语言模型作为任务特定知识库：可解释性分析</a></div>
-      <div class="story-summary">研究 LLM 参数是否真的像知识库一样可查询。发现不同查询可以指向同一事实，但模型内部的表示方式与传统知识库不同。对理解 LLM 的知识存储机制有启发。</div>
-      <div class="story-meta"><span class="tag">LLM</span><span class="tag blue">可解释性</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27229v1" target="blank">CARVE：内容感知的循环线性注意力</a></div>
-      <div class="story-summary">解决循环模型的 "遗忘 vs 记忆" 难题。当前 SOTA 的门控机制只看新 token，不看已存储的记忆（memory-blind gating）。CARVE 让门控同时参考新输入和已有记忆，提升长序列处理能力。</div>
-      <div class="story-meta"><span class="tag">架构</span><span class="tag green">效率</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27314v1" target="blank">LLM 检测隐语编码的系统分类</a></div>
-      <div class="story-summary">社交媒体用户发明各种间接表达（algospeak、委婉语、对抗性混淆）来规避审核。论文建立了完整的分类体系，覆盖 LLM 如何检测这类 "coded language"。对内容安全和 AI 对齐研究有价值。</div>
-      <div class="story-meta"><span class="tag">安全</span><span class="tag orange">内容审核</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27275v1" target="blank">历史意大利语对语言模型有多"惊讶"？</a></div>
-      <div class="story-summary">LLM 处理历史语言时的困难被当做一个整体障碍，但论文发现应该拆分为：拼写困难（tokenization tax）和理解困难（comprehension tax）。提出简单缓解方法，对数字人文和古籍处理有实际价值。</div>
-      <div class="story-meta"><span class="tag">NLP</span><span class="tag blue">数字人文</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27233v1" target="blank">对话与思维的桥接：协作问题解决中的对话动态</a></div>
-      <div class="story-summary">分析人机协作和多 agent 协作中的对话动态。随着 AI 从被动回答变为主动参与，理解对话中的思维流变得越来越重要。提出了一个概念框架来分析这种动态。</div>
-      <div class="story-meta"><span class="tag">Agent</span><span class="tag green">协作</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27377v1" target="blank">DanceOPD：统一图像生成与编辑的蒸馏方法</a></div>
-      <div class="story-summary">一个模型同时搞定 text-to-image、局部编辑、全局编辑。核心创新是 on-policy 的生成式蒸馏，解决了不同能力之间的冲突问题（比如编辑十次后图像崩塌）。</div>
-      <div class="story-meta"><span class="tag">生成</span><span class="tag blue">图像</span></div>
-    </div>
-
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27228v1" target="blank">组合性与词库在演化语义学中的角色</a></div>
-      <div class="story-summary">形式语义学表明句子意义由词汇意义递归组合而成。论文探索语义普遍性：是词库结构固定，还是组合方式固定？对理解语言本质和 LLM 的语言能力边界有理论价值。</div>
-      <div class="story-meta"><span class="tag">理论</span><span class="tag blue">语义学</span></div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- ═══ 10% 跳出舒适圈 ═══ -->
-  <div class="section">
-    <div class="section-label">跳出舒适圈</div>
-
-    <div class="story">
-      <div class="story-headline"><a href="https://www.dnews.gr/eidhseis/news-in-english/596650/greece-is-richer-so-why-do-so-many-greeks-still-feel-poor" target="_blank">希腊变富了，为什么希腊人还觉得自己穷？</a></div>
-      <div class="story-summary">希腊 GDP 已恢复到危机前水平，但居民实际感受并未改善。文章分析了经济指标与主观幸福感脱节的原因——不平等、青年失业、公共服务退化。</div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27326v1" target="_blank">世界模型中的幻觉：可预测且可防止</a></div>
+      <div class="story-summary"><strong>核心发现：</strong>生成式世界模型（如视频预测模型）经常产生幻觉——输出视觉上流畅但偏离真实物理规律的内容。本文发现<strong>幻觉集中在状态-动作空间的低覆盖区域</strong>，并且可以通过不确定性估计来预测和防止。</div>
+      <div class="story-meta">
+        <span class="tag">2026-06-25</span>
+        <span class="tag blue">2 authors</span>
+        <span class="tag">World Models</span>
+      </div>
       <input type="checkbox" class="detail-check" id="d9">
       <label for="d9" class="story-toggle"></label>
       <div class="story-detail">
-        <strong>创业者视角：</strong>GDP 增长不等于所有人受益。做产品和服务时，要理解"平均数"背后的分布。<br><br>
-        <strong>延伸思考：</strong>这个现象在中国也存在——GDP 高增长但很多人感觉"没变好"。理解这个对商业决策有帮助。
+        <strong>实用价值：</strong>自动驾驶、机器人模拟等场景中，世界模型的幻觉可能导致严重后果。如果能预测幻觉发生的位置，就可以提前采取安全措施。<br><br>
+        <strong>方法论：</strong>作者使用集成方法估计模型不确定性，在高不确定性区域降低输出置信度或切换到保守策略。这与 active learning 的思路类似。<br><br>
+        <strong>关联：</strong>这与 LLM 的"知道自己不知道什么"（calibration）是同一类问题，只是在视觉世界模型中的表现形式不同。
       </div>
-      <div class="story-meta"><span class="tag" style="background:rgba(230,126,34,0.08);color:#e67e22">商业</span></div>
     </div>
 
     <div class="story">
-      <div class="story-headline"><a href="https://aresluna.org/the-curious-case-of-the-disappearing-polish-s/" target="_blank">波兰语中消失的 S</a></div>
-      <div class="story-summary">语言学趣闻：波兰语中的某些 S 音在历史演变中消失了。语言变化背后往往藏着文化和历史的密码。</div>
-      <div class="story-meta"><span class="tag blue">文化</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27330v1" target="_blank">GUI Agent 自主经验探索与任务规划</a></div>
+      <div class="story-summary"><strong>问题：</strong>小型开源 MLLM 驱动的 GUI Agent 在复杂任务规划上表现不佳。本文提出让 Agent <strong>自主探索 GUI 环境并积累经验</strong>，然后利用 hindsight experience 回顾性学习，显著提升了任务分解和执行能力。</div>
+      <div class="story-meta">
+        <span class="tag">2026-06-25</span>
+        <span class="tag blue">6 authors</span>
+        <span class="tag">GUI Agent</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27314v1" target="_blank">LLM 中编码语言检测：间接语言编码的全面分类</a></div>
+      <div class="story-summary"><strong>安全方向：</strong>社交媒体用户发明各种间接语言表达（algospeak、委婉语、对抗性混淆）来规避审核。本文提出了<strong>机制导向的分类体系</strong>，系统梳理了 LLM 检测编码语言的方法，为内容安全和对抗性防御提供理论框架。</div>
+      <div class="story-meta">
+        <span class="tag">2026-06-25</span>
+        <span class="tag blue">4 authors</span>
+        <span class="tag">Security</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27377v1" target="_blank">DanceOPD: 基于策略的生成式场蒸馏</a></div>
+      <div class="story-summary"><strong>图像生成方向：</strong>现代图像生成需要统一 T2I、局部编辑和全局编辑等能力，但这些能力经常冲突。DanceOPD 提出了一种<strong>在策略梯度框架下进行场蒸馏</strong>的方法，让单一模型同时掌握多种编辑能力而不互相干扰。</div>
+      <div class="story-meta">
+        <span class="tag">2026-06-25</span>
+        <span class="tag blue">11 authors</span>
+        <span class="tag">Image Generation</span>
+      </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ═══ 10% 数学 ═══ -->
+  <!-- ═══════════ 跳出舒适圈 ═══════════ -->
   <div class="section">
-    <div class="section-label">数学 · Day 1</div>
+    <div class="section-label">📚 跳出舒适圈</div>
 
-    <!-- 进度 -->
+    <div class="story">
+      <div class="story-headline"><a href="https://chipsandcheese.com/p/top500-at-isc26-we-have-a-new-number" target="_blank">TOP500 ISC'26：新世界第一超级计算机诞生</a></div>
+      <div class="story-summary">ISC'26 大会上发布了最新 TOP500 超算排名，<strong>新的世界第一超算诞生</strong>。这对芯片架构、分布式系统和高性能计算领域的从业者有直接参考价值。超算排名不仅是性能竞赛，更是芯片制造工艺、互联网络和散热技术的综合体现。</div>
+      <div class="story-meta">
+        <span class="tag">48⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag orange">HPC</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.theatlantic.com/magazine/2026/07/boeing-747-retirement/687304/" target="_blank">波音 747 开始最后的下降</a></div>
+      <div class="story-summary">《大西洋月刊》长篇特稿记录了<strong>波音 747 的退役历程</strong>。这款改变了全球航空业的飞机，在服役超过半个世纪后逐渐退出历史舞台。文章回顾了 747 对全球化的推动作用——它让跨洋旅行变得大众化，重塑了国际贸易和旅游业。</div>
+      <div class="story-meta">
+        <span class="tag">113⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag orange">Culture</span>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://dam.stanford.edu/memory-prices.html" target="_blank">历史内存价格 1960-2026</a></div>
+      <div class="story-summary">斯坦福大学整理的<strong>60 年内存价格数据</strong>。从 1960 年代每 MB 数百万美元到 2026 年的白菜价，内存价格的下降曲线比摩尔定律更陡峭。这对理解算力成本、AI 训练经济学和半导体产业周期有重要参考价值。</div>
+      <div class="story-meta">
+        <span class="tag">98⬆</span>
+        <span class="tag blue">HN</span>
+        <span class="tag orange">Hardware</span>
+      </div>
+      <input type="checkbox" class="detail-check" id="d10">
+      <label for="d10" class="story-toggle"></label>
+      <div class="story-detail">
+        <strong>关键数据：</strong>1960 年 1MB 内存成本约 $1,000,000，2026 年约 $0.002。60 年间下降了 5 个数量级。<br><br>
+        <strong>与 AI 的关联：</strong>LLM 的 scaling law 本质上受内存和算力成本驱动。理解历史趋势有助于预测未来 3-5 年 AI 模型的规模和成本走向。内存价格的持续下降意味着更大的模型和更长的上下文窗口在经济上变得可行。
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════ 数学 ═══════════ -->
+  <div class="section">
+    <div class="section-label">数学 · Day 2</div>
+
     <div class="math-box">
       <h3>学习进度</h3>
-      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
-      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
-      <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+      <div class="progress-row">
+        <span class="name">线代</span>
+        <div class="progress-track"><div class="progress-fill" style="width:8%"></div></div>
+        <span class="pct">8%</span>
+      </div>
+      <div class="progress-row">
+        <span class="name">高数</span>
+        <div class="progress-track"><div class="progress-fill" style="width:2%"></div></div>
+        <span class="pct">2%</span>
+      </div>
+      <div class="progress-row">
+        <span class="name">概率</span>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+        <span class="pct">—</span>
+      </div>
     </div>
 
-    <!-- 概念卡 -->
     <div class="math-box">
-      <h3>今日概念</h3>
+      <h3>今日概念 · 矩阵乘法</h3>
       <div class="concept">
-        <div class="concept-title">向量点积（Dot Product）</div>
+        <div class="concept-title">矩阵乘法（Matrix Multiplication）</div>
         <div class="concept-body">
-          两个向量的点积 = 对应分量乘积之和。几何意义是衡量两个向量"方向有多一致"。
+          矩阵乘法是线性代数的核心操作，也是神经网络（MLP、Transformer）的基础计算单元。<strong>直觉理解：</strong>矩阵乘法本质上是"多个线性变换的组合"。如果 A 代表"旋转"，B 代表"缩放"，那么 AB 就是"先旋转再缩放"。<br><br>
+          <strong>计算规则：</strong>两个矩阵 A(m×n) 和 B(n×p) 相乘，结果 C(m×p) 的每个元素 C[i][j] = Σ(A[i][k] × B[k][j])。关键约束：A 的列数必须等于 B 的行数。
         </div>
         <div class="concept-formula">
-          <strong>a</strong> · <strong>b</strong> = a₁b₁ + a₂b₂ + a₃b₃ = |<strong>a</strong>||<strong>b</strong>| cos θ
+          C = A × B &nbsp;&nbsp;|&nbsp;&nbsp; C<sub>ij</sub> = Σ<sub>k=1</sub><sup>n</sup> A<sub>ik</sub> · B<sub>kj</sub>
         </div>
-        <div class="concept-body" style="font-size:0.82rem; color:var(--muted); margin-top:0.4rem;">
-          • 点积 = 0 → 两向量<strong>垂直</strong>（正交）<br>
-          • 点积 > 0 → 方向大致相同（夹角 < 90°）<br>
-          • 点积 < 0 → 方向大致相反（夹角 > 90°）<br>
-          • 为什么重要：搜索引擎用点积算文本相似度，ML 里用点积做 attention 计算
-        </div>
-      </div>
-    </div>
-
-    <!-- 互动练习 -->
-    <div class="math-box">
-      <h3>📝 练习</h3>
-
-      <div class="quiz-item">
-        <div class="quiz-q">1. 若 <strong>a</strong> = (1, 0)，<strong>b</strong> = (0, 1)，则 <strong>a</strong> · <strong>b</strong> = ？</div>
-        <ul class="quiz-options">
-          <li><input type="radio" name="q1" value="a" id="q1a"><label for="q1a">A. 1</label></li>
-          <li><input type="radio" name="q1" value="b" id="q1b"><label for="q1b">B. 0</label></li>
-          <li><input type="radio" name="q1" value="c" id="q1c"><label for="q1c">C. -1</label></li>
-        </ul>
-        <div class="quiz-feedback quiz-fb-correct fb-a" style="display:none">✅ 正确！1×0 + 0×1 = 0。说明 x 轴和 y 轴是正交的。</div>
-        <div class="quiz-feedback quiz-fb-wrong fb-b" style="display:none">❌ 再想想。1×0 + 0×1 = ？</div>
-        <div class="quiz-feedback quiz-fb-wrong fb-c" style="display:none">❌ 不对。试试逐分量相乘再相加。</div>
       </div>
 
       <div class="quiz-item">
-        <div class="quiz-q">2. 若 <strong>a</strong> · <strong>b</strong> = 0，说明什么？</div>
+        <div class="quiz-q">如果 A 是 2×3 矩阵，B 是 3×4 矩阵，那么 A × B 的结果是什么维度？</div>
         <ul class="quiz-options">
-          <li><input type="radio" name="q2" value="a" id="q2a"><label for="q2a">A. 两个向量相等</label></li>
-          <li><input type="radio" name="q2" value="b" id="q2b"><label for="q2b">B. 两个向量垂直</label></li>
-          <li><input type="radio" name="q2" value="c" id="q2c"><label for="q2c">C. 两个向量平行</label></li>
+          <li><input type="radio" name="q1" id="q1a" value="wrong"><label for="q1a">3×3</label></li>
+          <li><input type="radio" name="q1" id="q1b" value="correct"><label for="q1b">2×4</label></li>
+          <li><input type="radio" name="q1" id="q1c" value="wrong"><label for="q1c">3×2</label></li>
+          <li><input type="radio" name="q1" id="q1d" value="wrong"><label for="q1d">4×2</label></li>
         </ul>
-        <div class="quiz-feedback quiz-fb-wrong fb-a" style="display:none">❌ 相等的话点积应该等于 |a|²。</div>
-        <div class="quiz-feedback quiz-fb-correct fb-b" style="display:none">✅ 正确！cos 90° = 0，所以点积为 0 意味着两向量正交（垂直）。</div>
-        <div class="quiz-feedback quiz-fb-wrong fb-c" style="display:none">❌ 平行的话点积 = |a||b|，不为 0。</div>
+        <div class="quiz-feedback quiz-fb-correct fb-correct">✅ 正确！(m×<strong>n</strong>) × (<strong>n</strong>×p) = m×p。中间维度 n 必须匹配，结果取外侧的 m 和 p。2×3 乘以 3×4 = 2×4。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong">❌ 矩阵乘法的规则是：(m×<strong>n</strong>) × (<strong>n</strong>×p) = m×p。中间维度 n 必须相等，结果取外侧的两个维度。所以 2×3 乘以 3×4 = 2×4。</div>
       </div>
     </div>
 
-    <!-- 视频 -->
     <div class="math-box">
-      <h3>🎬 推荐观看</h3>
+      <h3>推荐视频</h3>
       <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/fNk_zzaMoSs" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/XkY27UCdUqo" title="3Blue1Brown - 但到底什么是矩阵？" allowfullscreen></iframe>
       </div>
-      <div class="video-caption">3Blue1Brown · Dot products and duality — 线代入门第一步</div>
+      <div class="video-caption">3Blue1Brown — 但到底什么是矩阵？线性代数的本质 EP3</div>
     </div>
   </div>
 
   <footer class="footer">
     ⭐ 爱星智联 · OpenClaw<br>
     HN · GitHub Trending · NVD · ArXiv<br>
-    <a href="https://github.com/AveryHernandfs/html-reports">GitHub</a>
+    <a href="https://github.com/AveryHernandfs/html-reports">GitHub</a> · 2026.06.28
   </footer>
-
 </div>
-
 <script>
-// 用 JS 控制 quiz feedback（checkbox hack 对 radio 不够）
-document.querySelectorAll('.quiz-options input[type="radio"]').forEach(radio => {
-  radio.addEventListener('change', function() {
+document.querySelectorAll('.quiz-options input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
     const name = this.name;
-    // 隐藏同组所有 feedback
-    document.querySelectorAll(`.quiz-options input[name="${name}"]`).forEach(r => {
-      r.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    document.querySelectorAll(`.quiz-options input[name="${name}"]`).forEach(x => {
+      x.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
     });
-    // 显示对应的 feedback
-    const val = this.value;
-    const fb = this.closest('.quiz-item').querySelector('.fb-' + val);
+    const fb = this.closest('.quiz-item').querySelector('.fb-' + this.value);
     if (fb) fb.style.display = 'block';
   });
 });
