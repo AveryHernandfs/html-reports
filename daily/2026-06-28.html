@@ -200,11 +200,27 @@
     </div>
 
     <div class="story">
-      <div class="story-headline">今日新 CVE</div>
-      <div class="story-summary" style="font-size:0.85rem;">
-        <strong>CVE-2026-13331</strong> · <strong>CVE-2026-13333</strong> · <strong>CVE-2026-11356</strong> — NVD 已收录。建议查看 <a href="https://nvd.nist.gov" target="_blank" style="color:var(--accent)">NVD</a> 获取完整 CVSS 评分和受影响组件。
-      </div>
-      <div class="story-meta"><span class="tag" style="background:rgba(230,126,34,0.08);color:#e67e22">CVE</span>NVD</div>
+      <div class="story-headline">CVE-2026-11551 · WordPress Branda 插件权限提升 <span style="color:var(--accent);font-size:0.8rem;">9.8 CRITICAL</span></div>
+      <div class="story-summary">WordPress Branda 插件（≤3.4.29）存在认证绕过漏洞。攻击者无需登录即可修改任意用户密码，实现账号接管。原因是插件在更新密码前未验证用户身份。</div>
+      <div class="story-meta"><span class="tag" style="background:rgba(192,57,43,0.1);color:var(--accent)">严重</span>WordPress 插件</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-9265 · Perl PKCS12 堆越界读取 <span style="color:var(--accent);font-size:0.8rem;">9.1 CRITICAL</span></div>
+      <div class="story-summary">Crypt::OpenSSL::PKCS12（Perl）在解析 UTF8STRING 时存在堆缓冲区越界读取。原因是 strncpy 复制 ASN.1 属性值后没有添加 NUL 终止符，导致后续 strlen 越界。可被利用读取敏感内存数据。</div>
+      <div class="story-meta"><span class="tag" style="background:rgba(192,57,43,0.1);color:var(--accent)">严重</span>密码学库</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-56212~56216 · Capgo 多个高危漏洞链 <span style="color:var(--accent);font-size:0.8rem;">8.3-8.8 HIGH</span></div>
+      <div class="story-summary">Capgo（≤12.128.2）连续爆出 5 个漏洞：认证逻辑缺陷、授权绕过、信息泄露、邮箱篡改、权限提升。攻击者可利用这一系列漏洞从低权限逐步升级到完全控制。Capgo 是一个跨平台 OTA 更新服务。</div>
+      <div class="story-meta"><span class="tag" style="background:rgba(230,126,34,0.1);color:#e67e22">高危</span>OTA 更新服务</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-9843 / CVE-2026-11911 · WordPress 任意文件删除 <span style="color:#e67e22;font-size:0.8rem;">7.5 HIGH</span></div>
+      <div class="story-summary">Contact Form 7 和 Simple File List 两个 WordPress 插件存在路径验证不足，未授权攻击者可删除服务器上的任意文件。严重时可删除 wp-config.php 导致网站重置。</div>
+      <div class="story-meta"><span class="tag" style="background:rgba(230,126,34,0.1);color:#e67e22">高危</span>WordPress 插件</div>
     </div>
   </div>
 
@@ -352,6 +368,73 @@
         <iframe src="https://www.youtube.com/embed/fNk_zzaMoSs" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="video-caption">3Blue1Brown · Dot products and duality — 线代入门第一步</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══ ArXiv 论文 ═══ -->
+  <div class="section">
+    <div class="section-label">📄 ArXiv · AI/ML 论文精选</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27330v1" target="blank">GUI Agent 通过自主经验探索实现任务规划</a></div>
+      <div class="story-summary">让多模态 web agent 通过自主探索积累经验，再利用 "hindsight experience"（事后经验回放）来分解复杂 GUI 任务。核心思路：agent 从失败中学习，比从成功中学习更高效。</div>
+      <div class="story-meta"><span class="tag">Agent</span><span class="tag blue">GUI 自动化</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27306v1" target="blank">多语言推理级联需要更多上下文</a></div>
+      <div class="story-summary">当前多语言推理的做法是：翻译成英文 → 英文推理 → 翻译回来。论文发现这种 "translation cascade" 会丢失文化/语境信息，导致推理质量下降。提出需要保留更多原始语言上下文。</div>
+      <div class="story-meta"><span class="tag">多语言</span><span class="tag blue">推理</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27242v1" target="blank">词表级别的 Fisher 对齐：免训练的模型选择</a></div>
+      <div class="story-summary">对于共享词表的 LLM 家族（如科学领域的 SMILES/蛋白质/基因组序列），提出一种基于 Fisher 信息的免费方法来选择最优源模型。不需要额外训练，直接计算词表空间的几何对齐度。</div>
+      <div class="story-meta"><span class="tag">LLM</span><span class="tag green">高效训练</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27237v1" target="blank">语言模型作为任务特定知识库：可解释性分析</a></div>
+      <div class="story-summary">研究 LLM 参数是否真的像知识库一样可查询。发现不同查询可以指向同一事实，但模型内部的表示方式与传统知识库不同。对理解 LLM 的知识存储机制有启发。</div>
+      <div class="story-meta"><span class="tag">LLM</span><span class="tag blue">可解释性</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27229v1" target="blank">CARVE：内容感知的循环线性注意力</a></div>
+      <div class="story-summary">解决循环模型的 "遗忘 vs 记忆" 难题。当前 SOTA 的门控机制只看新 token，不看已存储的记忆（memory-blind gating）。CARVE 让门控同时参考新输入和已有记忆，提升长序列处理能力。</div>
+      <div class="story-meta"><span class="tag">架构</span><span class="tag green">效率</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27314v1" target="blank">LLM 检测隐语编码的系统分类</a></div>
+      <div class="story-summary">社交媒体用户发明各种间接表达（algospeak、委婉语、对抗性混淆）来规避审核。论文建立了完整的分类体系，覆盖 LLM 如何检测这类 "coded language"。对内容安全和 AI 对齐研究有价值。</div>
+      <div class="story-meta"><span class="tag">安全</span><span class="tag orange">内容审核</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27275v1" target="blank">历史意大利语对语言模型有多"惊讶"？</a></div>
+      <div class="story-summary">LLM 处理历史语言时的困难被当做一个整体障碍，但论文发现应该拆分为：拼写困难（tokenization tax）和理解困难（comprehension tax）。提出简单缓解方法，对数字人文和古籍处理有实际价值。</div>
+      <div class="story-meta"><span class="tag">NLP</span><span class="tag blue">数字人文</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27233v1" target="blank">对话与思维的桥接：协作问题解决中的对话动态</a></div>
+      <div class="story-summary">分析人机协作和多 agent 协作中的对话动态。随着 AI 从被动回答变为主动参与，理解对话中的思维流变得越来越重要。提出了一个概念框架来分析这种动态。</div>
+      <div class="story-meta"><span class="tag">Agent</span><span class="tag green">协作</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27377v1" target="blank">DanceOPD：统一图像生成与编辑的蒸馏方法</a></div>
+      <div class="story-summary">一个模型同时搞定 text-to-image、局部编辑、全局编辑。核心创新是 on-policy 的生成式蒸馏，解决了不同能力之间的冲突问题（比如编辑十次后图像崩塌）。</div>
+      <div class="story-meta"><span class="tag">生成</span><span class="tag blue">图像</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.27228v1" target="blank">组合性与词库在演化语义学中的角色</a></div>
+      <div class="story-summary">形式语义学表明句子意义由词汇意义递归组合而成。论文探索语义普遍性：是词库结构固定，还是组合方式固定？对理解语言本质和 LLM 的语言能力边界有理论价值。</div>
+      <div class="story-meta"><span class="tag">理论</span><span class="tag blue">语义学</span></div>
     </div>
   </div>
 
