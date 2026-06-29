@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日资讯 — 2026.06.29</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .quiz-item { margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed var(--rule); }
+    .quiz-q { font-family:var(--serif); font-style:italic; font-size:0.95rem; line-height:1.5; margin-bottom:0.5rem; }
+    .quiz-options { list-style:none; margin:0.5rem 0; }
+    .quiz-options li { margin-bottom:0.3rem; }
+    .quiz-options input[type="radio"] { display:none; }
+    .quiz-options label { display:block; font-size:0.85rem; padding:0.5rem 0.8rem; border:1px solid var(--rule); border-radius:4px; cursor:pointer; transition:all 0.15s; }
+    .quiz-options label:hover { background:var(--accent-dim); border-color:var(--accent); }
+    .quiz-options input[type="radio"]:checked + label { background:var(--accent-dim); border-color:var(--accent); font-weight:500; }
+    .quiz-feedback { display:none; font-size:0.82rem; line-height:1.6; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:4px; }
+    .quiz-fb-correct { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .quiz-fb-wrong { background:rgba(192,57,43,0.08); color:var(--accent); }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">Sunday · 2026.06.29</div>
+    <h1>每日资讯</h1>
+    <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
+  </header>
+
+  <!-- ═══════ AI & 大模型 ═══════ -->
+  <div class="section"><div class="section-label">🤖 AI & 大模型</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48721903" target="_blank">Qwen 3.6 27B — 本地开发的甜点级模型</a></div>
+      <div class="story-summary">阿里通义千问发布 Qwen 3.6 27B，被社区认为是本地开发部署的最佳平衡点：足够大的参数量带来强劲推理能力，同时单卡可跑，延迟和成本都可控。</div>
+      <input type="checkbox" class="detail-check" id="d1">
+      <label for="d1" class="story-toggle"></label>
+      <div class="story-detail">Qwen 系列一直以开源著称，这次 27B 版本在 coding、math、instruction following 等 benchmark 上表现亮眼。对于没有 A100/H100 的开发者来说，这个尺寸可以用 4-bit 量化跑在 16GB 显存上，是 prototyping 和本地 agent 工作流的理想选择。</div>
+      <div class="story-meta"><span class="tag">509⬆</span><span class="tag blue">LLM</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48720758" target="_blank">Ornith-1.0: 自我改进的开源 Agentic Coding 模型</a></div>
+      <div class="story-summary">Ornith-1.0 是一个能自我改进的开源模型，专注于 agentic coding 场景。通过迭代自我训练（self-improvement loop），模型在代码生成和调试任务上持续提升。</div>
+      <input type="checkbox" class="detail-check" id="d2">
+      <label for="d2" class="story-toggle"></label>
+      <div class="story-detail">Agentic coding 是当前 AI 工程最活跃的方向之一。Ornith 的核心创新在于：让模型自己生成训练数据、自己评估、自己迭代，形成 closed-loop improvement。这种 self-play + self-eval 的范式如果成熟，将大幅降低数据标注成本。</div>
+      <div class="story-meta"><span class="tag">125⬆</span><span class="tag blue">Agentic</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48726073" target="_blank">Micro-Agent: 通过模型协作击败 Frontier 模型</a></div>
+      <div class="story-summary">一个有趣的思路：不靠单模型堆参数，而是让多个小模型通过协作（collaboration inside model API）来完成任务，性能超越单个 frontier 模型。</div>
+      <input type="checkbox" class="detail-check" id="d3">
+      <label for="d3" class="story-toggle"></label>
+      <div class="story-detail">这印证了一个趋势：AI 系统的未来不是单一大模型，而是 multi-agent orchestration。通过分工协作，小模型各司其职（一个负责规划、一个负责执行、一个负责验证），整体效果可以超过单个大模型。这也是 OpenClaw 等 agent 框架的核心理念。</div>
+      <div class="story-meta"><span class="tag">40⬆</span><span class="tag blue">Multi-Agent</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48720019" target="_blank">Apple Neural Engine 深度解析：架构、编程与性能</a></div>
+      <div class="story-summary">一篇关于 Apple Neural Engine（ANE）的全面技术文章，涵盖架构设计、Core ML 编程接口、以及在 M 系列芯片上的实际性能表现。</div>
+      <input type="checkbox" class="detail-check" id="d4">
+      <label for="d4" class="story-toggle"></label>
+      <div class="story-detail">ANE 是 Apple 芯片中专门用于 ML 推理的加速器。文章深入分析了其 SIMD-like 的计算架构、内存层次结构、以及与 GPU/NPU 的分工。对于做移动端 AI 部署的开发者来说，了解 ANE 的能力边界非常有价值——很多模型在 ANE 上跑得比 GPU 快 3-10 倍。</div>
+      <div class="story-meta"><span class="tag">78⬆</span><span class="tag green">硬件</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank">DeepSeek DeepSpec：全栈代码库训练与评估框架</a></div>
+      <div class="story-summary">DeepSeek 开源了 DeepSpec，一个完整的代码库，用于训练和评估全栈代码理解与生成模型。3700+ Star，发布一周。</div>
+      <input type="checkbox" class="detail-check" id="d5">
+      <label for="d5" class="story-toggle"></label>
+      <div class="story-detail">DeepSpec 的亮点在于它不仅是一个模型，而是一整套 pipeline：数据预处理、训练脚本、评估 benchmark、以及部署工具。这意味着中小团队也可以基于这套代码快速搭建自己的代码 AI 系统，而不必从零开始。结合 DeepSeek 一贯的开源策略，这可能会加速整个社区在代码 AI 领域的进展。</div>
+      <div class="story-meta"><span class="tag green">⭐ 3727</span><span class="tag blue">DeepSeek</span><span class="tag">GitHub</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/bozhouDev/codex-orange-book" target="_blank">Codex 橙皮书：全链路使用指南</a></div>
+      <div class="story-summary">一份非官方的 Codex 使用指南，从安装到实战案例，包含可下载 PDF。2300+ Star。</div>
+      <div class="story-meta"><span class="tag green">⭐ 2348</span><span class="tag orange">教程</span><span class="tag">GitHub</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- ═══════ 安全 & CVE ═══════ -->
+  <div class="section"><div class="section-label">🔒 安全 & CVE</div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-12815 — Coolify 4.0.0 未知漏洞</div>
+      <div class="story-summary">Coolify（自托管 PaaS 平台）4.0.0 版本被发现存在安全漏洞，影响未知组件。CVSS 中等严重度。</div>
+      <input type="checkbox" class="detail-check" id="d6">
+      <label for="d6" class="story-toggle"></label>
+      <div class="story-detail">Coolify 是 Docker/Portainer 的开源替代品，广泛用于自托管部署。如果你在使用 Coolify 管理服务器，建议关注官方安全更新。这类自托管平台的漏洞风险在于：一旦被利用，攻击者可能获取服务器完整控制权。</div>
+      <div class="story-meta"><span class="tag orange">MEDIUM</span><span class="tag">NVD</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-12821 — Flowise AI ≤3.1.2 漏洞</div>
+      <div class="story-summary">FlowiseAI Flowise（LLM 编排平台）3.1.2 及以下版本存在安全漏洞，影响组件未知。</div>
+      <input type="checkbox" class="detail-check" id="d7">
+      <label for="d7" class="story-toggle"></label>
+      <div class="story-detail">Flowise 是基于 LangChain 的可视化 LLM 编排工具，类似 n8n 但专注于 AI 工作流。在企业内网使用 Flowise 的团队需要特别注意：LLM 编排平台通常有较高的权限（可以执行代码、访问数据库），漏洞影响面可能比看起来更大。</div>
+      <div class="story-meta"><span class="tag orange">MEDIUM</span><span class="tag">NVD</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-12822 — Langflow ≤1.9.3 漏洞</div>
+      <div class="story-summary">Langflow AI 的 Langflow（另一个 LLM 编排工具）1.9.3 及以下版本存在安全漏洞。</div>
+      <div class="story-meta"><span class="tag orange">MEDIUM</span><span class="tag">NVD</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/jumpserver/jumpserver" target="_blank">JumpServer：开源特权访问管理</a></div>
+      <div class="story-summary">JumpServer 是一个开源的 PAM（Privileged Access Management）解决方案，支持 RDP、SSH、数据库等协议的统一接入和审计。44⬆ on HN。</div>
+      <input type="checkbox" class="detail-check" id="d8">
+      <label for="d8" class="story-toggle"></label>
+      <div class="story-detail">JumpServer 由飞致云（FIT2CLOUD）开发，是国内使用最广泛的开源堡垒机。核心功能包括：多因素认证、会话录制、命令审计、资产分组管理。对于创业公司来说，JumpServer 是低成本实现运维安全合规的好选择，比商业方案便宜很多。</div>
+      <div class="story-meta"><span class="tag green">开源</span><span class="tag blue">运维安全</span><span class="tag">Hacker News</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- ═══════ 开源项目 ═══════ -->
+  <div class="section"><div class="section-label">📦 开源 & 工具</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48724230" target="_blank">.self：为自托管设计的新顶级域名</a></div>
+      <div class="story-summary">ICANN 批准了一个新的顶级域名 .self，专门为自托管（self-hosting）社区设计。204⬆。</div>
+      <input type="checkbox" class="detail-check" id="d9">
+      <label for="d9" class="story-toggle"></label>
+      <div class="story-detail">自托管运动正在从极客圈走向主流。.self 域名的意义不仅是技术层面的——它代表了一种数字主权的理念：你的数据、你的服务器、你的域名。对于 privacy-conscious 的开发者来说，这是个很有象征意义的里程碑。</div>
+      <div class="story-meta"><span class="tag">204⬆</span><span class="tag green">自托管</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48719485" target="_blank">原生图形化 SSH Shell</a></div>
+      <div class="story-summary">一个原生的图形化 SSH 客户端，让终端操作更直观。211⬆。</div>
+      <div class="story-meta"><span class="tag">211⬆</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48722802" target="_blank">WATaBoy: JIT-编译 Game Boy 指令到 WASM，性能超越原生解释器</a></div>
+      <div class="story-summary">一个将 Game Boy 指令通过 JIT 编译为 WebAssembly 的项目，运行速度竟然比 C 原生解释器还快。163⬆。</div>
+      <input type="checkbox" class="detail-check" id="d10">
+      <label for="d10" class="story-toggle"></label>
+      <div class="story-detail">这个项目很好地展示了 WASM 的性能潜力。JIT compilation 的核心思路是：不逐条解释 Game Boy 的 Z80-like 指令，而是在运行时将其批量编译为 WASM 操作码。WASM 的线性内存模型和 JIT 编译器的优化（如指令融合、寄存器分配）使得它在某些场景下能超越手写 C 解释器。</div>
+      <div class="story-meta"><span class="tag">163⬆</span><span class="tag blue">WASM</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/ricccrd/dd" target="_blank">dd — 新的磁盘工具</a></div>
+      <div class="story-summary">一个用 C 编写的现代磁盘工具替代品，370+ Star。</div>
+      <div class="story-meta"><span class="tag green">⭐ 372</span><span class="tag">C</span><span class="tag">GitHub</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/CopilotKit/OpenTag" target="_blank">OpenTag：开源 Agent 提及系统</a></div>
+      <div class="story-summary">为 Slack 和 GitHub 提供开源的 @agent mentions 功能。400+ Star。</div>
+      <div class="story-meta"><span class="tag green">⭐ 400</span><span class="tag blue">Agent</span><span class="tag">GitHub</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- ═══════ ArXiv 论文精选 ═══════ -->
+  <div class="section"><div class="section-label">📄 ArXiv · AI/ML 论文精选</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://arxiv.org/abs/2506.20755" target="_blank">Agent-Native Immune System: Architecture, Taxonomy, and Engineering</a></div>
+      <div class="story-summary">提出"Agent 原生免疫系统"的概念——为 AI Agent 构建类似生物免疫系统的安全防护架构。包括检测、分类、响应的完整框架。</div>
+      <input type="checkbox" class="detail-check" id="d11">
+      <label for="d11" class="story-toggle"></label>
+      <div class="story-detail">这篇论文非常有前瞻性。随着 AI Agent 被赋予越来越多的自主权（执行代码、调用 API、管理数据），安全防护变得至关重要。类比生物免疫系统：先天免疫（基础防护规则）+ 适应性免疫（从攻击中学习）+ 记忆免疫（已知威胁库）。这可能是 Agent 安全领域的基础性工作。</div>
+      <div class="story-meta"><span class="tag blue">Agent Safety</span><span class="tag">ArXiv</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://arxiv.org/abs/2506.20691" target="_blank">Agentic Hardware Design as Repository-Level Code Evolution</a></div>
+      <div class="story-summary">将硬件设计视为代码仓库级别的代码演化问题，用 Agent 来自动化硬件设计流程。</div>
+      <div class="story-meta"><span class="tag blue">Hardware + AI</span><span class="tag">ArXiv</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://arxiv.org/abs/2506.20588" target="_blank">Parameter-Efficient Continuous-Variable Photonic Quantum Neural Networks for Edge</a></div>
+      <div class="story-summary">面向边缘设备的光量子神经网络，结合参数高效微调技术。量子计算 + 边缘 AI 的交叉点。</div>
+      <input type="checkbox" class="detail-check" id="d12">
+      <label for="d12" class="story-toggle"></label>
+      <div class="story-detail">光量子计算是量子计算的一个重要分支，使用光子作为量子比特。这篇论文的创新在于：用 continuous-variable（连续变量）而非离散变量来编码量子信息，天然适合光子系统。结合参数高效微调，使得这类量子网络可以在资源受限的边缘设备上运行。虽然离实用还有距离，但方向很有意思。</div>
+      <div class="story-meta"><span class="tag orange">量子计算</span><span class="tag green">边缘AI</span><span class="tag">ArXiv</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://arxiv.org/abs/2506.20613" target="_blank">Parameter Efficient Hybrid Transformer (PEHT) for Network Traffic Prediction</a></div>
+      <div class="story-summary">用混合 Transformer 架构做网络流量预测，参数效率高。结合了传统 CNN 的局部感知和 Transformer 的全局注意力。</div>
+      <div class="story-meta"><span class="tag blue">网络</span><span class="tag">Transformer</span><span class="tag">ArXiv</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://arxiv.org/abs/2506.20544" target="_blank">Towards Automating Scientific Review with Google's Paper Assistant Tool</a></div>
+      <div class="story-summary">Google 的 Paper Assistant 工具：自动化科学论文审稿流程。用 LLM 来辅助甚至替代人类审稿人。</div>
+      <input type="checkbox" class="detail-check" id="d13">
+      <label for="d13" class="story-toggle"></label>
+      <div class="story-detail">学术界的一个痛点：审稿速度慢、质量参差不齐。Google 这个工具的方向是对的——不是完全替代人类审稿人，而是用 AI 做初步筛选、一致性检查、格式审查，让人类审稿人专注于核心贡献的评估。不过，AI 审稿的 bias 和 hallucination 问题仍需解决。</div>
+      <div class="story-meta"><span class="tag blue">Google</span><span class="tag green">学术AI</span><span class="tag">ArXiv</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://arxiv.org/abs/2506.20659" target="_blank">Democratic ICAI: 通过辩论获得 Steering 原则</a></div>
+      <div class="story-summary">一种新的 AI 对齐方法：让多个 AI 通过辩论来协商出 steering 原则，而非由人类单方面定义。</div>
+      <div class="story-meta"><span class="tag blue">AI Alignment</span><span class="tag">ArXiv</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- ═══════ 跳出舒适圈 ═══════ -->
+  <div class="section"><div class="section-label">🌍 跳出舒适圈</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48723677" target="_blank">美国最高法院裁定地理围栏搜查令需宪法保护</a></div>
+      <div class="story-summary">美国最高法院做出重大裁决：执法部门使用地理围栏（geofence）搜查令必须满足宪法第四修正案的保护要求。374⬆。</div>
+      <input type="checkbox" class="detail-check" id="d14">
+      <label for="d14" class="story-toggle"></label>
+      <div class="story-detail">这是数字时代隐私权的重要里程碑。地理围栏搜查令允许执法部门要求 Google 等公司提供特定时间段、特定地理区域内所有用户的位置数据——本质上是在"钓鱼"，先抓数据再找嫌疑人。最高法院的裁决意味着：未来这类搜查令需要更严格的理由，不能再用"批量收集 + 事后筛选"的方式绕过第四修正案。对科技公司来说，这减轻了合规压力。</div>
+      <div class="story-meta"><span class="tag orange">法律</span><span class="tag">隐私权</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://news.ycombinator.com/item?id=48718863" target="_blank">Rocketlab 收购 Iridium</a></div>
+      <div class="story-summary">Rocket Lab 宣布收购卫星通信公司 Iridium。太空产业整合加速。332⬆。</div>
+      <input type="checkbox" class="detail-check" id="d15">
+      <label for="d15" class="story-toggle"></label>
+      <div class="story-detail">Rocket Lab 从火箭发射公司转型为"端到端太空服务提供商"。收购 Iridium 后，它不仅能发射卫星，还能运营卫星通信网络。这是航天产业vertical integration 的典型案例——从制造到发射到运营，全链条打通。对创业者来说，这说明：做平台不如做生态，做生态不如做闭环。</div>
+      <div class="story-meta"><span class="tag green">商业</span><span class="tag blue">航天</span><span class="tag">Hacker News</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">V2EX 热议：DeepSeek 好贵啊</a></div>
+      <div class="story-summary">V2EX 社区讨论 DeepSeek API 定价上涨的问题。有用户反映调用成本显著增加，引发关于 AI API 商业化可持续性的讨论。</div>
+      <div class="story-meta"><span class="tag orange">创业</span><span class="tag blue">AI 商业化</span><span class="tag">V2EX</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">V2EX 热议：冲动提了离职，冷静后又舍不得</div>
+      <div class="story-summary">一位开发者分享了冲动离职又后悔的经历，引发大量共鸣。讨论涉及职场焦虑、创业冲动、理性决策。</div>
+      <div class="story-meta"><span class="tag orange">职场</span><span class="tag">V2EX</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- ═══════ B站热门 ═══════ -->
+  <div class="section"><div class="section-label">🎬 B站热门</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com/video/BV1xxxxxxx" target="_blank">致敬！中国首批缉毒警已全体退休</a></div>
+      <div class="story-summary">中国首批缉毒警察已全部退休，他们中的很多人一辈子隐姓埋名，从未公开露面。</div>
+      <div class="story-meta"><span class="tag orange">社会</span><span class="tag">B站</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com" target="_blank">找到了10年前跪舔B站的视频</a></div>
+      <div class="story-summary">回顾B站早期的内容风格，引发怀旧讨论。</div>
+      <div class="story-meta"><span class="tag">怀旧</span><span class="tag">B站</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- ═══════ 数学区 ═══════ -->
+  <div class="section"><div class="section-label">📐 数学 · Day 2</div>
+
+    <div class="math-box">
+      <h3>学习进度</h3>
+      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+      <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+    </div>
+
+    <div class="math-box">
+      <h3>今日概念</h3>
+      <div class="concept">
+        <div class="concept-title">矩阵乘法（Matrix Multiplication）</div>
+        <div class="concept-body">
+          矩阵乘法是线性代数的核心运算。直觉上，它代表"先做一次线性变换，再做另一次"——两个矩阵相乘 = 两次变换的组合。
+          <br><br>
+          规则：A(m×n) × B(n×p) = C(m×p)，其中 C 的每个元素是 A 的一行与 B 的一列的点积之和。
+        </div>
+        <div class="concept-formula">C<sub>ij</sub> = Σ<sub>k=1</sub><sup>n</sup> A<sub>ik</sub> · B<sub>kj</sub></div>
+      </div>
+    </div>
+
+    <div class="math-box">
+      <h3>每日一题</h3>
+      <div class="quiz-item">
+        <div class="quiz-q">如果 A 是 2×3 矩阵，B 是 3×4 矩阵，那么 AB 的维度是？</div>
+        <ul class="quiz-options">
+          <li><input type="radio" name="q1" value="correct" id="q1a"><label for="q1a">2×4</label></li>
+          <li><input type="radio" name="q1" value="wrong1" id="q1b"><label for="q1b">3×3</label></li>
+          <li><input type="radio" name="q1" value="wrong2" id="q1c"><label for="q1c">2×3</label></li>
+          <li><input type="radio" name="q1" value="wrong3" id="q1d"><label for="q1d">3×4</label></li>
+        </ul>
+        <div class="quiz-feedback quiz-fb-correct fb-correct">✅ 正确！A(m×n) × B(n×p) = C(m×p)，中间维度 n 必须匹配，结果取外侧维度。所以 2×3 × 3×4 = 2×4。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong1">❌ 再想想。矩阵乘法的维度规则是"外侧维度决定结果"：A(m×n) × B(n×p) = C(m×p)，中间的 n 必须相等。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong2">❌ 这是 A 本身的维度。矩阵乘法的结果维度是 A 的行数 × B 的列数。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong3">❌ 这是 B 本身的维度。矩阵乘法的结果维度是 A 的行数 × B 的列数。</div>
+      </div>
+    </div>
+
+    <div class="math-box">
+      <h3>💡 直觉理解</h3>
+      <div class="concept">
+        <div class="concept-title">为什么矩阵乘法不是对应元素相乘？</div>
+        <div class="concept-body">
+          因为矩阵代表的是<strong>线性变换</strong>，而不是一堆独立的数字。两个变换的组合，就是"先应用一个，再应用另一个"——这在数学上就是行乘列的点积求和。<br><br>
+          一个简单的例子：先旋转 90°，再缩放 2 倍。这两个操作组合后的效果，就是两个矩阵相乘的结果。如果只是对应元素相乘，那就像把两个变换"并行"执行，完全没有组合的意义。
+        </div>
+      </div>
+    </div>
+
+    <div class="math-box">
+      <h3>📺 推荐视频</h3>
+      <div style="font-size:0.85rem; color:var(--ink); line-height:1.7;">
+        • <a href="https://www.youtube.com/watch?v=XkY2DOUCWMU" target="_blank">3Blue1Brown: 线性代数的本质 - 矩阵乘法与线性变换</a><br>
+        • <a href="https://www.youtube.com/watch?v=fNk_zxCMoMo" target="_blank">3Blue1Brown: 点积与矩阵乘法的几何直觉</a><br>
+        • MIT 18.06: 矩阵乘法的四个视角
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    ⭐ 爱星智联 · OpenClaw<br>
+    HN · GitHub Trending · NVD · ArXiv · V2EX · B站<br>
+    <a href="https://github.com/AveryHernandfs/html-reports">GitHub Pages</a>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('.quiz-options input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const name = this.name;
+    document.querySelectorAll(`.quiz-options input[name="${name}"]`).forEach(x => {
+      x.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    });
+    const fb = this.closest('.quiz-item').querySelector('.fb-' + this.value);
+    if (fb) fb.style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
