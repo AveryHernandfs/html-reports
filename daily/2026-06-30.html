@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日资讯 — 2026.06.30</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .quiz-item { margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed var(--rule); }
+    .quiz-q { font-family:var(--serif); font-style:italic; font-size:0.95rem; line-height:1.5; margin-bottom:0.5rem; }
+    .quiz-options { list-style:none; margin:0.5rem 0; }
+    .quiz-options li { margin-bottom:0.3rem; }
+    .quiz-options input[type="radio"] { display:none; }
+    .quiz-options label { display:block; font-size:0.85rem; padding:0.5rem 0.8rem; border:1px solid var(--rule); border-radius:4px; cursor:pointer; transition:all 0.15s; }
+    .quiz-options label:hover { background:var(--accent-dim); border-color:var(--accent); }
+    .quiz-options input[type="radio"]:checked + label { background:var(--accent-dim); border-color:var(--accent); font-weight:500; }
+    .quiz-feedback { display:none; font-size:0.82rem; line-height:1.6; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:4px; }
+    .quiz-fb-correct { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .quiz-fb-wrong { background:rgba(192,57,43,0.08); color:var(--accent); }
+    .video-box { margin-top:1rem; border-radius:4px; overflow:hidden; border:1px solid var(--rule); }
+    .video-box iframe { width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .video-caption { font-size:0.78rem; color:var(--muted); margin-top:0.4rem; font-style:italic; }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">Tuesday · 2026.06.30</div>
+    <h1>每日资讯</h1>
+    <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
+  </header>
+  <div class="section"><div class="section-label">AI & 大模型</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://hccf.onmy.cloud/2026/06/21/reclaiming-our-digital-selves-hccfs-vision-for-a-human-centered-top-level-domain/" target="_blank">.self: A new top-level domain designed to support self-hosting</a></div>
+      <div class="story-summary">来源：Hacker News · HumanCCF</div>
+      <div class="story-meta"><span class="tag">443⬆</span><span class="tag">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://longcat.chat/blog/longcat-2.0/" target="_blank">LongCat-2.0, a large-scale MoE model with 1.6T total and 48B Active</a></div>
+      <div class="story-summary">来源：Hacker News · benjiro29</div>
+      <div class="story-meta"><span class="tag">99⬆</span><span class="tag">HN</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">安全 & CVE</div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-10645 <span style="color:var(--accent);font-size:0.8rem;">4.9 MEDIUM</span></div>
+      <div class="story-summary">Zephyr's ext2 directory-entry parser does not fully validate on-disk directory entry structure before copying the entry name and advancing traversal state. In ext2_fetch_direntry() (subsys/fs/ext2/ext2_diskops.c), the code only checks de_name_len <= </div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-10651 <span style="color:var(--accent);font-size:0.8rem;">7.1 HIGH</span></div>
+      <div class="story-summary">A malformed Bluetooth Classic SDP attribute can trigger a reachable assertion in Zephyr's SDP parser. In subsys/bluetooth/host/classic/sdp.c, bt_sdp_parse_attribute() accepts an input buffer once it contains the 1-byte attribute type and 2-byte attri</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-10658 <span style="color:var(--accent);font-size:0.8rem;">7.1 HIGH</span></div>
+      <div class="story-summary">A missing length validation in the Zephyr Bluetooth Host ISO receive path can be triggered by malformed HCI ISO data. In bt_iso_recv() (subsys/bluetooth/host/iso.c), when processing PB=START/SINGLE fragments, the code pulls a TS SDU header (8 bytes, </div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-11833 <span style="color:var(--accent);font-size:0.8rem;">? ?</span></div>
+      <div class="story-summary">Overview: 
+A vulnerability has been found in FAST/TOOLS and CI Server. The web server may return a response containing the CI Server setting information. This information could 
+be exploited by an attacker for other attacks. 
+
+The affected products a</div>
+      <div class="story-meta"><span class="tag tag blue">?</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-55653 <span style="color:var(--accent);font-size:0.8rem;">4.3 MEDIUM</span></div>
+      <div class="story-summary">A flaw was found in OpenSSH. A malicious SSH server can exploit a double free vulnerability in the Diffie-Hellman Group Exchange (DH-GEX) client path. This occurs during FIPS (Federal Information Processing Standards) mode known-group validation when</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">GitHub Trending</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/deepseek-ai/DeepSpec" target="_blank">deepseek-ai/DeepSpec</a></div>
+      <div class="story-summary">DeepSpec: a full-stack codebase for training and evaluating speculative decoding algorithms</div>
+      <div class="story-meta"><span class="tag green">⭐ 4328</span><span class="tag">Python</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Yu9191/wloc" target="_blank">Yu9191/wloc</a></div>
+      <div class="story-summary">修改 Apple 网络定位（gs-loc）返回坐标 · 支持 Surge / Quantumult X / Loon / Stash · 快捷指令一键设置/恢复定位</div>
+      <div class="story-meta"><span class="tag green">⭐ 1646</span><span class="tag">JavaScript</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Krishnagangwal/CS-Fundamentals" target="_blank">Krishnagangwal/CS-Fundamentals</a></div>
+      <div class="story-summary">Curated CS fundamentals for placement prep: DSA,Computer Networks, DBMS & SQL, OOPs, Operating Systems, System Design & Software Engineering</div>
+      <div class="story-meta"><span class="tag green">⭐ 1025</span><span class="tag">None</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/baairon/torlink" target="_blank">baairon/torlink</a></div>
+      <div class="story-summary">A sleek, zero-setup torrent finder and downloader that lives right in your terminal.</div>
+      <div class="story-meta"><span class="tag green">⭐ 809</span><span class="tag">TypeScript</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/winsznx/theeleven" target="_blank">winsznx/theeleven</a></div>
+      <div class="story-summary">Eleven autonomous AI agents open live football prop markets on X Layer — custom Uniswap v4 hook, gasless USDT0 staking.</div>
+      <div class="story-meta"><span class="tag green">⭐ 716</span><span class="tag">TypeScript</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">📄 ArXiv · AI/ML 论文精选</div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30645v1" target="_blank">VLK: Learning Humanoid Loco-Manipulation from Synthetic Interactions in Reconstructed Scenes</a></div>
+      <div class="story-summary">Perception-based humanoid loco-manipulation requires connecting egocentric observations and task instructions to whole-body motion. Learning this mapping requires synchronized egocentric images, language commands, and robot-compatible kinematic traje</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30642v1" target="_blank">LeVo 2: Stable and Melodious Song Generation via Hierarchical Representation Modeling and Progressive Post-Training</a></div>
+      <div class="story-summary">Full-length song generation must preserve coherence and musicality, render detailed vocal and accompaniment acoustics, and follow lyrics and prompts. Existing language model-based systems face a structural trade-off: mixed-token modeling preserves vo</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30639v1" target="_blank">Self-Evolving World Models for LLM Agent Planning</a></div>
+      <div class="story-summary">World models offer a principled way to equip long-horizon LLM agents with foresight: predictions of action consequences before execution. However, unreliable foresight can be ignored, misused, or even degrade downstream decision-making. In this paper</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30634v1" target="_blank">One-Step Gradient Delay is Not a Barrier for Large-Scale Asynchronous Pipeline Parallel LLM Pretraining</a></div>
+      <div class="story-summary">Modern large-scale LLM pretraining benefits from utilizing Pipeline Parallelism; however, synchronous implementations leave GPUs idle during pipeline bubbles, wasting computational resources. Asynchronous Pipeline Parallelism eliminates these bubbles</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30632v1" target="_blank">GROW$^2$: Grounding Which and Where for Robot Tool Use</a></div>
+      <div class="story-summary">Can the robot use a plate to cut a cake if no knife is available? Tool use greatly expands robot capabilities, but to use tools creatively beyond their intended functions, the robot faces the challenge of $\textit{open-world affordance grounding}$: s</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30627v1" target="_blank">Pessimism's Paradox: Conservative Offline Training Amplifies Reward Hacking During Online Adaptation in Reasoning Models</a></div>
+      <div class="story-summary">Conservative offline training is widely advocated as a safe foundation for subsequent online adaptation: if a policy stays close to well-supported behaviour, the argument goes, it is less likely to exploit imperfections in a learned reward model. We </div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30626v1" target="_blank">DOPD: Dual On-policy Distillation</a></div>
+      <div class="story-summary">On-policy distillation (OPD) offers superior capacity transfer by supervising student-sampled trajectories with dense token-level signals. To furnish high-quality supervision sources and thereby elevate the performance frontier of distillation, an in</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30625v1" target="_blank">Optimization Dynamics Imprint Semantic Specificity in Contrastive Embedding Norms</a></div>
+      <div class="story-summary">Contrastive embedding models trained with scale-invariant losses are typically paired with distance metrics like cosine similarity, effectively ignoring embedding magnitudes. However, surprisingly, empirical studies reveal that despite this, these "d</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30616v1" target="_blank">Scaling the Horizon, Not the Parameters: Reaching Trillion-Parameter Performance with a 35B Agent</a></div>
+      <div class="story-summary">We introduce Agents-A1, a 35B Mixture-of-Experts Agentic Model that reaches trillion-parameter-level performance by scaling the agent horizon. We investigate agent-horizon scaling from two perspectives: scaling long-horizon trajectories and scaling h</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2606.30609v1" target="_blank">C$^{2}$R: Cross-sample Consistency Regularization Mitigates Feature Splitting and Absorption in Sparse Autoencoders</a></div>
+      <div class="story-summary">Sparse Autoencoders (SAEs) are widely used to interpret large language models by decomposing activations into sparse, human-understandable features, but scaling to large dictionaries exposes fundamental challenges. Systematic studies reveal pervasive</div>
+      <div class="story-meta"><span class="tag"></span><span class="tag blue">0 authors</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">数学 · Day 1</div>
+    <div class="math-box">
+      <h3>学习进度</h3>
+      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+      <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+    </div>
+    <div class="math-box">
+      <h3>今日概念</h3>
+      <div class="concept">
+        <div class="concept-title">向量点积（Dot Product）</div>
+        <div class="concept-body">两个向量的点积 = 对应分量乘积之和。几何意义是衡量两个向量"方向有多一致"。</div>
+        <div class="concept-formula"><strong>a</strong> · <strong>b</strong> = a₁b₁ + a₂b₂ + a₃b₃ = |<strong>a</strong>||<strong>b</strong>| cos θ</div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    ⭐ 爱星智联 · OpenClaw<br>
+    HN · GitHub Trending · NVD · ArXiv<br>
+    <a href="https://github.com/AveryHernandfs/html-reports">GitHub</a>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('.quiz-options input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const name = this.name;
+    document.querySelectorAll(`.quiz-options input[name="${name}"]`).forEach(x => {
+      x.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    });
+    const fb = this.closest('.quiz-item').querySelector('.fb-' + this.value);
+    if (fb) fb.style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
