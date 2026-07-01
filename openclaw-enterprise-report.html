@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw / Hermes Agent 企业级多用户部署方案调研报告</title>
+<style>
+  :root {
+    --bg: #0d1117; --card: #161b22; --border: #30363d;
+    --text: #c9d1d9; --text2: #8b949e; --accent: #58a6ff;
+    --green: #3fb950; --red: #f85149; --yellow: #d29922;
+    --purple: #bc8cff; --orange: #d18616;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.6; padding:20px; }
+  .container { max-width:1200px; margin:0 auto; }
+  h1 { font-size:2rem; margin-bottom:8px; background:linear-gradient(135deg,var(--accent),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  h2 { font-size:1.4rem; margin:32px 0 16px; color:var(--accent); border-bottom:1px solid var(--border); padding-bottom:8px; }
+  h3 { font-size:1.1rem; margin:20px 0 10px; color:var(--purple); }
+  .subtitle { color:var(--text2); margin-bottom:24px; font-size:0.95rem; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:20px; }
+  .card-title { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; margin-right:6px; }
+  .badge-green { background:rgba(63,185,80,0.15); color:var(--green); border:1px solid rgba(63,185,80,0.3); }
+  .badge-red { background:rgba(248,81,73,0.15); color:var(--red); border:1px solid rgba(248,81,73,0.3); }
+  .badge-yellow { background:rgba(210,153,34,0.15); color:var(--yellow); border:1px solid rgba(210,153,34,0.3); }
+  .badge-purple { background:rgba(188,140,255,0.15); color:var(--purple); border:1px solid rgba(188,140,255,0.3); }
+  .badge-blue { background:rgba(88,166,255,0.15); color:var(--accent); border:1px solid rgba(88,166,255,0.3); }
+  table { width:100%; border-collapse:collapse; margin:16px 0; font-size:0.9rem; }
+  th { background:rgba(88,166,255,0.1); color:var(--accent); text-align:left; padding:10px 12px; border-bottom:2px solid var(--border); }
+  td { padding:10px 12px; border-bottom:1px solid var(--border); }
+  tr:hover td { background:rgba(88,166,255,0.05); }
+  .check { color:var(--green); } .cross { color:var(--red); } .partial { color:var(--yellow); }
+  .summary-box { background:linear-gradient(135deg,rgba(88,166,255,0.1),rgba(188,140,255,0.1)); border:1px solid var(--accent); border-radius:12px; padding:20px; margin:20px 0; }
+  .verdict { font-size:1.1rem; font-weight:700; color:var(--green); margin-bottom:8px; }
+  .req-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin:16px 0; }
+  .req-item { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px; }
+  .req-item .label { color:var(--text2); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.5px; }
+  .req-item .val { font-size:1rem; margin-top:4px; }
+  a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+  .tag { display:inline-block; padding:1px 8px; border-radius:4px; font-size:0.75rem; margin:2px; background:rgba(139,148,158,0.15); color:var(--text2); }
+  .pros-cons { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:12px 0; }
+  .pros li { color:var(--green); } .cons li { color:var(--red); }
+  ul { padding-left:20px; margin:8px 0; }
+  li { margin:4px 0; }
+  .section-divider { height:1px; background:var(--border); margin:40px 0; }
+  .footer { text-align:center; color:var(--text2); font-size:0.8rem; margin-top:40px; padding-top:20px; border-top:1px solid var(--border); }
+  @media (max-width:768px) { .pros-cons { grid-template-columns:1fr; } .req-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🎬 影视公司 AI Agent 企业级部署方案调研</h1>
+<p class="subtitle">OpenClaw / Hermes Agent 生态 · 多用户企业插件 · 需求匹配度分析 · 2026-07-01</p>
+
+<!-- ============ 需求概览 ============ -->
+<h2>📋 需求概览</h2>
+<div class="req-grid">
+  <div class="req-item"><div class="label">剧本评估与生成</div><div class="val">📄 AI 辅助剧本创作、评估、改写</div></div>
+  <div class="req-item"><div class="label">工作总结 / 日报</div><div class="val">📊 基于上传文件自动生成工作总结和日报</div></div>
+  <div class="req-item"><div class="label">打卡系统</div><div class="val">⏱️ 记录视频观看分钟数</div></div>
+  <div class="req-item"><div class="label">钉钉接入</div><div class="val">💬 通过钉钉与 Agent 交互</div></div>
+  <div class="req-item"><div class="label">分部门部署</div><div class="val">🏢 不同权限、不同工具技能集</div></div>
+  <div class="req-item"><div class="label">集中管理/统计</div><div class="val">📈 统一后台、使用统计、管理面板</div></div>
+  <div class="req-item"><div class="label">文生文/图/视频</div><div class="val">🎨 接入多模态生成能力</div></div>
+  <div class="req-item"><div class="label">实时/定时联网搜索</div><div class="val">🔍 实时搜索 + 定时信息推送</div></div>
+  <div class="req-item"><div class="label">记忆 RAG</div><div class="val">🧠 长期记忆 + 知识库检索增强生成</div></div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 方案一：OpenClaw + Multi-Agent ============ -->
+<h2>🦞 方案一：OpenClaw Multi-Agent Gateway</h2>
+<div class="card">
+  <div class="card-title">OpenClaw 自部署多 Agent 架构</div>
+  <span class="badge badge-green">开源免费</span>
+  <span class="badge badge-purple">自托管</span>
+  <span class="badge badge-blue">Multi-Agent 原生支持</span>
+  <p style="margin-top:12px">
+    OpenClaw 是一个<strong>自托管的 AI Agent 网关</strong>，支持在一个 Gateway 进程中运行多个隔离的 Agent 实例。
+    每个 Agent 拥有独立的 workspace、session 存储、auth profiles 和 skill 配置。
+    通过 <strong>bindings</strong> 机制，将不同 channel（Discord/Telegram/WhatsApp/Feishu 等）的消息路由到对应 Agent。
+  </p>
+
+  <h3>✅ 已有能力 vs 需求</h3>
+  <table>
+    <tr><th>需求</th><th>OpenClaw 支持情况</th><th>状态</th></tr>
+    <tr><td>分部门部署（多 Agent 隔离）</td><td>原生 multi-agent routing，每个 agentId 独立 workspace + session + auth</td><td><span class="check">✅ 完全支持</span></td></tr>
+    <tr><td>权限控制</td><td>per-agent skill allowlist、dmPolicy/allowlist/groupPolicy、channel 级别 access control</td><td><span class="check">✅ 支持</span></td></tr>
+    <tr><td>钉钉接入</td><td><strong>无原生钉钉 channel</strong>。有 Feishu/Lark 集成（WebSocket，bundled plugin）。钉钉需自建 plugin 或走 webhook 桥接</td><td><span class="partial">⚠️ 需开发</span></td></tr>
+    <tr><td>记忆 / RAG</td><td>内置 memory 系统（MEMORY.md + daily notes），支持 memory_search 语义检索</td><td><span class="check">✅ 基础支持</span></td></tr>
+    <tr><td>联网搜索</td><td>内置 web_search / web_fetch，可通过 skills（如 agent-reach、multi-search-engine）扩展多引擎搜索</td><td><span class="check">✅ 支持</span></td></tr>
+    <tr><td>定时任务</td><td>内置 cron 系统（systemEvent / agentTurn），支持定时/周期任务</td><td><span class="check">✅ 支持</span></td></tr>
+    <tr><td>文生文</td><td>通过 LLM provider 接入（Claude/OpenAI/DeepSeek 等），skill 可扩展</td><td><span class="check">✅ 支持</span></td></tr>
+    <tr><td>文生图/视频</td><td>通过 skills 扩展（如 Nano Banana Pro 用于图像生成），需自行集成 API</td><td><span class="partial">⚠️ 需配置</span></td></tr>
+    <tr><td>剧本评估/生成</td><td>无预置 skill，需自建 skill（本质上是 LLM prompt + 工具调用）</td><td><span class="partial">⚠️ 需开发</span></td></tr>
+    <tr><td>工作总结/日报</td><td>已有 daily-report skill 模板，可定制</td><td><span class="check">✅ 可定制</span></td></tr>
+    <tr><td>打卡（视频分钟数）</td><td>无预置 skill，需自建（cron + session tracking）</td><td><span class="partial">⚠️ 需开发</span></td></tr>
+    <tr><td>集中管理/统计</td><td>Web Control UI 提供 session/config 管理，但无企业级统计面板</td><td><span class="partial">⚠️ 基础</span></td></tr>
+  </table>
+
+  <h3>ClawHub 生态相关 Skills/Plugins</h3>
+  <table>
+    <tr><th>Skill/Plugin</th><th>功能</th><th>相关需求</th></tr>
+    <tr><td><a href="https://clawhub.ai/steipete/nano-banana-pro">Nano Banana Pro</a></td><td>图像生成（Gemini 3 Pro Image）</td><td>文生图</td></tr>
+    <tr><td><a href="https://clawhub.ai/gpyangyoujun/multi-search-engine">Multi Search Engine</a></td><td>16 个搜索引擎集成（7 中国 + 9 全球）</td><td>联网搜索</td></tr>
+    <tr><td><a href="https://clawhub.ai/jacky1n7/openclaw-tavily-search">Tavily 搜索</a></td><td>Tavily API 搜索</td><td>联网搜索</td></tr>
+    <tr><td><a href="https://clawhub.ai/steipete/notion">Notion</a></td><td>Notion API 集成</td><td>文档管理</td></tr>
+    <tr><td><a href="https://clawhub.ai/steipete/gog">Gog (Google Workspace)</a></td><td>Gmail/Calendar/Drive/Sheets/Docs</td><td>办公自动化</td></tr>
+    <tr><td><a href="https://clawhub.ai/pskoett/self-improving-agent">Self-Improving Agent</a></td><td>Agent 自我改进</td><td>Agent 能力进化</td></tr>
+    <tr><td><a href="https://clawhub.ai/oswalpalash/ontology">Ontology</a></td><td>知识图谱 + 结构化记忆</td><td>记忆 RAG</td></tr>
+    <tr><td><a href="https://clawhub.ai/openclaw">OpenClaw 官方 (79 items)</a></td><td>官方 skills/plugins 集合</td><td>各类</td></tr>
+  </table>
+
+  <h3>关键生态工具</h3>
+  <ul>
+    <li><strong>Crabfleet</strong> (<a href="https://crabfleet.ai">crabfleet.ai</a>) — Agent 集群管控，适合多 agent 统一管理</li>
+    <li><strong>Crabbox</strong> (<a href="https://crabbox.sh">crabbox.sh</a>) — Agent 沙箱，安全隔离执行环境</li>
+    <li><strong>Feishu Channel</strong> — OpenClaw 内置飞书集成（WebSocket 模式），可作为钉钉替代方案</li>
+  </ul>
+
+  <div class="pros-cons">
+    <div><h4 style="color:var(--green)">✅ 优势</h4>
+      <ul class="pros">
+        <li>完全开源免费，自托管无 vendor lock-in</li>
+        <li>Multi-agent 原生支持，天然适合分部门部署</li>
+        <li>每个 agent 完全隔离（workspace/session/auth）</li>
+        <li>丰富的 skill 生态（ClawHub 30+ skills）</li>
+        <li>内置 cron/heartbeat 实现定时任务</li>
+        <li>支持几乎所有聊天平台</li>
+        <li>Agent 可自我扩展（自动创建 skill）</li>
+        <li>Web Control UI 提供基础管理界面</li>
+      </ul>
+    </div>
+    <div><h4 style="color:var(--red)">❌ 劣势</h4>
+      <ul class="cons">
+        <li><strong>无原生钉钉 channel</strong>（最大障碍）</li>
+        <li>剧本评估/打卡等影视行业专属功能需完全自建</li>
+        <li>无企业级统计/审计面板</li>
+        <li>多 agent 管理依赖 CLI，缺少可视化 admin</li>
+        <li>文生视频能力需额外集成（Sora2 等）</li>
+        <li>需要运维团队维护</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 方案二：Hermes Agent / 其他竞品 ============ -->
+<h2>🤖 方案二：其他 Agent 框架对比</h2>
+
+<div class="card">
+  <div class="card-title">Dify — 开源 LLM 应用开发平台</div>
+  <span class="badge badge-green">开源</span>
+  <span class="badge badge-blue">可视化编排</span>
+  <span class="badge badge-yellow">企业版可选</span>
+  <table>
+    <tr><th>需求</th><th>支持情况</th></tr>
+    <tr><td>多用户/RBAC</td><td><span class="check">✅ 企业版原生支持</span></td></tr>
+    <tr><td>钉钉接入</td><td><span class="check">✅ 有钉钉 webhook 集成</span></td></tr>
+    <tr><td>RAG / 知识库</td><td><span class="check">✅ 内置 RAG pipeline</span></td></tr>
+    <tr><td>文生图</td><td><span class="check">✅ 通过 workflow 节点</span></td></tr>
+    <tr><td>可视化编排</td><td><span class="check">✅ 拖拽式 workflow</span></td></tr>
+    <tr><td>剧本生成</td><td><span class="partial">⚠️ 需自建 workflow</span></td></tr>
+    <tr><td>集中管理</td><td><span class="check">✅ Web 管理后台</span></td></tr>
+    <tr><td>定时任务</td><td><span class="partial">⚠️ 有限支持</span></td></tr>
+    <tr><td>Agent 自我扩展</td><td><span class="cross">❌ 不支持</span></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">Coze (字节跳动) — AI Bot 开发平台</div>
+  <span class="badge badge-yellow">商业 SaaS</span>
+  <span class="badge badge-purple">钉钉原生</span>
+  <table>
+    <tr><th>需求</th><th>支持情况</th></tr>
+    <tr><td>钉钉接入</td><td><span class="check">✅ 原生支持（字节系）</span></td></tr>
+    <tr><td>多用户</td><td><span class="check">✅ 企业版支持</span></td></tr>
+    <tr><td>RAG / 知识库</td><td><span class="check">✅ 内置</span></td></tr>
+    <tr><td>文生图/视频</td><td><span class="check">✅ 内置多模态能力</span></td></tr>
+    <tr><td>可视化编排</td><td><span class="check">✅ 插件 + workflow</span></td></tr>
+    <tr><td>剧本生成</td><td><span class="check">✅ 可快速搭建</span></td></tr>
+    <tr><td>数据安全</td><td><span class="cross">❌ 数据在字节服务器</span></td></tr>
+    <tr><td>自托管</td><td><span class="cross">❌ 不支持</span></td></tr>
+    <tr><td>深度定制</td><td><span class="partial">⚠️ 有限</span></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">FastGPT — 开源知识库问答系统</div>
+  <span class="badge badge-green">开源</span>
+  <span class="badge badge-blue">RAG 优先</span>
+  <table>
+    <tr><th>需求</th><th>支持情况</th></tr>
+    <tr><td>RAG / 知识库</td><td><span class="check">✅ 核心能力，非常强</span></td></tr>
+    <tr><td>多用户</td><td><span class="check">✅ 团队协作支持</span></td></tr>
+    <tr><td>可视化编排</td><td><span class="check">✅ Workflow 编排</span></td></tr>
+    <tr><td>钉钉接入</td><td><span class="partial">⚠️ 通过 webhook 桥接</span></td></tr>
+    <tr><td>文生图/视频</td><td><span class="partial">⚠️ 需外部 API</span></td></tr>
+    <tr><td>Agent 自主性</td><td><span class="cross">❌ 无自主工具调用</span></td></tr>
+    <tr><td>定时任务</td><td><span class="cross">❌ 不支持</span></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">Langchain / LangGraph — 开发框架</div>
+  <span class="badge badge-green">开源</span>
+  <span class="badge badge-purple">代码级</span>
+  <table>
+    <tr><th>需求</th><th>支持情况</th></tr>
+    <tr><td>完全定制</td><td><span class="check">✅ 代码级完全控制</span></td></tr>
+    <tr><td>RAG</td><td><span class="check">✅ 丰富组件</span></td></tr>
+    <tr><td>钉钉接入</td><td><span class="check">✅ 需自建，但灵活</span></td></tr>
+    <tr><td>多用户</td><td><span class="partial">⚠️ 需自建架构</span></td></tr>
+    <tr><td>开箱即用</td><td><span class="cross">❌ 开发工作量大</span></td></tr>
+    <tr><td>Agent 自主性</td><td><span class="check">✅ LangGraph 支持</span></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">AutoGen (微软) — 多 Agent 协作框架</div>
+  <span class="badge badge-green">开源</span>
+  <span class="badge badge-blue">多 Agent 协作</span>
+  <table>
+    <tr><th>需求</th><th>支持情况</th></tr>
+    <tr><td>多 Agent 协作</td><td><span class="check">✅ 核心设计</span></td></tr>
+    <tr><td>完全定制</td><td><span class="check">✅ 代码级</span></td></tr>
+    <tr><td>钉钉接入</td><td><span class="cross">❌ 无现成集成</span></td></tr>
+    <tr><td>开箱即用</td><td><span class="cross">❌ 需大量开发</span></td></tr>
+    <tr><td>企业 UI</td><td><span class="cross">❌ 无</span></td></tr>
+  </table>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 综合对比 ============ -->
+<h2>📊 综合对比矩阵</h2>
+<div class="card" style="overflow-x:auto">
+<table>
+  <tr>
+    <th>维度</th>
+    <th>OpenClaw</th>
+    <th>Dify</th>
+    <th>Coze</th>
+    <th>FastGPT</th>
+    <th>LangChain</th>
+    <th>AutoGen</th>
+  </tr>
+  <tr>
+    <td><strong>多用户/多部门</strong></td>
+    <td><span class="check">✅ 原生</span></td>
+    <td><span class="check">✅ 企业版</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="partial">⚠️ 需自建</span></td>
+    <td><span class="partial">⚠️ 需自建</span></td>
+  </tr>
+  <tr>
+    <td><strong>钉钉接入</strong></td>
+    <td><span class="cross">❌ 需开发</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅ 原生</span></td>
+    <td><span class="partial">⚠️ webhook</span></td>
+    <td><span class="partial">⚠️ 需自建</span></td>
+    <td><span class="cross">❌</span></td>
+  </tr>
+  <tr>
+    <td><strong>RAG / 记忆</strong></td>
+    <td><span class="check">✅ 内置</span></td>
+    <td><span class="check">✅ 强</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅ 最强</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="partial">⚠️</span></td>
+  </tr>
+  <tr>
+    <td><strong>文生图/视频</strong></td>
+    <td><span class="partial">⚠️ skill 扩展</span></td>
+    <td><span class="check">✅ workflow</span></td>
+    <td><span class="check">✅ 内置</span></td>
+    <td><span class="partial">⚠️ 外部API</span></td>
+    <td><span class="check">✅ 代码</span></td>
+    <td><span class="partial">⚠️</span></td>
+  </tr>
+  <tr>
+    <td><strong>联网搜索</strong></td>
+    <td><span class="check">✅ 多引擎</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="partial">⚠️</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="partial">⚠️</span></td>
+  </tr>
+  <tr>
+    <td><strong>定时任务</strong></td>
+    <td><span class="check">✅ cron</span></td>
+    <td><span class="partial">⚠️ 有限</span></td>
+    <td><span class="partial">⚠️</span></td>
+    <td><span class="cross">❌</span></td>
+    <td><span class="partial">⚠️ 需自建</span></td>
+    <td><span class="cross">❌</span></td>
+  </tr>
+  <tr>
+    <td><strong>Agent 自主性</strong></td>
+    <td><span class="check">✅ 最强</span></td>
+    <td><span class="partial">⚠️ workflow</span></td>
+    <td><span class="partial">⚠️</span></td>
+    <td><span class="cross">❌</span></td>
+    <td><span class="check">✅ LangGraph</span></td>
+    <td><span class="check">✅</span></td>
+  </tr>
+  <tr>
+    <td><strong>自托管</strong></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="cross">❌ SaaS</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+  </tr>
+  <tr>
+    <td><strong>可视化管理</strong></td>
+    <td><span class="partial">⚠️ Web UI 基础</span></td>
+    <td><span class="check">✅ 强</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="cross">❌</span></td>
+    <td><span class="cross">❌</span></td>
+  </tr>
+  <tr>
+    <td><strong>开发成本</strong></td>
+    <td>中等（需写 skill）</td>
+    <td>低（可视化编排）</td>
+    <td>极低（SaaS）</td>
+    <td>低（可视化）</td>
+    <td>高（纯代码）</td>
+    <td>高（纯代码）</td>
+  </tr>
+  <tr>
+    <td><strong>数据安全</strong></td>
+    <td><span class="check">✅ 完全自主</span></td>
+    <td><span class="check">✅ 自托管</span></td>
+    <td><span class="cross">❌ 字节服务器</span></td>
+    <td><span class="check">✅ 自托管</span></td>
+    <td><span class="check">✅</span></td>
+    <td><span class="check">✅</span></td>
+  </tr>
+  <tr>
+    <td><strong>成本</strong></td>
+    <td>免费 + LLM API 费用</td>
+    <td>社区版免费 / 企业版付费</td>
+    <td>按量付费</td>
+    <td>社区版免费</td>
+    <td>免费 + API 费用</td>
+    <td>免费 + API 费用</td>
+  </tr>
+</table>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 推荐方案 ============ -->
+<h2>🎯 推荐方案</h2>
+
+<div class="summary-box">
+  <div class="verdict">🏆 推荐：OpenClaw + Dify 混合架构</div>
+  <p>针对影视公司需求，<strong>单一方案无法 100% 覆盖</strong>。建议采用混合架构：</p>
+</div>
+
+<div class="card">
+  <h3>方案 A：OpenClaw 为核心 Agent 平台 + Dify 作为可视化 workflow 层</h3>
+  <table>
+    <tr><th>组件</th><th>职责</th><th>原因</th></tr>
+    <tr><td><strong>OpenClaw Gateway</strong></td><td>核心 Agent 运行时、多部门隔离、cron 定时任务、联网搜索、记忆系统</td><td>Multi-agent 原生、完全自控、skill 生态丰富</td></tr>
+    <tr><td><strong>Dify</strong></td><td>可视化 workflow 编排（剧本评估/生成流程）、RAG 知识库管理、文生图/视频 pipeline</td><td>可视化编排降低门槛、RAG 能力强、多模态 workflow</td></tr>
+    <tr><td><strong>钉钉 Webhook Bridge</strong></td><td>钉钉消息 ↔ OpenClaw/Dify 桥接</td><td>自建轻量级 webhook 服务</td></tr>
+    <tr><td><strong>Crabfleet</strong></td><td>多 Agent 集群管理、监控、统计</td><td>OpenClaw 生态的 fleet 管理工具</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>方案 B：如果钉钉是硬性要求且预算充足</h3>
+  <p style="margin-bottom:12px">选择 <strong>Coze 企业版</strong> 或 <strong>Dify 企业版</strong>，原生钉钉支持 + 企业级多用户管理。</p>
+  <ul>
+    <li><strong>Coze 优势</strong>：字节系产品，钉钉原生支持最好，多模态能力强</li>
+    <li><strong>Coze 劣势</strong>：数据在字节服务器，影视公司内容敏感，存在数据安全风险</li>
+    <li><strong>Dify 企业版优势</strong>：可自托管、数据安全、可视化编排、钉钉 webhook 集成</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>方案 C：纯 OpenClaw（最灵活但开发量最大）</h3>
+  <p>如果团队技术能力强，纯 OpenClaw 方案最灵活：</p>
+  <ul>
+    <li>为每个部门创建独立 Agent（编剧部、制片部、后期部等）</li>
+    <li>自建钉钉 channel plugin（参考 Feishu plugin 架构）</li>
+    <li>自建影视行业 skill（剧本评估、打卡系统等）</li>
+    <li>接入多模态 API（Sora2/可灵/通义万相等）</li>
+    <li>用 Crabfleet 做统一管理</li>
+  </ul>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 钉钉接入方案 ============ -->
+<h2>💬 钉钉接入详细方案</h2>
+<div class="card">
+  <p>OpenClaw 当前<strong>没有原生钉钉 channel</strong>，但有以下替代路径：</p>
+  <table>
+    <tr><th>方案</th><th>难度</th><th>说明</th></tr>
+    <tr><td><strong>1. 自建钉钉 Channel Plugin</strong></td><td>中</td><td>参考 <a href="https://docs.openclaw.ai/channels/feishu">Feishu plugin</a> 架构，用钉钉开放平台 WebSocket API 实现。Feishu 和钉钉 API 结构相似，可大幅参考。</td></tr>
+    <tr><td><strong>2. 钉钉 Webhook Bridge</strong></td><td>低</td><td>写一个轻量服务：钉钉 webhook → HTTP → OpenClaw WebChat API。适合快速验证。</td></tr>
+    <tr><td><strong>3. 用飞书替代钉钉</strong></td><td>极低</td><td>OpenClaw 原生支持飞书。如果公司可以用飞书，零开发成本。</td></tr>
+    <tr><td><strong>4. 钉钉 → 飞书桥接</strong></td><td>中</td><td>用钉钉开放平台的消息转发到飞书，再由 OpenClaw 处理。</td></tr>
+  </table>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 实施建议 ============ -->
+<h2>🛠️ 实施建议</h2>
+<div class="card">
+  <h3>Phase 1 — MVP（2-4 周）</h3>
+  <ul>
+    <li>部署 OpenClaw Gateway + Feishu channel（如可用飞书）或钉钉 Webhook Bridge</li>
+    <li>创建 2-3 个 Agent（编剧、制片、行政），配置基础 skill</li>
+    <li>接入 LLM API（推荐 Claude / DeepSeek）</li>
+    <li>配置联网搜索（multi-search-engine skill）</li>
+    <li>测试 cron 定时任务（日报生成）</li>
+  </ul>
+
+  <h3>Phase 2 — 功能完善（4-8 周）</h3>
+  <ul>
+    <li>自建剧本评估/生成 skill</li>
+    <li>集成文生图 API（Nano Banana Pro 或通义万相）</li>
+    <li>搭建 RAG 知识库（影视剧本库、行业资料）</li>
+    <li>开发打卡系统 skill</li>
+    <li>接入 Dify 做可视化 workflow 编排</li>
+  </ul>
+
+  <h3>Phase 3 — 企业化（8-12 周）</h3>
+  <ul>
+    <li>部署 Crabfleet 做多 Agent 集群管理</li>
+    <li>开发管理后台（使用统计、权限管理）</li>
+    <li>接入文生视频 API</li>
+    <li>完善审计日志和安全策略</li>
+    <li>全公司培训和推广</li>
+  </ul>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ============ 参考链接 ============ -->
+<h2>🔗 参考链接</h2>
+<div class="card">
+  <table>
+    <tr><th>资源</th><th>链接</th></tr>
+    <tr><td>OpenClaw 官方文档</td><td><a href="https://docs.openclaw.ai">docs.openclaw.ai</a></td></tr>
+    <tr><td>OpenClaw Multi-Agent 文档</td><td><a href="https://docs.openclaw.ai/concepts/multi-agent">docs.openclaw.ai/concepts/multi-agent</a></td></tr>
+    <tr><td>Feishu Channel 集成</td><td><a href="https://docs.openclaw.ai/channels/feishu">docs.openclaw.ai/channels/feishu</a></td></tr>
+    <tr><td>ClawHub Skills 市场</td><td><a href="https://clawhub.ai/skills">clawhub.ai/skills</a></td></tr>
+    <tr><td>ClawHub Plugins</td><td><a href="https://clawhub.ai/plugins">clawhub.ai/plugins</a></td></tr>
+    <tr><td>Crabfleet (Agent 集群)</td><td><a href="https://crabfleet.ai">crabfleet.ai</a></td></tr>
+    <tr><td>Crabbox (Agent 沙箱)</td><td><a href="https://crabbox.sh">crabbox.sh</a></td></tr>
+    <tr><td>OpenClaw GitHub</td><td><a href="https://github.com/openclaw/openclaw">github.com/openclaw/openclaw</a></td></tr>
+    <tr><td>Dify</td><td><a href="https://dify.ai">dify.ai</a></td></tr>
+    <tr><td>Coze</td><td><a href="https://www.coze.com">coze.com</a></td></tr>
+    <tr><td>FastGPT</td><td><a href="https://fastgpt.in">fastgpt.in</a></td></tr>
+  </table>
+</div>
+
+<div class="footer">
+  <p>调研报告 by ⭐ 星星 · 爱星智联科技有限公司 · 2026-07-01</p>
+  <p>数据来源：ClawHub.ai、OpenClaw 官方文档、各平台公开资料</p>
+</div>
+
+</div>
+</body>
+</html>
