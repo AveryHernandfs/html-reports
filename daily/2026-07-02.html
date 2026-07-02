@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日资讯 — 2026.07.02</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .tag.red { background:rgba(192,57,43,0.12); color:#c0392b; }
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">Thursday · 2026.07.02</div>
+    <h1>每日资讯</h1>
+    <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
+  </header>
+
+  <!-- ===== AI & 大模型 ===== -->
+  <div class="section"><div class="section-label">🤖 AI & 大模型</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01232v1" target="_blank">Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training</a></div>
+      <div class="story-summary">Reinforcement learning has become central to post-training LLMs, yet little is understood about how RL adaptation is distributed across transformer layers. This paper finds that updating only a single transformer layer can match full-parameter RL training performance — challenging the assumption that every layer needs uniform updates.</div>
+      <input type="checkbox" class="detail-check" id="d1">
+      <label for="d1" class="story-toggle"></label>
+      <div class="story-detail">这是一个非常有意思的发现。目前 LLM post-training（如 RLHF）通常对所有参数做均匀更新，但这篇论文表明，RL adaptation 可能高度集中在某些层。如果验证为真，意味着可以大幅降低训练成本——只需要 fine-tune 一个层就够了。对资源有限的团队来说是好消息。</div>
+      <div class="story-meta"><span class="tag">cs.LG</span><span class="tag">cs.CL</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01233v1" target="_blank">Measuring the Gap Between Human and LLM Research Ideas</a></div>
+      <div class="story-summary">LLMs are increasingly used to brainstorm research ideas, but existing evaluations mostly judge individual ideas. This paper instead asks: how far are current LLM-generated ideas from human researchers? Builds a large-scale evaluation framework to characterize this gap.</div>
+      <input type="checkbox" class="detail-check" id="d2">
+      <label for="d2" class="story-toggle"></label>
+      <div class="story-detail">随着 AI 辅助科研越来越普遍，这篇论文试图量化 LLM 提出的科研想法和人类研究者之间的差距。不是简单的"好/不好"二元判断，而是系统性地分析差异在哪——是创新性、可行性还是问题选择？对想用 AI 辅助科研的人有实际参考价值。</div>
+      <div class="story-meta"><span class="tag">cs.CL</span><span class="tag">cs.AI</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01224v1" target="_blank">AutoMem: Automated Learning of Memory as a Cognitive Skill</a></div>
+      <div class="story-summary">Memory expertise is a learned skill: knowing what to encode, when to retrieve, and how to organize knowledge — metamemory. This paper treats memory management as a trainable skill for LLMs, promoting file-system operations to first-class memory tools.</div>
+      <input type="checkbox" class="detail-check" id="d3">
+      <label for="d3" class="story-toggle"></label>
+      <div class="story-detail">这篇论文把认知科学中的"元记忆"（metamemory）概念引入 LLM。核心思路是：LLM 不只是需要更大的 context window，更需要学会"什么值得记住"和"什么时候该检索"。通过将文件系统操作升级为一等公民 memory tool，让 LLM 能主动管理自己的记忆。对 Agent 架构设计有启发。</div>
+      <div class="story-meta"><span class="tag">cs.AI</span><span class="tag">cs.CL</span><span class="tag">cs.MA</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01223v1" target="_blank">Theoria: Rewrite-Acceptability Verification over Informal Reasoning States</a></div>
+      <div class="story-summary">When should an AI system's answer be trusted? Formal proof assistants offer certainty but can't reach most problems; scalar LLM judges offer coverage but produce opaque scores. Theoria presents a middle ground — rewrite-acceptability verification for informal reasoning.</div>
+      <input type="checkbox" class="detail-check" id="d4">
+      <label for="d4" class="story-toggle"></label>
+      <div class="story-detail">LLM 的推理可靠性一直是痛点。Formal verification 太严格覆盖不了大部分问题，而 LLM-as-judge 又太黑箱。Theoria 提出了一个有趣的折中方案：通过"重写可接受性"来验证非形式化推理状态。简单说就是：如果对推理过程做合法重写，结论是否保持不变？这比完整证明轻量，比纯打分可靠。</div>
+      <div class="story-meta"><span class="tag">cs.AI</span><span class="tag">cs.CL</span><span class="tag">cs.LG</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01208v1" target="_blank">Distill to Detect: Exposing Stealth Biases in LLMs through Cartridge Distillation</a></div>
+      <div class="story-summary">Language models in high-stakes roles can favor certain entities, brands, or viewpoints. Such preferential biases are most dangerous when revealed only on specific prompts. This paper proposes "cartridge distillation" to detect hidden biases.</div>
+      <input type="checkbox" class="detail-check" id="d5">
+      <label for="d5" class="story-toggle"></label>
+      <div class="story-detail">供应链中任何环节都可能植入 preferential bias——让模型在特定 prompt 下偏好某个品牌或观点。这种"stealth bias"平时看不出来，只在特定条件下触发。论文提出通过蒸馏来暴露这些隐藏偏见。对 AI 安全和模型审计领域很有意义。</div>
+      <div class="story-meta"><span class="tag">cs.CL</span><span class="tag">cs.AI</span><span class="tag">cs.LG</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01218v1" target="_blank">The State-Prediction Separation Hypothesis</a></div>
+      <div class="story-summary">Transformers use the same forward computation stream to both predict the next token and store useful state for future predictions. This paper proposes disentangling these two roles yields better language modeling performance.</div>
+      <input type="checkbox" class="detail-check" id="d6">
+      <label for="d6" class="story-toggle"></label>
+      <div class="story-detail">Transformer 架构的一个根本性问题：同一个计算流既要预测下一个 token，又要为未来的预测存储状态。论文提出"状态-预测分离假说"，设计了一个 Transformer 变体将两者解耦。如果验证成功，可能是架构层面的有意义改进。</div>
+      <div class="story-meta"><span class="tag">cs.CL</span><span class="tag">cs.AI</span><span class="tag">cs.LG</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01211v1" target="_blank">Are Performance-Optimization Benchmarks Reliably Measuring Coding Agents?</a></div>
+      <div class="story-summary">Benchmarks like GSO, SWE-Perf and SWE-efficiency evaluate coding agents by applying patches and comparing runtime. Their leaderboard scores are increasingly used as evidence of progress. But are they actually reliable measures?</div>
+      <input type="checkbox" class="detail-check" id="d7">
+      <label for="d7" class="story-toggle"></label>
+      <div class="story-detail">Coding agent benchmark 的可靠性被质疑。GSO、SWE-Perf 等 benchmark 通过比较代码优化后的运行时间来评分，但论文发现这些分数可能并不能真实反映 agent 的能力。对关注 AI coding 工具的人来说，这篇值得读——了解 benchmark 的局限性。</div>
+      <div class="story-meta"><span class="tag">cs.SE</span><span class="tag">cs.AI</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01225v1" target="_blank">Language-Critique Imitation Learning from Suboptimal Demonstrations</a></div>
+      <div class="story-summary">Prior work on imitation learning from suboptimal demos relies on compressed supervision signals like confidence estimates or discriminator scores. This paper uses language-based critique instead, enabling more explicit reasoning about task quality.</div>
+      <div class="story-meta"><span class="tag">cs.LG</span><span class="tag">cs.AI</span><span>ArXiv 2026-07-01</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://blog.okturtles.org/2026/07/short-leash-ai-method/" target="_blank">The Short Leash AI Coding Method for Beating Fable</a></div>
+      <div class="story-summary">Hacker News · 47⬆</div>
+      <input type="checkbox" class="detail-check" id="d8">
+      <label for="d8" class="story-toggle"></label>
+      <div class="story-detail">一篇关于 AI coding 方法论的博客，讨论如何用"短绳法"（Short Leash）来有效控制 AI 编码 agent 的输出质量。核心思想是保持紧密监督循环，让 AI 在小步迭代中完成任务，而不是一次性给大任务。对日常使用 Claude Code / Cursor 等工具有参考价值。</div>
+      <div class="story-meta"><span class="tag green">HN 47⬆</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1224558" target="_blank">公司 vibe coding 的项目，团队已经无法掌控了</a></div>
+      <div class="story-summary">V2EX 热门 · 96 回复</div>
+      <input type="checkbox" class="detail-check" id="d9">
+      <label for="d9" class="story-toggle"></label>
+      <div class="story-detail">V2EX 上的热议：一个团队用 vibe coding 方式开发的项目，随着规模增长变得难以维护。这反映了当前 AI 辅助编程的一个核心痛点——AI 生成代码很快，但缺乏架构思考的代码在规模化时会出问题。值得每个用 AI 写代码的团队反思。</div>
+      <div class="story-meta"><span class="tag">V2EX</span><span>96 回复</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1224476" target="_blank">讨论：AI 写的代码要不要看，不看代码的程序员会被淘汰吗？</a></div>
+      <div class="story-summary">V2EX 热门 · 71 回复</div>
+      <input type="checkbox" class="detail-check" id="d10">
+      <label for="d10" class="story-toggle"></label>
+      <div class="story-detail">又一个关于 AI coding 的灵魂拷问：既然 AI 能写代码了，程序员还需要看代码吗？不看代码的程序员会被淘汰吗？V2EX 上的讨论往往很实际，值得一看。</div>
+      <div class="story-meta"><span class="tag">V2EX</span><span>71 回复</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1224374" target="_blank">豆包为什么是神？</a></div>
+      <div class="story-summary">V2EX 热门 · 72 回复</div>
+      <div class="story-meta"><span class="tag">V2EX</span><span>72 回复</span></div>
+    </div>
+  </div>
+
+<hr class="divider">
+
+  <!-- ===== 安全 & CVE ===== -->
+  <div class="section"><div class="section-label">🔒 安全 & CVE</div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-48618 — Node.js TLS hostname wildcard bypass</div>
+      <div class="story-summary">A flaw in Node.js TLS hostname handling can cause unicode dot separator handling to lead to tls wildcard-depth authentication bypass due to resolver and verifier hostname normalization mismatches. Can lead to confidentiality impact or bypass of intended security boundaries.</div>
+      <input type="checkbox" class="detail-check" id="c1">
+      <label for="c1" class="story-toggle"></label>
+      <div class="story-detail">Node.js TLS 证书验证中的 unicode 分隔符处理缺陷。攻击者可能利用 unicode 点号（如全角句号）来绕过 wildcard 证书验证。这意味着用 .env 的域名可能被伪造证书欺骗。影响所有 Node.js 版本（22/24/26）。<strong>紧急程度：高</strong>——如果你用 Node.js 做 HTTPS 相关操作，需要关注。</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span><span>Node.js 22/24/26</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-48928 — Node.js mTLS hostname matching bypass</div>
+      <div class="story-summary">An inconsistency in Node.js hostname matching can cause a trust-policy bypass in multi-context mTLS setups. Affects all supported release lines: Node.js 22, 24, and 26.</div>
+      <input type="checkbox" class="detail-check" id="c2">
+      <label for="c2" class="story-toggle"></label>
+      <div class="story-detail">另一个 Node.js TLS 相关漏洞——在 multi-context mTLS 场景下，hostname matching 的不一致性可能导致信任策略绕过。如果你的服务依赖 mTLS（双向 TLS 认证），这个漏洞需要重视。</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span><span>Node.js 22/24/26</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-48619 — Node.js HTTP/2 ORIGIN frame OOM</div>
+      <div class="story-summary">A flaw in Node.js HTTP/2 client allows a server to send an unlimited number of ORIGIN frames, leading to Out of Memory errors on the client. Affects Node.js 22, 24, and 26.</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD</span><span>Node.js 22/24/26</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-48615 — Node.js proxy credential leak in error messages</div>
+      <div class="story-summary">A flaw in Node.js proxy tunnel error handling could expose proxy credentials in ERR_PROXY_TUNNEL error messages, which may be captured by logs, diagnostics, or other error consumers.</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD</span><span>Node.js</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-43920 — FOSSBilling unauthenticated patcher endpoint</div>
+      <div class="story-summary">FOSSBilling (v0.5.4–0.7.2): the /run-patcher maintenance endpoint was accessible without authentication, allowing unauthenticated remote users to trigger update patch routines that modify configuration files.</div>
+      <input type="checkbox" class="detail-check" id="c3">
+      <label for="c3" class="story-toggle"></label>
+      <div class="story-detail">FOSSBilling 是一个开源的计费和客户管理系统。这个漏洞允许未认证的远程用户直接触发维护端点来修改配置。如果你在用 FOSSBilling，升级到 0.7.3 以上版本。</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-12993 — Apicurio Registry XXE via XML upload</div>
+      <div class="story-summary">Apicurio Registry 的 DocumentBuilderAccessor 正确阻止了外部 DTD 和 schema 访问，但未禁用 DOCTYPE 声明或启用 FEATURE_SECURE_PROCESSING。有 artifact-write 权限的攻击者可以上传包含内部实体扩展 payload 的 XML 文档。</div>
+      <div class="story-meta"><span class="tag">MEDIUM</span><span>NVD</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-13318 — KubeVirt virt-api SSRF via port-forward</div>
+      <div class="story-summary">KubeVirt 的 virt-api port-forward 处理器存在 SSRF 漏洞。处理 VMI 的 port-forward 请求时，直接读取 vmi.Status.Interfaces[0].IP 传给 net.Dial()，无验证。使用 multus 或 SR-IOV 等多网卡网络配置的 VMI 容易被利用。</div>
+      <input type="checkbox" class="detail-check" id="c4">
+      <label for="c4" class="story-toggle"></label>
+      <div class="story-detail">KubeVirt 的一个 SSRF 漏洞——virt-api 在处理 port-forward 请求时直接使用 VMI 的 IP 做 net.Dial()，没有验证。在 multus/SR-IOV 等多网卡环境下，攻击者可以指定任意 IP 进行 SSRF 攻击。对使用 KubeVirt 的 Kubernetes 集群需要注意。</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span><span>KubeVirt</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">Setracker2 系列漏洞 (CVE-2026-9219/9220/9221/9222)</div>
+      <div class="story-summary">Setracker2 Android 儿童手表 App 存在 4 个漏洞：可预测的注册 ID（基于 IMEI）、静态硬编码 AES 密钥、MD5 签名、仅需密码哈希认证。攻击者可解密手表通信、伪造身份注册。</div>
+      <input type="checkbox" class="detail-check" id="c5">
+      <label for="c5" class="story-toggle"></label>
+      <div class="story-detail">这组漏洞非常典型——一个 IoT 儿童手表 App 几乎把安全最佳实践全踩了一遍：硬编码密钥、弱哈希、缺少认证。如果家里有小孩用这类设备，值得关注。也提醒我们 IoT 安全仍然任重道远。</div>
+      <div class="story-meta"><span class="tag red">多 CVE</span><span>NVD</span><span>IoT</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline">CVE-2026-13226 — WordPress Groundhogg SQL Injection</div>
+      <div class="story-summary">Groundhogg — CRM, Newsletters, and Marketing Automation 插件存在 SQL 注入漏洞（所有版本 ≤ 4.5.4），通过 'after' 参数触发。</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD</span><span>WordPress</span></div>
+    </div>
+  </div>
+
+<hr class="divider">
+
+  <!-- ===== 开源 & GitHub ===== -->
+  <div class="section"><div class="section-label">📦 开源 & GitHub</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/tryOpenRAM/OpenRAM" target="_blank">tryOpenRAM/OpenRAM</a></div>
+      <div class="story-summary">Rent GPUs and run any AI model, paid in SOL. Buy with $RAM and every $RAM spent gets burned.</div>
+      <div class="story-meta"><span class="tag green">⭐ 565</span><span class="tag">Vue</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/lycorp-jp/sim-use" target="_blank">lycorp-jp/sim-use</a></div>
+      <div class="story-summary">Give your AI agent eyes and hands on iOS Simulator and Android emulator/devices.</div>
+      <div class="story-meta"><span class="tag green">⭐ 456</span><span class="tag">Swift</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://blog.podman.io/2026/07/introducing-podman-v6-0-0/" target="_blank">Podman v6.0.0 发布</a></div>
+      <div class="story-summary">Podman 6.0 正式发布，容器运行时的又一次大版本更新。</div>
+      <input type="checkbox" class="detail-check" id="g1">
+      <label for="g1" class="story-toggle"></label>
+      <div class="story-detail">Podman 是 Docker 的无守护进程替代方案，6.0 是大版本升级。对运维和容器化部署有直接影响。如果你在用 Podman，值得看看 changelog。</div>
+      <div class="story-meta"><span class="tag green">HN 332⬆</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Chocobozzz/PeerTube" target="_blank">PeerTube — 去中心化视频平台</a></div>
+      <div class="story-summary">Free, decentralized and federated video platform. HN 上 465⬆ 热度。</div>
+      <div class="story-meta"><span class="tag green">HN 465⬆</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.dbos.dev/blog/co-locating-workflow-state-with-your-data" target="_blank">Postgres transactions are a distributed systems superpower</a></div>
+      <div class="story-summary">探讨将 workflow state 与数据共置在 Postgres 中的架构优势——利用 Postgres 事务作为分布式系统的基础设施。</div>
+      <div class="story-meta"><span class="tag green">HN 80⬆</span><span>DBOS</span></div>
+    </div>
+  </div>
+
+<hr class="divider">
+
+  <!-- ===== 安全延伸 ===== -->
+  <div class="section"><div class="section-label">🔍 安全延伸</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.hunton.com/privacy-and-cybersecurity-law-blog/virginia-bans-sale-of-geolocation-data" target="_blank">Virginia 禁止出售地理位置数据</a></div>
+      <div class="story-summary">弗吉尼亚州通过法律禁止出售地理位置数据。这是隐私保护的重要进展，对数据经纪商和依赖位置数据的广告行业有直接影响。</div>
+      <input type="checkbox" class="detail-check" id="s1">
+      <label for="s1" class="story-toggle"></label>
+      <div class="story-detail">美国各州在隐私立法上持续发力。Virginia 这次直接禁止了地理位置数据的买卖，这比一般的 opt-out 机制更进一步。对广告技术、数据经纪行业影响深远。也值得关注其他州是否会跟进。</div>
+      <div class="story-meta"><span class="tag">HN 237⬆</span><span>Privacy</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://mathstodon.xyz/@iblech/116769502749142438" target="_blank">Since Linux 6.9, LUKS suspend stopped wiping disk-encryption keys from memory</a></div>
+      <div class="story-summary">Linux 6.9 起，LUKS 在 suspend 时不再从内存中清除磁盘加密密钥。这意味着物理访问攻击者可能在设备 suspend 状态下提取密钥。</div>
+      <input type="checkbox" class="detail-check" id="s2">
+      <label for="s2" class="story-toggle"></label>
+      <div class="story-detail">这是一个安全回归——Linux 6.9 之后 LUKS 在 suspend 时不再 wipe 加密密钥。对于全盘加密用户来说，这意味着冷启动攻击（cold boot attack）的风险增加了。如果你在用 LUKS + 笔记本，建议关注这个变化并考虑缓解措施。</div>
+      <div class="story-meta"><span class="tag">HN 371⬆</span><span>Linux</span><span>加密</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1224405" target="_blank">vless+xhttp+reality 1 年多被墙了，技术探讨</a></div>
+      <div class="story-summary">V2EX 上的讨论：使用 vless+xhttp+reality 协议方案，网址用的苹果域名，1 年多后被封锁。技术向讨论。</div>
+      <div class="story-meta"><span class="tag">V2EX</span><span>107 回复</span></div>
+    </div>
+  </div>
+
+<hr class="divider">
+
+  <!-- ===== 跳出舒适圈 ===== -->
+  <div class="section"><div class="section-label">🌍 跳出舒适圈</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1224388" target="_blank">这下好了，真死在科技里了</a></div>
+      <div class="story-summary">V2EX 投资板块热门讨论 · 113 回复。科技投资的反思。</div>
+      <div class="story-meta"><span class="tag orange">投资</span><span>113 回复</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1224372" target="_blank">JD 服务是越来越拉了，会跟上 Nokia 的步伐吧....</a></div>
+      <div class="story-summary">V2EX 互联网板块 · 73 回复。对京东服务质量下降的讨论和行业反思。</div>
+      <div class="story-meta"><span class="tag orange">互联网</span><span>73 回复</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail" target="_blank">Reality has a surprising amount of detail (2017)</a></div>
+      <div class="story-summary">HN 上的老文重提 · 55⬆。关于现实世界复杂性的思考——当你真正深入一个问题时，会发现现实远比想象中细节丰富。对工程师和研究者都有启发。</div>
+      <div class="story-meta"><span class="tag">HN 55⬆</span><span>思维</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://pradyuprasad.com/writings/how-to-ask-for-help/" target="_blank">How to ask for help from people who don't know you</a></div>
+      <div class="story-summary">HN 热文 · 344⬆。如何向不了解你的人寻求帮助——沟通技巧和方法论。</div>
+      <input type="checkbox" class="detail-check" id="o1">
+      <label for="o1" class="story-toggle"></label>
+      <div class="story-detail">344⬆ 说明这篇文章确实引起了共鸣。对于创业者、独立开发者、或者需要跨领域合作的人来说，学会如何有效地向陌生人求助是关键技能。文章给出了实用的框架和建议。</div>
+      <div class="story-meta"><span class="tag green">HN 344⬆</span><span>自我提升</span></div>
+    </div>
+  </div>
+
+<hr class="divider">
+
+  <!-- ===== 数学学习 ===== -->
+  <div class="section"><div class="section-label">📐 数学学习</div>
+
+    <div class="math-box">
+      <h3>学习进度</h3>
+      <div class="progress-row">
+        <span class="name">线代</span>
+        <div class="progress-track"><div class="progress-fill" style="width:25%"></div></div>
+        <span class="pct">25%</span>
+      </div>
+      <div class="progress-row">
+        <span class="name">高数</span>
+        <div class="progress-track"><div class="progress-fill" style="width:15%"></div></div>
+        <span class="pct">15%</span>
+      </div>
+      <div class="progress-row">
+        <span class="name">概率论</span>
+        <div class="progress-track"><div class="progress-fill" style="width:10%"></div></div>
+        <span class="pct">10%</span>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-title">每日一概念：特征值与特征向量（Eigenvalues & Eigenvectors）</div>
+      <div class="concept-body">
+        <p>在线性代数中，如果一个矩阵 A 作用于向量 v 只是改变了 v 的长度而没有改变方向，那么 v 就是 A 的<strong>特征向量</strong>，缩放因子 λ 就是对应的<strong>特征值</strong>。</p>
+        <div class="concept-formula">Av = λv</div>
+        <p><strong>直觉理解：</strong>想象你在推一个门。大部分方向推，门会旋转（改变方向）。但有些特殊方向，推的时候门只做伸缩（不旋转）。这些"不旋转的方向"就是特征向量，伸缩的倍数就是特征值。</p>
+        <p><strong>为什么重要：</strong>PCA 降维、Google PageRank、量子力学中的可观测量测量……都建立在特征值分解之上。理解了特征值，你就理解了线性变换的"骨架"。</p>
+      </div>
+    </div>
+
+    <div class="concept" style="margin-top:1rem;">
+      <div class="concept-title">💡 AI 与数学的交汇</div>
+      <div class="concept-body">
+        <p>今天 ArXiv 上的 <strong>"Quantum vs. Classical Machine Learning: A Unified Empirical Comparison"</strong> 论文很有意思——它对比了量子机器学习和经典 ML 的实际表现。如果你想在数学学习中找到与工作的连接点，量子计算和线性代数的交叉是一个很好的切入点——量子态本质上就是高维向量空间中的向量，量子门就是酉矩阵。</p>
+      </div>
+    </div>
+  </div>
+
+<hr class="divider">
+
+  <footer class="footer">
+    <p>⭐ 每日资讯日报 · 由星星自动整理</p>
+    <p>数据源：Hacker News · GitHub · ArXiv · NVD · V2EX · Bilibili</p>
+    <p>2026-07-02 · 爱星智联科技有限公司</p>
+  </footer>
+</div>
+</body>
+</html>
