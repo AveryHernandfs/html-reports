@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日资讯 — 2026.07.06</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .tag.purple { background:rgba(142,68,173,0.08); color:#8e44ad; }
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    .comfort-zone { background:rgba(241,196,15,0.05); border-left:3px solid #f1c40f; padding:0.8rem 1rem; margin-bottom:1rem; border-radius:0 4px 4px 0; }
+    .comfort-zone .tag { background:rgba(241,196,15,0.15); color:#d4a017; }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">周一 · 2026.07.06</div>
+    <h1>每日资讯</h1>
+    <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
+  </header>
+  <div class="section"><div class="section-label">🤖 AI & 大模型</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.opentools.studio/" target="_blank">Reparaible and open source paper printer</a></div>
+      <div class="story-summary">来源：Hacker News · bouh</div>
+      <input type="checkbox" class="detail-check" id="hn-ai-48797916">
+      <label class="story-toggle" for="hn-ai-48797916"></label>
+      <div class="story-detail">来自 Hacker News，由 bouh 分享，获得 191 分。</div>
+      <div class="story-meta"><span class="tag">191⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://intextbooks.science.uu.nl/workshop2026/files/itb26_s1s2.pdf" target="_blank">New AI tutor achieves 0.71-1.30 SD effect size in Dartmouth course [pdf]</a></div>
+      <div class="story-summary">来源：Hacker News · jonahbard</div>
+      <input type="checkbox" class="detail-check" id="hn-ai-48796817">
+      <label class="story-toggle" for="hn-ai-48796817"></label>
+      <div class="story-detail">来自 Hacker News，由 jonahbard 分享，获得 106 分。</div>
+      <div class="story-meta"><span class="tag">106⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://tekstien-marginaalien-keskus.aalto.fi/residenssi/heikki/blog/004-december-2/" target="_blank">Mr. Baby Paint and accidentally discovering a new cellular automata</a></div>
+      <div class="story-summary">来源：Hacker News · jfil</div>
+      <input type="checkbox" class="detail-check" id="hn-ai-48770291">
+      <label class="story-toggle" for="hn-ai-48770291"></label>
+      <div class="story-detail">来自 Hacker News，由 jfil 分享，获得 76 分。</div>
+      <div class="story-meta"><span class="tag">76⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://search.cerast-intelligence.com/" target="_blank">Show HN: Osint tool that finds exposed files on domains</a></div>
+      <div class="story-summary">来源：Hacker News · PatchRequest</div>
+      <input type="checkbox" class="detail-check" id="hn-ai-48797656">
+      <label class="story-toggle" for="hn-ai-48797656"></label>
+      <div class="story-detail">来自 Hacker News，由 PatchRequest 分享，获得 17 分。</div>
+      <div class="story-meta"><span class="tag">17⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.02517v1" target="_blank">WorldDirector: Building Controllable World Simulators with Persistent Dynamic Memory</a></div>
+      <div class="story-summary">We present WorldDirector, a highly controllable video world model framework designed for persistent dynamic object memory and unrestricted viewpoint exploration. Unlike existing world models that enta...</div>
+      <input type="checkbox" class="detail-check" id="arxiv-1561">
+      <label class="story-toggle" for="arxiv-1561"></label>
+      <div class="story-detail">We present WorldDirector, a highly controllable video world model framework designed for persistent dynamic object memory and unrestricted viewpoint exploration. Unlike existing world models that entangle physical dynamics with pixel rendering and rely on continuous visual observation to sustain mot</div>
+      <div class="story-meta"><span class="tag">Hanlin Wang, Hao Ouyang, Qiuyu Wang</span><span class="tag purple">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.02516v1" target="_blank">Alignment Is All You Need For X-to-4D Generation</a></div>
+      <div class="story-summary">Generative diffusion models excel at synthesizing high-quality images, videos, and 3D content under multimodal control. However, arbitrary user-defined modality-to-4D (X-to-4D) generation remains chal...</div>
+      <input type="checkbox" class="detail-check" id="arxiv-7916">
+      <label class="story-toggle" for="arxiv-7916"></label>
+      <div class="story-detail">Generative diffusion models excel at synthesizing high-quality images, videos, and 3D content under multimodal control. However, arbitrary user-defined modality-to-4D (X-to-4D) generation remains challenging due to the high cost of constructing diverse datasets and the limited scalability of existin</div>
+      <div class="story-meta"><span class="tag">Qiaowei Miao, Kehan Li, Yawei Luo</span><span class="tag purple">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.02515v1" target="_blank">PointDiT: Pixel-Space Diffusion for Monocular Geometry Estimation</a></div>
+      <div class="story-summary">State-of-the-art single-image 3D reconstruction methods often rely on complex hybrid architectures and loss functions, or compress geometry into latent spaces in order to leverage pre-trained latent d...</div>
+      <input type="checkbox" class="detail-check" id="arxiv-2246">
+      <label class="story-toggle" for="arxiv-2246"></label>
+      <div class="story-detail">State-of-the-art single-image 3D reconstruction methods often rely on complex hybrid architectures and loss functions, or compress geometry into latent spaces in order to leverage pre-trained latent diffusion models. In this work, we show that such architectural overhead and intricate loss formulati</div>
+      <div class="story-meta"><span class="tag">Haofei Xu, Rundi Wu, Philipp Henzler</span><span class="tag purple">ArXiv</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">🔒 安全 & CVE</div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-58053 <span style="color:var(--accent);font-size:0.8rem;">CVSS 9.9 · UNKNOWN</span></div>
+      <div class="story-summary">Gitea act_runner with the Docker backend (through act 0.262.0) passes a workflow's container.options string to the Docker job container's HostConfig and, when configured with privileged: false, forces only the Privileged flag off while merging option</div>
+      <input type="checkbox" class="detail-check" id="cve-CVE-2026-58053">
+      <label class="story-toggle" for="cve-CVE-2026-58053"></label>
+      <div class="story-detail">Gitea act_runner with the Docker backend (through act 0.262.0) passes a workflow's container.options string to the Docker job container's HostConfig and, when configured with privileged: false, forces only the Privileged flag off while merging options such as --pid=host, --cap-add, and --security-opt unchanged. A user who can run a workflow on a Docker-backed runner can create a job container with</div>
+      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-10643 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.7 · UNKNOWN</span></div>
+      <div class="story-summary">Zephyr's IP socket recvmsg() implementation (subsys/net/lib/sockets/sockets_inet.c, insert_pktinfo()) validated the user-supplied ancillary (msg_control) buffer using only the payload length (msg-msg_controllen < pktinfo_len) before writing a full co</div>
+      <input type="checkbox" class="detail-check" id="cve-CVE-2026-10643">
+      <label class="story-toggle" for="cve-CVE-2026-10643"></label>
+      <div class="story-detail">Zephyr's IP socket recvmsg() implementation (subsys/net/lib/sockets/sockets_inet.c, insert_pktinfo()) validated the user-supplied ancillary (msg_control) buffer using only the payload length (msg-msg_controllen < pktinfo_len) before writing a full control message consisting of an aligned cmsg header plus the payload. Because the check omitted the cmsg header size, a control buffer whose length fal</div>
+      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-58049 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.6 · UNKNOWN</span></div>
+      <div class="story-summary">FFmpeg's RASC video decoder (decode_dlta in libavcodec/rasc.c) performs 32-bit reads and writes at the row cursor before the NEXT_LINE row-boundary check and validates the DLTA region in pixel rather than byte units, so a DLTA run on a PAL8 frame can</div>
+      <input type="checkbox" class="detail-check" id="cve-CVE-2026-58049">
+      <label class="story-toggle" for="cve-CVE-2026-58049"></label>
+      <div class="story-detail">FFmpeg's RASC video decoder (decode_dlta in libavcodec/rasc.c) performs 32-bit reads and writes at the row cursor before the NEXT_LINE row-boundary check and validates the DLTA region in pixel rather than byte units, so a DLTA run on a PAL8 frame can access several bytes past the row allocation. A crafted media stream using the RASC FourCC, decoded by libavcodec, triggers a bitstream-controlled ou</div>
+      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-8095 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.1 · UNKNOWN</span></div>
+      <div class="story-summary">The Frontend File Manager Plugin plugin for WordPress is vulnerable to Authenticated Arbitrary File Deletion in versions up to and including 23.6. This is due to a case-sensitive bypass of the wpfm_dir_path parameter sanitization in the wpfm_file_met</div>
+      <input type="checkbox" class="detail-check" id="cve-CVE-2026-8095">
+      <label class="story-toggle" for="cve-CVE-2026-8095"></label>
+      <div class="story-detail">The Frontend File Manager Plugin plugin for WordPress is vulnerable to Authenticated Arbitrary File Deletion in versions up to and including 23.6. This is due to a case-sensitive bypass of the wpfm_dir_path parameter sanitization in the wpfm_file_meta_update AJAX handler, where supplying WPFM_DIR_PATH in uppercase evades the unset check and is normalized to wpfm_dir_path by sanitize_key() during u</div>
+      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-58056 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.6 · UNKNOWN</span></div>
+      <div class="story-summary">RustDesk gates incoming control messages on per-capability flags rather than on the session's authorized connection type, and a file-transfer session does not clear those flags. A peer holding only a valid FileTransfer authorization can inject keyboa</div>
+      <input type="checkbox" class="detail-check" id="cve-CVE-2026-58056">
+      <label class="story-toggle" for="cve-CVE-2026-58056"></label>
+      <div class="story-detail">RustDesk gates incoming control messages on per-capability flags rather than on the session's authorized connection type, and a file-transfer session does not clear those flags. A peer holding only a valid FileTransfer authorization can inject keyboard and mouse input and reach the unguarded screenshot and display-capture handlers, acting outside its granted scope.</div>
+      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-10646 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.4 · UNKNOWN</span></div>
+      <div class="story-summary">Zephyr's BSD-sockets getaddrinfo() implementation (subsys/net/lib/sockets/getaddrinfo.c) passes a pointer to a stack-allocated state object (struct getaddrinfo_state ai_state) as the user_data of an asynchronous DNS resolver query. The socket layer w</div>
+      <input type="checkbox" class="detail-check" id="cve-CVE-2026-10646">
+      <label class="story-toggle" for="cve-CVE-2026-10646"></label>
+      <div class="story-detail">Zephyr's BSD-sockets getaddrinfo() implementation (subsys/net/lib/sockets/getaddrinfo.c) passes a pointer to a stack-allocated state object (struct getaddrinfo_state ai_state) as the user_data of an asynchronous DNS resolver query. The socket layer waits on a semaphore with a timeout deliberately set slightly longer than the resolver's own per-query timeout. When that semaphore wait nonetheless ti</div>
+      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">⭐ GitHub Trending</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/elder-plinius/T3MP3ST" target="_blank">elder-plinius/T3MP3ST</a></div>
+      <div class="story-summary">autonomous red teaming platform; multi-agent offensive-security meta-harness</div>
+      <input type="checkbox" class="detail-check" id="gh-elder-plinius-T3MP3ST">
+      <label class="story-toggle" for="gh-elder-plinius-T3MP3ST"></label>
+      <div class="story-detail">autonomous red teaming platform; multi-agent offensive-security meta-harness</div>
+      <div class="story-meta"><span class="tag green">⭐ 1577</span><span class="tag">TypeScript</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/ammaarreshi/Generals-Mac-iOS-iPad" target="_blank">ammaarreshi/Generals-Mac-iOS-iPad</a></div>
+      <div class="story-summary">Command & Conquer Generals: Zero Hour running natively on macOS, iPhone & iPad — real engine (EA GPL v3 source, via GeneralsX), DXVK/MoltenVK renderer, RTS touch controls. No game assets included.</div>
+      <input type="checkbox" class="detail-check" id="gh-ammaarreshi-Generals-Mac-iOS-iPad">
+      <label class="story-toggle" for="gh-ammaarreshi-Generals-Mac-iOS-iPad"></label>
+      <div class="story-detail">Command & Conquer Generals: Zero Hour running natively on macOS, iPhone & iPad — real engine (EA GPL v3 source, via GeneralsX), DXVK/MoltenVK renderer, RTS touch controls. No game assets included.</div>
+      <div class="story-meta"><span class="tag green">⭐ 778</span><span class="tag">C++</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/CalmNoteDepot/MECCHA-VISION-ULTIMATE" target="_blank">CalmNoteDepot/MECCHA-VISION-ULTIMATE</a></div>
+      <div class="story-summary">🎯 Meccha Vision Ultimate — Ultimate Enhancement Tool for MECCHA CHAMELEON ESP · Aimbot · Fly Hack · Teleport · God Mode · Infinite Paint · Speed Hack · No Recoil</div>
+      <input type="checkbox" class="detail-check" id="gh-CalmNoteDepot-MECCHA-VISION-ULTIMATE">
+      <label class="story-toggle" for="gh-CalmNoteDepot-MECCHA-VISION-ULTIMATE"></label>
+      <div class="story-detail">🎯 Meccha Vision Ultimate — Ultimate Enhancement Tool for MECCHA CHAMELEON ESP · Aimbot · Fly Hack · Teleport · God Mode · Infinite Paint · Speed Hack · No Recoil</div>
+      <div class="story-meta"><span class="tag green">⭐ 533</span><span class="tag"></span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/lingbol088-spec/reverse-flow-skill" target="_blank">lingbol088-spec/reverse-flow-skill</a></div>
+      <div class="story-summary">面向 AI Agent / Codex 的本地 CTF 逆向工程流程技能。加载后通过“真心为你”进入逆向模式，默认在本地沙盒、CTF、crackme、wargame 或训练靶场环境中工作，按“分析 → 报告 → 逆向 → 深度逆向 → 漏洞研判 → 用户选择下一步”的流程推进。</div>
+      <input type="checkbox" class="detail-check" id="gh-lingbol088-spec-reverse-flow-skill">
+      <label class="story-toggle" for="gh-lingbol088-spec-reverse-flow-skill"></label>
+      <div class="story-detail">面向 AI Agent / Codex 的本地 CTF 逆向工程流程技能。加载后通过“真心为你”进入逆向模式，默认在本地沙盒、CTF、crackme、wargame 或训练靶场环境中工作，按“分析 → 报告 → 逆向 → 深度逆向 → 漏洞研判 → 用户选择下一步”的流程推进。</div>
+      <div class="story-meta"><span class="tag green">⭐ 389</span><span class="tag">Python</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">📰 Hacker News 热门</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://homegames.io" target="_blank">Show HN: Homegames. An open-source game platform I've been making for 8 years</a></div>
+      <div class="story-summary">来源：Hacker News · homegamesjoseph</div>
+      <div class="story-meta"><span class="tag">49⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://organicmaps.app/" target="_blank">Organic Maps</a></div>
+      <div class="story-summary">来源：Hacker News · tosh</div>
+      <div class="story-meta"><span class="tag">730⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://notesbylex.com/completing-a-computer-science-degree-on-coursera" target="_blank">Completing a Computer Science Degree on Coursera</a></div>
+      <div class="story-summary">来源：Hacker News · lexandstuff</div>
+      <div class="story-meta"><span class="tag">56⬆</span><span class="tag blue">HN</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://blog.flipper.net/future-of-flipper-zero-development/" target="_blank">The future of Flipper Zero development</a></div>
+      <div class="story-summary">来源：Hacker News · croes</div>
+      <div class="story-meta"><span class="tag">180⬆</span><span class="tag blue">HN</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">🌍 舒适圈外 · 生活 & 创业</div>
+    <div class="story comfort-zone">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225029" target="_blank">有一些生活中的烦恼，希望大佬们指点迷津</a></div>
+      <div class="story-summary">V2EX · life · 74 回复</div>
+      <div class="story-meta"><span class="tag">life</span><span class="tag green">74 回复</span></div>
+    </div>
+    <div class="story comfort-zone">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225056" target="_blank">车祸中窥探中国医院的专科细分。</a></div>
+      <div class="story-summary">V2EX · qna · 51 回复</div>
+      <div class="story-meta"><span class="tag">qna</span><span class="tag green">51 回复</span></div>
+    </div>
+    <div class="story comfort-zone">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225016" target="_blank">土区续费 GPT plus 还是 500 里拉</a></div>
+      <div class="story-summary">V2EX · openai · 35 回复</div>
+      <div class="story-meta"><span class="tag">openai</span><span class="tag green">35 回复</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">📐 数学 · 每日一练</div>
+    <div class="math-box">
+      <h3>学习进度</h3>
+      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:8%"></div></div><span class="pct">8%</span></div>
+      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:3%"></div></div><span class="pct">3%</span></div>
+      <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+    </div>
+    <div class="math-box">
+      <h3>今日概念</h3>
+      <div class="concept">
+        <div class="concept-title">矩阵乘法（Matrix Multiplication）</div>
+        <div class="concept-body">矩阵乘法是线性代数的核心运算。A(m×n) 乘以 B(n×p) 得到 C(m×p)。每个元素 C[i][j] = Σ A[i][k]×B[k][j]。直觉上：矩阵乘法是"线性变换的组合"。</div>
+        <div class="concept-formula">C = A × B &nbsp;→&nbsp; C<sub>ij</sub> = Σ<sub>k=1</sub><sup>n</sup> A<sub>ik</sub> · B<sub>kj</sub></div>
+      </div>
+    </div>
+    <div class="math-box">
+      <h3>每日一题</h3>
+      <div class="concept">
+        <div class="concept-title">练习：矩阵乘法</div>
+        <div class="concept-body">
+          设 A = [[1,2],[3,4]]，B = [[5,6],[7,8]]，求 A×B 的第一行第一列元素 C₁₁。
+        </div>
+        <div style="margin-top:0.8rem;padding:0.8rem;background:var(--paper);border-radius:4px;border:1px solid var(--rule);">
+          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.5rem;">点击查看答案：</div>
+          <div style="font-size:0.9rem;">C₁₁ = 1×5 + 2×7 = <strong>19</strong></div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;">第一行 [1,2] 点乘第一列 [5,7] → 1×5 + 2×7 = 19</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    ⭐ 爱星智联 · OpenClaw<br>
+    HN · GitHub · NVD · ArXiv · V2EX<br>
+    <a href="https://github.com/AveryHernandfs/html-reports">GitHub</a>
+  </footer>
+</div>
+</body>
+</html>
