@@ -46,242 +46,355 @@
     .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
     .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
     .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .quiz-item { margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed var(--rule); }
+    .quiz-q { font-family:var(--serif); font-style:italic; font-size:0.95rem; line-height:1.5; margin-bottom:0.5rem; }
+    .quiz-options { list-style:none; margin:0.5rem 0; }
+    .quiz-options li { margin-bottom:0.3rem; }
+    .quiz-options input[type="radio"] { display:none; }
+    .quiz-options label { display:block; font-size:0.85rem; padding:0.5rem 0.8rem; border:1px solid var(--rule); border-radius:4px; cursor:pointer; transition:all 0.15s; }
+    .quiz-options label:hover { background:var(--accent-dim); border-color:var(--accent); }
+    .quiz-options input[type="radio"]:checked + label { background:var(--accent-dim); border-color:var(--accent); font-weight:500; }
+    .quiz-feedback { display:none; font-size:0.82rem; line-height:1.6; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:4px; }
+    .quiz-fb-correct { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .quiz-fb-wrong { background:rgba(192,57,43,0.08); color:var(--accent); }
     .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
     .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
     .footer a { color:var(--ink); }
-    .comfort-zone { background:rgba(241,196,15,0.05); border-left:3px solid #f1c40f; padding:0.8rem 1rem; margin-bottom:1rem; border-radius:0 4px 4px 0; }
-    .comfort-zone .tag { background:rgba(241,196,15,0.15); color:#d4a017; }
     @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
   </style>
 </head>
 <body>
 <div class="page">
   <header class="masthead">
-    <div class="masthead-date">周一 · 2026.07.06</div>
+    <div class="masthead-date">Sunday · 2026.07.06</div>
     <h1>每日资讯</h1>
     <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
   </header>
-  <div class="section"><div class="section-label">🤖 AI & 大模型</div>
+
+  <!-- ═══════════════ AI & 大模型 ═══════════════ -->
+  <div class="section">
+    <div class="section-label">AI & 大模型</div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://www.opentools.studio/" target="_blank">Reparaible and open source paper printer</a></div>
-      <div class="story-summary">来源：Hacker News · bouh</div>
-      <input type="checkbox" class="detail-check" id="hn-ai-48797916">
-      <label class="story-toggle" for="hn-ai-48797916"></label>
-      <div class="story-detail">来自 Hacker News，由 bouh 分享，获得 191 分。</div>
-      <div class="story-meta"><span class="tag">191⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="https://stevekrouse.com/learn-to-code" target="_blank">Learning to Code Is Still Worthwhile</a></div>
+      <div class="story-summary">Steve Krouse（ValTown 创始人）反驳"AI 时代不用学编程"的观点。核心论点：AI 让编码更容易，但理解系统的能力反而更稀缺。编程教育的价值从"写代码"转向"理解抽象和系统思维"。</div>
+      <input type="checkbox" id="d1" class="detail-check">
+      <label for="d1" class="story-toggle"></label>
+      <div class="story-detail">
+        在 AI coding 工具（Claude Code、Cursor 等）普及的今天，很多人认为学编程已经过时。但 Krouse 认为，AI 降低了编码门槛，却提升了"理解系统"的门槛。能读懂代码、调试问题、设计架构的人会更值钱。这和 USER.md 里你正在做的事（用 AI agent 写代码但理解底层）完全一致。
+      </div>
+      <div class="story-meta"><span class="tag green">80⬆</span><span class="tag">HN</span><span class="tag blue">创业</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://intextbooks.science.uu.nl/workshop2026/files/itb26_s1s2.pdf" target="_blank">New AI tutor achieves 0.71-1.30 SD effect size in Dartmouth course [pdf]</a></div>
-      <div class="story-summary">来源：Hacker News · jonahbard</div>
-      <input type="checkbox" class="detail-check" id="hn-ai-48796817">
-      <label class="story-toggle" for="hn-ai-48796817"></label>
-      <div class="story-detail">来自 Hacker News，由 jonahbard 分享，获得 106 分。</div>
-      <div class="story-meta"><span class="tag">106⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="https://ramp.com/data/heavy-ai-adopters-hire-more" target="_blank">Companies Hire More After AI Adoption</a></div>
+      <div class="story-summary">Ramp 数据显示：重度 AI 采用的公司不裁员反而扩招。AI 不是替代人，而是让现有团队能做更多事，从而需要更多人来处理增长的业务量。</div>
+      <input type="checkbox" id="d2" class="detail-check">
+      <label for="d2" class="story-toggle"></label>
+      <div class="story-detail">
+        Ramp（企业支出管理平台）分析了数千家客户数据，发现 AI 采用率高的公司招聘量反而增长。这与"AI 会大规模失业"的叙事相反。关键洞察：AI 提高了生产力 → 业务增长 → 需要更多人。对创业公司来说，这是一个积极信号。
+      </div>
+      <div class="story-meta"><span class="tag green">14⬆</span><span class="tag">HN</span><span class="tag orange">商业</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://tekstien-marginaalien-keskus.aalto.fi/residenssi/heikki/blog/004-december-2/" target="_blank">Mr. Baby Paint and accidentally discovering a new cellular automata</a></div>
-      <div class="story-summary">来源：Hacker News · jfil</div>
-      <input type="checkbox" class="detail-check" id="hn-ai-48770291">
-      <label class="story-toggle" for="hn-ai-48770291"></label>
-      <div class="story-detail">来自 Hacker News，由 jfil 分享，获得 76 分。</div>
-      <div class="story-meta"><span class="tag">76⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="https://usefeyn.com/blog/pulpie-pareto-optimal-models-for-cleaning-the-web/" target="_blank">Show HN: Pulpie — Models for Cleaning the Web</a></div>
+      <div class="story-summary">Pulpie 提出 Pareto 最优模型选择框架：不是追求单一指标最强，而是在准确率、速度、成本之间找到最优平衡。用于 web 内容清洗和数据质量提升。</div>
+      <input type="checkbox" id="d3" class="detail-check">
+      <label for="d3" class="story-toggle"></label>
+      <div class="story-detail">
+        传统做法是选最强模型，但 Pulpie 用 Pareto 前沿来选模型：给定预算和延迟约束，自动选择最优模型组合。这对实际工程很有参考价值——不是所有任务都需要 GPT-4 级别的模型。
+      </div>
+      <div class="story-meta"><span class="tag green">78⬆</span><span class="tag">Show HN</span><span class="tag purple">AI</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://search.cerast-intelligence.com/" target="_blank">Show HN: Osint tool that finds exposed files on domains</a></div>
-      <div class="story-summary">来源：Hacker News · PatchRequest</div>
-      <input type="checkbox" class="detail-check" id="hn-ai-48797656">
-      <label class="story-toggle" for="hn-ai-48797656"></label>
-      <div class="story-detail">来自 Hacker News，由 PatchRequest 分享，获得 17 分。</div>
-      <div class="story-meta"><span class="tag">17⬆</span><span class="tag blue">HN</span></div>
-    </div>
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2607.02517v1" target="_blank">WorldDirector: Building Controllable World Simulators with Persistent Dynamic Memory</a></div>
-      <div class="story-summary">We present WorldDirector, a highly controllable video world model framework designed for persistent dynamic object memory and unrestricted viewpoint exploration. Unlike existing world models that enta...</div>
-      <input type="checkbox" class="detail-check" id="arxiv-1561">
-      <label class="story-toggle" for="arxiv-1561"></label>
-      <div class="story-detail">We present WorldDirector, a highly controllable video world model framework designed for persistent dynamic object memory and unrestricted viewpoint exploration. Unlike existing world models that entangle physical dynamics with pixel rendering and rely on continuous visual observation to sustain mot</div>
-      <div class="story-meta"><span class="tag">Hanlin Wang, Hao Ouyang, Qiuyu Wang</span><span class="tag purple">ArXiv</span></div>
-    </div>
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2607.02516v1" target="_blank">Alignment Is All You Need For X-to-4D Generation</a></div>
-      <div class="story-summary">Generative diffusion models excel at synthesizing high-quality images, videos, and 3D content under multimodal control. However, arbitrary user-defined modality-to-4D (X-to-4D) generation remains chal...</div>
-      <input type="checkbox" class="detail-check" id="arxiv-7916">
-      <label class="story-toggle" for="arxiv-7916"></label>
-      <div class="story-detail">Generative diffusion models excel at synthesizing high-quality images, videos, and 3D content under multimodal control. However, arbitrary user-defined modality-to-4D (X-to-4D) generation remains challenging due to the high cost of constructing diverse datasets and the limited scalability of existin</div>
-      <div class="story-meta"><span class="tag">Qiaowei Miao, Kehan Li, Yawei Luo</span><span class="tag purple">ArXiv</span></div>
-    </div>
-    <div class="story">
-      <div class="story-headline"><a href="http://arxiv.org/abs/2607.02515v1" target="_blank">PointDiT: Pixel-Space Diffusion for Monocular Geometry Estimation</a></div>
-      <div class="story-summary">State-of-the-art single-image 3D reconstruction methods often rely on complex hybrid architectures and loss functions, or compress geometry into latent spaces in order to leverage pre-trained latent d...</div>
-      <input type="checkbox" class="detail-check" id="arxiv-2246">
-      <label class="story-toggle" for="arxiv-2246"></label>
-      <div class="story-detail">State-of-the-art single-image 3D reconstruction methods often rely on complex hybrid architectures and loss functions, or compress geometry into latent spaces in order to leverage pre-trained latent diffusion models. In this work, we show that such architectural overhead and intricate loss formulati</div>
-      <div class="story-meta"><span class="tag">Haofei Xu, Rundi Wu, Philipp Henzler</span><span class="tag purple">ArXiv</span></div>
+      <div class="story-headline"><a href="https://github.com/morganstanley/hobbes" target="_blank">Hobbes — A Language and Embedded JIT Compiler</a></div>
+      <div class="story-summary">Morgan Stanley 开源的 Hobbes 语言：一个嵌入 C++ 的 DSL，带 JIT 编译器。用于高性能数据处理和日志分析，在金融场景中验证过。</div>
+      <input type="checkbox" id="d4" class="detail-check">
+      <label for="d4" class="story-toggle"></label>
+      <div class="story-detail">
+        Hobbes 本质上是一个可以嵌入 C++ 应用的语言运行时。它提供了函数式编程特性（模式匹配、代数数据类型）和高性能 JIT 编译。Morgan Stanley 在内部用它处理海量交易数据。对编译原理爱好者来说是很好的学习材料。
+      </div>
+      <div class="story-meta"><span class="tag green">24⬆</span><span class="tag">GitHub</span><span class="tag">开源</span></div>
     </div>
   </div>
-<hr class="divider">
-  <div class="section"><div class="section-label">🔒 安全 & CVE</div>
+  <hr class="divider">
+
+  <!-- ═══════════════ 安全 & CVE ═══════════════ -->
+  <div class="section">
+    <div class="section-label">安全 & CVE</div>
+
     <div class="story">
-      <div class="story-headline">CVE-2026-58053 <span style="color:var(--accent);font-size:0.8rem;">CVSS 9.9 · UNKNOWN</span></div>
-      <div class="story-summary">Gitea act_runner with the Docker backend (through act 0.262.0) passes a workflow's container.options string to the Docker job container's HostConfig and, when configured with privileged: false, forces only the Privileged flag off while merging option</div>
-      <input type="checkbox" class="detail-check" id="cve-CVE-2026-58053">
-      <label class="story-toggle" for="cve-CVE-2026-58053"></label>
-      <div class="story-detail">Gitea act_runner with the Docker backend (through act 0.262.0) passes a workflow's container.options string to the Docker job container's HostConfig and, when configured with privileged: false, forces only the Privileged flag off while merging options such as --pid=host, --cap-add, and --security-opt unchanged. A user who can run a workflow on a Docker-backed runner can create a job container with</div>
-      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+      <div class="story-headline"><a href="https://github.com/V4bel/Januscape" target="_blank">Januscape: Guest-to-Host Escape in KVM/x86 [CVE-2026-53359]</a></div>
+      <div class="story-summary">KVM 虚拟机逃逸漏洞。攻击者从 guest OS 发起，利用 x86 特定的内存管理缺陷突破虚拟化边界，获得宿主机权限。虚拟化安全领域的重磅发现。</div>
+      <input type="checkbox" id="d5" class="detail-check">
+      <label for="d5" class="story-toggle"></label>
+      <div class="story-detail">
+        KVM 是 Linux 内核的虚拟化模块，广泛用于云服务器。这个漏洞允许 guest OS 逃逸到 host，意味着云端租户可能攻击物理服务器。Januscape 的 PoC 展示了完整的攻击链。对云安全、逆向工程学习都很有价值。
+      </div>
+      <div class="story-meta"><span class="tag">65⬆</span><span class="tag">HN</span><span class="tag orange">CVE-2026-53359</span><span class="tag">逆向</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline">CVE-2026-10643 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.7 · UNKNOWN</span></div>
-      <div class="story-summary">Zephyr's IP socket recvmsg() implementation (subsys/net/lib/sockets/sockets_inet.c, insert_pktinfo()) validated the user-supplied ancillary (msg_control) buffer using only the payload length (msg-msg_controllen < pktinfo_len) before writing a full co</div>
-      <input type="checkbox" class="detail-check" id="cve-CVE-2026-10643">
-      <label class="story-toggle" for="cve-CVE-2026-10643"></label>
-      <div class="story-detail">Zephyr's IP socket recvmsg() implementation (subsys/net/lib/sockets/sockets_inet.c, insert_pktinfo()) validated the user-supplied ancillary (msg_control) buffer using only the payload length (msg-msg_controllen < pktinfo_len) before writing a full control message consisting of an aligned cmsg header plus the payload. Because the check omitted the cmsg header size, a control buffer whose length fal</div>
-      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+      <div class="story-headline">WatchGuard Fireware OS 安全漏洞批量披露</div>
+      <div class="story-summary">NVD 近期集中披露了 WatchGuard Fireware OS 的 10+ 个漏洞，涵盖越界写入、路径遍历、XSS、竞态条件（use-after-free）等多种类型。影响企业级 VPN 和防火墙设备。</div>
+      <input type="checkbox" id="d6" class="detail-check">
+      <label for="d6" class="story-toggle"></label>
+      <div class="story-detail">
+        <strong>CVE-2026-13050/13053</strong>：越界写入，认证用户可执行任意代码<br>
+        <strong>CVE-2026-13054</strong>：路径遍历，可写任意文件到设备<br>
+        <strong>CVE-2026-13368</strong>：竞态条件导致 use-after-free，影响 IKEv2 VPN 的 LDAP 认证<br>
+        <strong>CVE-2026-13373-13375</strong>：多个 XSS 漏洞<br>
+        WatchGuard 是主流企业防火墙厂商，这些漏洞的组合攻击可能导致完整设备接管。如果你在用 WatchGuard 设备，需要立即更新。
+      </div>
+      <div class="story-meta"><span class="tag orange">Critical</span><span class="tag">NVD</span><span class="tag">网络安全</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline">CVE-2026-58049 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.6 · UNKNOWN</span></div>
-      <div class="story-summary">FFmpeg's RASC video decoder (decode_dlta in libavcodec/rasc.c) performs 32-bit reads and writes at the row cursor before the NEXT_LINE row-boundary check and validates the DLTA region in pixel rather than byte units, so a DLTA run on a PAL8 frame can</div>
-      <input type="checkbox" class="detail-check" id="cve-CVE-2026-58049">
-      <label class="story-toggle" for="cve-CVE-2026-58049"></label>
-      <div class="story-detail">FFmpeg's RASC video decoder (decode_dlta in libavcodec/rasc.c) performs 32-bit reads and writes at the row cursor before the NEXT_LINE row-boundary check and validates the DLTA region in pixel rather than byte units, so a DLTA run on a PAL8 frame can access several bytes past the row allocation. A crafted media stream using the RASC FourCC, decoded by libavcodec, triggers a bitstream-controlled ou</div>
-      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
-    </div>
-    <div class="story">
-      <div class="story-headline">CVE-2026-8095 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.1 · UNKNOWN</span></div>
-      <div class="story-summary">The Frontend File Manager Plugin plugin for WordPress is vulnerable to Authenticated Arbitrary File Deletion in versions up to and including 23.6. This is due to a case-sensitive bypass of the wpfm_dir_path parameter sanitization in the wpfm_file_met</div>
-      <input type="checkbox" class="detail-check" id="cve-CVE-2026-8095">
-      <label class="story-toggle" for="cve-CVE-2026-8095"></label>
-      <div class="story-detail">The Frontend File Manager Plugin plugin for WordPress is vulnerable to Authenticated Arbitrary File Deletion in versions up to and including 23.6. This is due to a case-sensitive bypass of the wpfm_dir_path parameter sanitization in the wpfm_file_meta_update AJAX handler, where supplying WPFM_DIR_PATH in uppercase evades the unset check and is normalized to wpfm_dir_path by sanitize_key() during u</div>
-      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
-    </div>
-    <div class="story">
-      <div class="story-headline">CVE-2026-58056 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.6 · UNKNOWN</span></div>
-      <div class="story-summary">RustDesk gates incoming control messages on per-capability flags rather than on the session's authorized connection type, and a file-transfer session does not clear those flags. A peer holding only a valid FileTransfer authorization can inject keyboa</div>
-      <input type="checkbox" class="detail-check" id="cve-CVE-2026-58056">
-      <label class="story-toggle" for="cve-CVE-2026-58056"></label>
-      <div class="story-detail">RustDesk gates incoming control messages on per-capability flags rather than on the session's authorized connection type, and a file-transfer session does not clear those flags. A peer holding only a valid FileTransfer authorization can inject keyboard and mouse input and reach the unguarded screenshot and display-capture handlers, acting outside its granted scope.</div>
-      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
-    </div>
-    <div class="story">
-      <div class="story-headline">CVE-2026-10646 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.4 · UNKNOWN</span></div>
-      <div class="story-summary">Zephyr's BSD-sockets getaddrinfo() implementation (subsys/net/lib/sockets/getaddrinfo.c) passes a pointer to a stack-allocated state object (struct getaddrinfo_state ai_state) as the user_data of an asynchronous DNS resolver query. The socket layer w</div>
-      <input type="checkbox" class="detail-check" id="cve-CVE-2026-10646">
-      <label class="story-toggle" for="cve-CVE-2026-10646"></label>
-      <div class="story-detail">Zephyr's BSD-sockets getaddrinfo() implementation (subsys/net/lib/sockets/getaddrinfo.c) passes a pointer to a stack-allocated state object (struct getaddrinfo_state ai_state) as the user_data of an asynchronous DNS resolver query. The socket layer waits on a semaphore with a timeout deliberately set slightly longer than the resolver's own per-query timeout. When that semaphore wait nonetheless ti</div>
-      <div class="story-meta"><span class="tag tag blue">UNKNOWN</span><span>NVD</span></div>
+      <div class="story-headline"><a href="https://learngenomics.dev/docs/biological-foundations/cells-genomes-dna-chromosomes/" target="_blank">Introduction to Genomics for Engineers</a></div>
+      <div class="story-summary">为工程师写的基因组学入门教程。从 DNA、基因组、染色体的基础概念出发，用工程师能理解的方式解释生物学。生物信息学交叉领域的好起点。</div>
+      <input type="checkbox" id="d7" class="detail-check">
+      <label for="d7" class="story-toggle"></label>
+      <div class="story-detail">
+        这不是安全内容，但 HN 上 219 分说明社区很关注。基因组学 = 大数据 + 概率统计 + 序列分析，对有 CS 背景的人非常友好。如果你对跨学科感兴趣，这是一个很好的"跳出舒适圈"方向。
+      </div>
+      <div class="story-meta"><span class="tag green">219⬆</span><span class="tag">HN</span><span class="tag purple">跨学科</span></div>
     </div>
   </div>
-<hr class="divider">
-  <div class="section"><div class="section-label">⭐ GitHub Trending</div>
+  <hr class="divider">
+
+  <!-- ═══════════════ 开源 & 开发工具 ═══════════════ -->
+  <div class="section">
+    <div class="section-label">开源 & 开发工具</div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/elder-plinius/T3MP3ST" target="_blank">elder-plinius/T3MP3ST</a></div>
-      <div class="story-summary">autonomous red teaming platform; multi-agent offensive-security meta-harness</div>
-      <input type="checkbox" class="detail-check" id="gh-elder-plinius-T3MP3ST">
-      <label class="story-toggle" for="gh-elder-plinius-T3MP3ST"></label>
-      <div class="story-detail">autonomous red teaming platform; multi-agent offensive-security meta-harness</div>
-      <div class="story-meta"><span class="tag green">⭐ 1577</span><span class="tag">TypeScript</span></div>
+      <div class="story-headline"><a href="https://arxiv.org/abs/2607.01504" target="_blank">Kani: A Model Checker for Rust</a></div>
+      <div class="story-summary">Kani 是 Rust 的形式化验证工具（model checker），可以证明 Rust 程序满足指定的安全属性。基于 CBMC，支持验证unsafe代码的内存安全。</div>
+      <input type="checkbox" id="d8" class="detail-check">
+      <label for="d8" class="story-toggle"></label>
+      <div class="story-detail">
+        Rust 的安全保证主要靠编译器检查，但 unsafe 代码块需要人工保证正确性。Kani 可以自动验证 unsafe 代码是否真的安全。这对理解形式化验证、Rust 内部机制都很有价值。亚马逊维护的开源项目。
+      </div>
+      <div class="story-meta"><span class="tag green">117⬆</span><span class="tag">HN</span><span class="tag blue">Rust</span><span class="tag">形式化验证</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/ammaarreshi/Generals-Mac-iOS-iPad" target="_blank">ammaarreshi/Generals-Mac-iOS-iPad</a></div>
-      <div class="story-summary">Command & Conquer Generals: Zero Hour running natively on macOS, iPhone & iPad — real engine (EA GPL v3 source, via GeneralsX), DXVK/MoltenVK renderer, RTS touch controls. No game assets included.</div>
-      <input type="checkbox" class="detail-check" id="gh-ammaarreshi-Generals-Mac-iOS-iPad">
-      <label class="story-toggle" for="gh-ammaarreshi-Generals-Mac-iOS-iPad"></label>
-      <div class="story-detail">Command & Conquer Generals: Zero Hour running natively on macOS, iPhone & iPad — real engine (EA GPL v3 source, via GeneralsX), DXVK/MoltenVK renderer, RTS touch controls. No game assets included.</div>
-      <div class="story-meta"><span class="tag green">⭐ 778</span><span class="tag">C++</span></div>
+      <div class="story-headline"><a href="https://clojure.org/news/2026/07/02/clojure-1-13-alpha1" target="_blank">Clojure 1.13 Adds Support for Checked Keys</a></div>
+      <div class="story-summary">Clojure 1.13 引入 checked keys：在 map 结构中强制检查 key 的存在性和类型。从动态语言向"渐进式类型安全"迈出重要一步。</div>
+      <input type="checkbox" id="d9" class="detail-check">
+      <label for="d9" class="story-toggle"></label>
+      <div class="story-detail">
+        Clojure 一直是动态类型的函数式语言。Checked keys 允许开发者声明 map 必须包含哪些 key，运行时自动检查。这是"渐进类型"趋势的延续——不动态类型，但在需要的地方加约束。对函数式编程和语言设计感兴趣的话值得关注。
+      </div>
+      <div class="story-meta"><span class="tag green">181⬆</span><span class="tag">HN</span><span class="tag blue">Clojure</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/CalmNoteDepot/MECCHA-VISION-ULTIMATE" target="_blank">CalmNoteDepot/MECCHA-VISION-ULTIMATE</a></div>
-      <div class="story-summary">🎯 Meccha Vision Ultimate — Ultimate Enhancement Tool for MECCHA CHAMELEON ESP · Aimbot · Fly Hack · Teleport · God Mode · Infinite Paint · Speed Hack · No Recoil</div>
-      <input type="checkbox" class="detail-check" id="gh-CalmNoteDepot-MECCHA-VISION-ULTIMATE">
-      <label class="story-toggle" for="gh-CalmNoteDepot-MECCHA-VISION-ULTIMATE"></label>
-      <div class="story-detail">🎯 Meccha Vision Ultimate — Ultimate Enhancement Tool for MECCHA CHAMELEON ESP · Aimbot · Fly Hack · Teleport · God Mode · Infinite Paint · Speed Hack · No Recoil</div>
-      <div class="story-meta"><span class="tag green">⭐ 533</span><span class="tag"></span></div>
+      <div class="story-headline"><a href="https://elm-lang.org/news/faster-builds" target="_blank">Road to Elm 1.0</a></div>
+      <div class="story-summary">Elm 语言团队宣布 1.0 版本路线图，重点是大幅改善构建速度。Elm 以"零运行时异常"著称，1.0 将补齐工具链短板。</div>
+      <input type="checkbox" id="d10" class="detail-check">
+      <label for="d10" class="story-toggle"></label>
+      <div class="story-detail">
+        Elm 是一个编译到 JavaScript 的函数式语言，以极强的类型系统和友好的错误信息闻名。长期以来被诟病的是构建速度慢和生态小。1.0 的路线图表明团队在认真解决这些问题。
+      </div>
+      <div class="story-meta"><span class="tag green">287⬆</span><span class="tag">HN</span><span class="tag blue">Elm</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://github.com/lingbol088-spec/reverse-flow-skill" target="_blank">lingbol088-spec/reverse-flow-skill</a></div>
-      <div class="story-summary">面向 AI Agent / Codex 的本地 CTF 逆向工程流程技能。加载后通过“真心为你”进入逆向模式，默认在本地沙盒、CTF、crackme、wargame 或训练靶场环境中工作，按“分析 → 报告 → 逆向 → 深度逆向 → 漏洞研判 → 用户选择下一步”的流程推进。</div>
-      <input type="checkbox" class="detail-check" id="gh-lingbol088-spec-reverse-flow-skill">
-      <label class="story-toggle" for="gh-lingbol088-spec-reverse-flow-skill"></label>
-      <div class="story-detail">面向 AI Agent / Codex 的本地 CTF 逆向工程流程技能。加载后通过“真心为你”进入逆向模式，默认在本地沙盒、CTF、crackme、wargame 或训练靶场环境中工作，按“分析 → 报告 → 逆向 → 深度逆向 → 漏洞研判 → 用户选择下一步”的流程推进。</div>
-      <div class="story-meta"><span class="tag green">⭐ 389</span><span class="tag">Python</span></div>
+      <div class="story-headline"><a href="https://www.map.signalbox.io" target="_blank">Real-time Map of Great Britain's Rail Network</a></div>
+      <div class="story-summary">英国铁路网络实时地图。可视化展示全英列车位置、调度状态。数据可视化和实时系统的好案例。</div>
+      <div class="story-meta"><span class="tag green">372⬆</span><span class="tag">HN</span><span class="tag blue">数据可视化</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://en.wikipedia.org/wiki/Rotman_lens" target="_blank">Rotman Lens</a></div>
+      <div class="story-summary">Rotman 透镜是一种被动 beamforming 器件，用于多波束天线系统。在毫米波通信和雷达中有重要应用。信号处理和电磁学的经典设计。</div>
+      <div class="story-meta"><span class="tag green">61⬆</span><span class="tag">HN</span><span class="tag purple">信号处理</span></div>
     </div>
   </div>
-<hr class="divider">
-  <div class="section"><div class="section-label">📰 Hacker News 热门</div>
+  <hr class="divider">
+
+  <!-- ═══════════════ ArXiv 论文精选 ═══════════════ -->
+  <div class="section">
+    <div class="section-label">📄 ArXiv · AI/ML 论文精选</div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://homegames.io" target="_blank">Show HN: Homegames. An open-source game platform I've been making for 8 years</a></div>
-      <div class="story-summary">来源：Hacker News · homegamesjoseph</div>
-      <div class="story-meta"><span class="tag">49⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01504v1" target="_blank">Reasoning Effort, Not Tool Access, Buys First-Try Reliability in Agentic Code Generation</a></div>
+      <div class="story-summary">研究发现：让 AI agent 更多"思考"比给它更多工具更能提高首次生成正确代码的概率。推理时间投入 vs 工具调用的 trade-off 分析。</div>
+      <input type="checkbox" id="d11" class="detail-check">
+      <label for="d11" class="story-toggle"></label>
+      <div class="story-detail">
+        这个发现对实际使用 AI coding 工具有指导意义：与其给 agent 加更多工具（浏览器、测试器等），不如让它在推理阶段多花时间思考。和你日常用 Claude Code / Cursor 的经验可以对照验证。
+      </div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag purple">AI Agent</span><span class="tag blue">LLM</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://organicmaps.app/" target="_blank">Organic Maps</a></div>
-      <div class="story-summary">来源：Hacker News · tosh</div>
-      <div class="story-meta"><span class="tag">730⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01233v1" target="_blank">Learning to Move Before Learning to Do: Task-Agnostic Pretraining for VLAs</a></div>
+      <div class="story-summary">提出"先学移动，再学做事"的 Vision-Language-Action 模型预训练方法。解决机器人学习中专家示范数据稀缺的瓶颈。</div>
+      <input type="checkbox" id="d12" class="detail-check">
+      <label for="d12" class="story-toggle"></label>
+      <div class="story-detail">
+        VLA（Vision-Language-Action）模型是机器人的"大脑"，但训练需要大量三元组数据（视觉+语言+动作）。这篇论文提出先用无标签运动数据预训练基础运动能力，再用少量专家数据微调。对机器人学习和 embodied AI 有兴趣的话值得读。
+      </div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag purple">机器人</span><span class="tag blue">VLA</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://notesbylex.com/completing-a-computer-science-degree-on-coursera" target="_blank">Completing a Computer Science Degree on Coursera</a></div>
-      <div class="story-summary">来源：Hacker News · lexandstuff</div>
-      <div class="story-meta"><span class="tag">56⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01225v1" target="_blank">OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers</a></div>
+      <div class="story-summary">提出 OrbitQuant 量化方法，适用于图像和视频生成的 Diffusion Transformer。数据无关的量化策略，可在不重新训练的情况下压缩模型。</div>
+      <input type="checkbox" id="d13" class="detail-check">
+      <label for="d13" class="story-toggle"></label>
+      <div class="story-detail">
+        DiT（Diffusion Transformer）是当前最强的图像/视频生成架构，但计算量巨大。OrbitQuant 的"数据无关"特性意味着不需要用特定数据集校准，部署更灵活。对模型压缩和推理优化有实际价值。
+      </div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag purple">模型压缩</span><span class="tag blue">DiT</span></div>
     </div>
+
     <div class="story">
-      <div class="story-headline"><a href="https://blog.flipper.net/future-of-flipper-zero-development/" target="_blank">The future of Flipper Zero development</a></div>
-      <div class="story-summary">来源：Hacker News · croes</div>
-      <div class="story-meta"><span class="tag">180⬆</span><span class="tag blue">HN</span></div>
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01223v1" target="_blank">SoK: A Taxonomy for Cybersecurity Incident Response Influence Factors</a></div>
+      <div class="story-summary">系统化梳理网络安全事件响应的影响因素。从技术、组织、法律三个维度建立分类体系，是安全运营的理论框架。</div>
+      <input type="checkbox" id="d14" class="detail-check">
+      <label for="d14" class="story-toggle"></label>
+      <div class="story-detail">
+        SoK（Systematization of Knowledge）论文，系统整理了影响安全事件响应效果的因素。对理解"为什么有些公司安全响应做得好，有些不行"提供了理论解释。适合安全方向深入学习。
+      </div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag orange">安全</span><span class="tag blue">SoK</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01208v1" target="_blank">Neuron-Aware Data Selection for Annotation-Free LLM Self-Distillation</a></div>
+      <div class="story-summary">提出无需人工标注的 LLM 自蒸馏方法：通过 neuron-aware 数据选择，自动挑选最有价值的训练样本进行知识蒸馏。</div>
+      <input type="checkbox" id="d15" class="detail-check">
+      <label for="d15" class="story-toggle"></label>
+      <div class="story-detail">
+        知识蒸馏是把大模型的知识压缩到小模型。传统方法需要人工标注数据来指导蒸馏，这篇论文用 neuron 激活模式自动选数据，降低了成本。对 LLM 部署和小模型训练有参考价值。
+      </div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag purple">LLM</span><span class="tag blue">蒸馏</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01222v1" target="_blank">Will Scaling Improve Social Simulation with LLMs?</a></div>
+      <div class="story-summary">研究 LLM 社会模拟的 scaling law：更大的模型是否能产生更真实的社会行为模拟？发现 scaling 有帮助但不够，需要更好的提示设计。</div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag purple">LLM</span><span class="tag blue">社会模拟</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.01224v1" target="_blank">Language Models as Measurement Apparatus for Culture</a></div>
+      <div class="story-summary">将 LLM 视为"文化测量仪器"：探讨用语言模型量化文化现象的方法论问题。LLM 在文化研究中的角色定位。</div>
+      <div class="story-meta"><span class="tag">ArXiv</span><span class="tag purple">LLM</span><span class="tag blue">方法论</span></div>
     </div>
   </div>
-<hr class="divider">
-  <div class="section"><div class="section-label">🌍 舒适圈外 · 生活 & 创业</div>
-    <div class="story comfort-zone">
-      <div class="story-headline"><a href="https://www.v2ex.com/t/1225029" target="_blank">有一些生活中的烦恼，希望大佬们指点迷津</a></div>
-      <div class="story-summary">V2EX · life · 74 回复</div>
-      <div class="story-meta"><span class="tag">life</span><span class="tag green">74 回复</span></div>
+  <hr class="divider">
+
+  <!-- ═══════════════ 跳出舒适圈 ═══════════════ -->
+  <div class="section">
+    <div class="section-label">跳出舒适圈</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.theb1m.com/video/egypt-is-building-a-new-nile" target="_blank">Egypt Is Building a New Nile</a></div>
+      <div class="story-summary">埃及正在建造"新尼罗河"——一个大规模水利工程，旨在缓解尼罗河水资源压力。基建投资与地缘政治的交叉案例。</div>
+      <input type="checkbox" id="d16" class="detail-check">
+      <label for="d16" class="story-toggle"></label>
+      <div class="story-detail">
+        埃塞俄比亚复兴大坝（GERD）的建设让下游的埃及面临水源减少的风险。埃及的"新尼罗河"项目是应对策略之一。这是一个典型的"技术+地缘政治+基建"案例，适合了解全球供应链和资源竞争。
+      </div>
+      <div class="story-meta"><span class="tag green">113⬆</span><span class="tag">HN</span><span class="tag orange">地缘政治</span></div>
     </div>
-    <div class="story comfort-zone">
-      <div class="story-headline"><a href="https://www.v2ex.com/t/1225056" target="_blank">车祸中窥探中国医院的专科细分。</a></div>
-      <div class="story-summary">V2EX · qna · 51 回复</div>
-      <div class="story-meta"><span class="tag">qna</span><span class="tag green">51 回复</span></div>
-    </div>
-    <div class="story comfort-zone">
-      <div class="story-headline"><a href="https://www.v2ex.com/t/1225016" target="_blank">土区续费 GPT plus 还是 500 里拉</a></div>
-      <div class="story-summary">V2EX · openai · 35 回复</div>
-      <div class="story-meta"><span class="tag">openai</span><span class="tag green">35 回复</span></div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://dernocua.github.io/notes/aluminum-foil.html" target="_blank">Aluminum Foil (2021)</a></div>
+      <div class="story-summary">关于铝箔的深度科普：从铝的冶炼、轧制工艺到日常生活应用。看似简单的东西背后是复杂的工业体系。</div>
+      <div class="story-meta"><span class="tag green">221⬆</span><span class="tag">HN</span><span class="tag purple">工业</span></div>
     </div>
   </div>
-<hr class="divider">
-  <div class="section"><div class="section-label">📐 数学 · 每日一练</div>
+  <hr class="divider">
+
+  <!-- ═══════════════ 数学 · 每日一练 ═══════════════ -->
+  <div class="section">
+    <div class="section-label">数学 · Day 8</div>
+
     <div class="math-box">
       <h3>学习进度</h3>
-      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:8%"></div></div><span class="pct">8%</span></div>
-      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:3%"></div></div><span class="pct">3%</span></div>
+      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:12%"></div></div><span class="pct">12%</span></div>
+      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
       <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
     </div>
+
     <div class="math-box">
       <h3>今日概念</h3>
       <div class="concept">
         <div class="concept-title">矩阵乘法（Matrix Multiplication）</div>
-        <div class="concept-body">矩阵乘法是线性代数的核心运算。A(m×n) 乘以 B(n×p) 得到 C(m×p)。每个元素 C[i][j] = Σ A[i][k]×B[k][j]。直觉上：矩阵乘法是"线性变换的组合"。</div>
-        <div class="concept-formula">C = A × B &nbsp;→&nbsp; C<sub>ij</sub> = Σ<sub>k=1</sub><sup>n</sup> A<sub>ik</sub> · B<sub>kj</sub></div>
-      </div>
-    </div>
-    <div class="math-box">
-      <h3>每日一题</h3>
-      <div class="concept">
-        <div class="concept-title">练习：矩阵乘法</div>
         <div class="concept-body">
-          设 A = [[1,2],[3,4]]，B = [[5,6],[7,8]]，求 A×B 的第一行第一列元素 C₁₁。
+          矩阵乘法不是对应元素相乘，而是"行乘列"：<br>
+          <strong>C</strong> = <strong>A</strong> × <strong>B</strong>，其中 C[i][j] = Σ A[i][k] × B[k][j]<br><br>
+          直觉理解：矩阵乘法 = 多个线性变换的组合。先做 B 变换，再做 A 变换，结果就是 A×B。
         </div>
-        <div style="margin-top:0.8rem;padding:0.8rem;background:var(--paper);border-radius:4px;border:1px solid var(--rule);">
-          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.5rem;">点击查看答案：</div>
-          <div style="font-size:0.9rem;">C₁₁ = 1×5 + 2×7 = <strong>19</strong></div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;">第一行 [1,2] 点乘第一列 [5,7] → 1×5 + 2×7 = 19</div>
+        <div class="concept-formula">
+          | a₁₁  a₁₂ |   | b₁₁  b₁₂ |   | a₁₁b₁₁+a₁₂b₂₁  a₁₁b₁₂+a₁₂b₂₂ |<br>
+          | a₂₁  a₂₂ | × | b₂₁  b₂₂ | = | a₂₁b₁₁+a₂₂b₂₁  a₂₁b₁₂+a₂₂b₂₂ |
         </div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q">练习：如果 A 是 2×3 矩阵，B 是 3×4 矩阵，那么 A×B 的结果是几行几列？</div>
+        <ul class="quiz-options">
+          <li><input type="radio" name="q1" id="q1a" value="correct"><label for="q1a">2 行 4 列（2×4）</label></li>
+          <li><input type="radio" name="q1" id="q1b" value="wrong1"><label for="q1b">3 行 3 列（3×3）</label></li>
+          <li><input type="radio" name="q1" id="q1c" value="wrong2"><label for="q1c">2 行 3 列（2×3）</label></li>
+          <li><input type="radio" name="q1" id="q1d" value="wrong3"><label for="q1d">3 行 4 列（3×4）</label></li>
+        </ul>
+        <div class="quiz-feedback quiz-fb-correct fb-correct">✅ 正确！矩阵乘法的结果维度 = A的行数 × B的列数。2×3 × 3×4 = 2×4。中间的 3"消掉"了。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong1">❌ 不对。矩阵乘法结果维度是 A的行 × B的列，不是取公共维度。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong2">❌ 不对。2×3 × 3×4 的结果不是 2×3。</div>
+        <div class="quiz-feedback quiz-fb-wrong fb-wrong3">❌ 不对。3×4 是 B 的维度，不是结果的维度。</div>
       </div>
     </div>
   </div>
+  <hr class="divider">
+
+  <!-- ═══════════════ 中文社区 ═══════════════ -->
+  <div class="section">
+    <div class="section-label">中文社区</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/" target="_blank">V2EX 热门：36 岁 App 开发今年失业了</a></div>
+      <div class="story-summary">V2EX 上引发广泛讨论的帖子：一位 36 岁的 App 开发者分享失业经历。评论区讨论了年龄焦虑、AI 对开发岗位的冲击、以及创业的可能性。</div>
+      <div class="story-meta"><span class="tag">V2EX</span><span class="tag orange">职场</span><span class="tag blue">98回复</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/" target="_blank">V2EX 热门：招聘遇到工作经历完全造假的 211</a></div>
+      <div class="story-summary">HR 分享面试中遇到简历造假的案例。引发了关于技术面试、背景调查、以及信任机制的讨论。</div>
+      <div class="story-meta"><span class="tag">V2EX</span><span class="tag orange">职场</span><span class="tag blue">124回复</span></div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com/video/" target="_blank">B站热门：华为 Mate 80 Pro 性能分析</a></div>
+      <div class="story-summary">极客湾对华为 Mate 80 Pro 的深度性能测试。芯片架构、GPU 性能、AI 推理能力的全面分析。</div>
+      <div class="story-meta"><span class="tag">B站</span><span class="tag blue">260万播放</span><span class="tag purple">硬件</span></div>
+    </div>
+  </div>
+  <hr class="divider">
+
   <footer class="footer">
     ⭐ 爱星智联 · OpenClaw<br>
-    HN · GitHub · NVD · ArXiv · V2EX<br>
+    HN · GitHub Trending · NVD · ArXiv · V2EX · B站<br>
     <a href="https://github.com/AveryHernandfs/html-reports">GitHub</a>
   </footer>
 </div>
+<script>
+document.querySelectorAll('.quiz-options input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const name = this.name;
+    document.querySelectorAll(`.quiz-options input[name="${name}"]`).forEach(x => {
+      x.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    });
+    const fb = this.closest('.quiz-item').querySelector('.fb-' + this.value);
+    if (fb) fb.style.display = 'block';
+  });
+});
+</script>
 </body>
 </html>
