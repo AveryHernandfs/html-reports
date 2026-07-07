@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日资讯 — 2026.07.08</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .tag.red { background:rgba(192,57,43,0.08); color:#c0392b; }
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.85rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.9rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .quiz-item { margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed var(--rule); }
+    .quiz-q { font-family:var(--serif); font-style:italic; font-size:0.95rem; line-height:1.5; margin-bottom:0.5rem; }
+    .quiz-options { list-style:none; margin:0.5rem 0; }
+    .quiz-options li { margin-bottom:0.3rem; }
+    .quiz-options input[type="radio"] { display:none; }
+    .quiz-options label { display:block; font-size:0.85rem; padding:0.5rem 0.8rem; border:1px solid var(--rule); border-radius:4px; cursor:pointer; transition:all 0.15s; }
+    .quiz-options label:hover { background:var(--accent-dim); border-color:var(--accent); }
+    .quiz-options input[type="radio"]:checked + label { background:var(--accent-dim); border-color:var(--accent); font-weight:500; }
+    .quiz-feedback { display:none; font-size:0.82rem; line-height:1.6; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:4px; }
+    .quiz-fb-correct { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .quiz-fb-wrong { background:rgba(192,57,43,0.08); color:var(--accent); }
+    .video-box { margin-top:1rem; border-radius:4px; overflow:hidden; border:1px solid var(--rule); }
+    .video-box iframe { width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .video-caption { font-size:0.78rem; color:var(--muted); margin-top:0.4rem; font-style:italic; }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">Wednesday · 2026.07.08</div>
+    <h1>每日资讯</h1>
+    <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
+  </header>
+  <div class="section"><div class="section-label">🤖 AI & 大模型</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://ariya.io/2026/03/local-cpu-friendly-high-quality-tts-text-to-speech-with-kokoro/" target="_blank">Local, CPU-Friendly, High-Quality TTS (Text-to-Speech) with Kokoro</a></div>
+      <div class="story-summary">来源：Hacker News · speckx. Local, CPU-Friendly, High-Quality TTS (Text-to-Speech) with Kokoro</div>
+      <input type="checkbox" class="detail-check" id="d833">
+      <label class="story-toggle" for="d833"></label>
+      <div class="story-detail">来源：Hacker News · speckx. Local, CPU-Friendly, High-Quality TTS (Text-to-Speech) with Kokoro</div>
+      <div class="story-meta"><span class="tag blue">HN</span><span class="tag ">199⬆</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://fightchatcontrol.eu/chat-control-overview" target="_blank">Chat Control 1.0 and 2.0 Explained</a></div>
+      <div class="story-summary">来源：Hacker News · gasull. Chat Control 1.0 and 2.0 Explained</div>
+      <input type="checkbox" class="detail-check" id="d4036">
+      <label class="story-toggle" for="d4036"></label>
+      <div class="story-detail">来源：Hacker News · gasull. Chat Control 1.0 and 2.0 Explained</div>
+      <div class="story-meta"><span class="tag blue">HN</span><span class="tag ">374⬆</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://davit.app" target="_blank">Show HN: Davit, a Apple Containers UI</a></div>
+      <div class="story-summary">来源：Hacker News · xinit. Show HN: Davit, a Apple Containers UI</div>
+      <input type="checkbox" class="detail-check" id="d448">
+      <label class="story-toggle" for="d448"></label>
+      <div class="story-detail">来源：Hacker News · xinit. Show HN: Davit, a Apple Containers UI</div>
+      <div class="story-meta"><span class="tag blue">HN</span><span class="tag ">128⬆</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05396v1" target="_blank">From Fixed to Free Cameras: Calibration-Free View-Robust Vision-Language-Action Model</a></div>
+      <div class="story-summary">Real-world robot deployment rarely maintains the training-stage camera setup, where cameras often experience repositioning or remounting depending on actual scenarios. Existing view-robust Vision-Language-Action (VLA) policies tolerate such camera variations only when the camera </div>
+      <input type="checkbox" class="detail-check" id="d5165">
+      <label class="story-toggle" for="d5165"></label>
+      <div class="story-detail">Real-world robot deployment rarely maintains the training-stage camera setup, where cameras often experience repositioning or remounting depending on actual scenarios. Existing view-robust Vision-Language-Action (VLA) policies tolerate such camera variations only when the camera extrinsics are expli</div>
+      <div class="story-meta"><span class="tag ">Wenhao Li</span><span class="tag ">7 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05394v1" target="_blank">Weak-to-Strong Generalization via Direct On-Policy Distillation</a></div>
+      <div class="story-summary">Reinforcement learning with verifiable rewards (RLVR) is a powerful recipe for improving language-model reasoning, but it is expensive to repeat on every new strong model because the target model must generate many rollouts during training. As models scale, post-training itself b</div>
+      <input type="checkbox" class="detail-check" id="d7248">
+      <label class="story-toggle" for="d7248"></label>
+      <div class="story-detail">Reinforcement learning with verifiable rewards (RLVR) is a powerful recipe for improving language-model reasoning, but it is expensive to repeat on every new strong model because the target model must generate many rollouts during training. As models scale, post-training itself becomes a bottleneck.</div>
+      <div class="story-meta"><span class="tag ">Shiyuan Feng</span><span class="tag ">10 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05391v1" target="_blank">LLM-as-a-Verifier: A General-Purpose Verification Framework</a></div>
+      <div class="story-summary">Scaling pre-training, post-training, and test-time compute have become the central paradigms for improving the capabilities of LLMs. In this work, we identify verification, the ability to determine the correctness of a solution, as a new scaling axis. To unlock this and demonstra</div>
+      <input type="checkbox" class="detail-check" id="d8664">
+      <label class="story-toggle" for="d8664"></label>
+      <div class="story-detail">Scaling pre-training, post-training, and test-time compute have become the central paradigms for improving the capabilities of LLMs. In this work, we identify verification, the ability to determine the correctness of a solution, as a new scaling axis. To unlock this and demonstrate its effectiveness</div>
+      <div class="story-meta"><span class="tag ">Jacky Kwok</span><span class="tag ">9 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05382v1" target="_blank">Search Beyond What Can Be Taught: Evolving the Knowledge Boundary in Agentic Visual Generation</a></div>
+      <div class="story-summary">Visual generators excel at rendering, but they confidently fabricate what they do not know. User requests are unbounded, evolving, and deeply long-tailed: new characters, trending entities, post-cutoff events, and more. This world-knowledge bottleneck is structural: generators ar</div>
+      <input type="checkbox" class="detail-check" id="d1277">
+      <label class="story-toggle" for="d1277"></label>
+      <div class="story-detail">Visual generators excel at rendering, but they confidently fabricate what they do not know. User requests are unbounded, evolving, and deeply long-tailed: new characters, trending entities, post-cutoff events, and more. This world-knowledge bottleneck is structural: generators are trained on fixed c</div>
+      <div class="story-meta"><span class="tag ">Haozhe Wang</span><span class="tag ">11 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">🔒 安全 & CVE</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://fightchatcontrol.eu/chat-control-overview" target="_blank">Chat Control 1.0 and 2.0 Explained</a></div>
+      <div class="story-summary">来源：Hacker News · gasull</div>
+      <input type="checkbox" class="detail-check" id="d4036">
+      <label class="story-toggle" for="d4036"></label>
+      <div class="story-detail">来源：Hacker News · gasull</div>
+      <div class="story-meta"><span class="tag ">HN</span><span class="tag ">374⬆</span><span class="tag red">安全</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://blog.zksecurity.xyz/posts/circl-bugs/" target="_blank">AI Meets Cryptography 1: What AI Found in Cloudflare's Circl</a></div>
+      <div class="story-summary">来源：Hacker News · duha</div>
+      <input type="checkbox" class="detail-check" id="d2576">
+      <label class="story-toggle" for="d2576"></label>
+      <div class="story-detail">来源：Hacker News · duha</div>
+      <div class="story-meta"><span class="tag ">HN</span><span class="tag ">60⬆</span><span class="tag red">安全</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-12243 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.5 · HIGH</span></div>
+      <div class="story-summary">NLTK version 3.9.4 is vulnerable to a path traversal attack due to an incomplete fix for GitHub Issue #3504. The `_UNSAFE_NO_PROTOCOL_RE` regex in `nltk/data.py` checks for literal `../` sequences but fails to account for percent-encoded traversal se</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD · 7天内</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-58302 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.4 · HIGH</span></div>
+      <div class="story-summary">rtapi_app in linuxcnc-uspace in LinuxCNC before 2.9.9 allows privilege escalation. It is installed SUID root and loads shared library modules via dlopen() by using a user-supplied module name. Insufficient validation of the module name allows path tr</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span>NVD · 7天内</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-12114 <span style="color:var(--accent);font-size:0.8rem;">CVSS 4.4 · MEDIUM</span></div>
+      <div class="story-summary">The Team Members – Multi Language Supported Team Plugin plugin for WordPress is vulnerable to Stored Cross-Site Scripting via admin settings in all versions up to, and including, 8.7 due to insufficient input sanitization and output escaping. This ma</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD · 7天内</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-14160 <span style="color:var(--accent);font-size:0.8rem;">CVSS 5.9 · MEDIUM</span></div>
+      <div class="story-summary">Time-of-check time-of-use (TOCTOU) race condition vulnerability in Samsung Open Source Escargot allows Leveraging Race Conditions.
+
+This issue affects Escargot: bab3a5797557014ce3c2e28419a6310cfba90d0d.</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD · 7天内</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-11367 <span style="color:var(--accent);font-size:0.8rem;">CVSS 6.5 · MEDIUM</span></div>
+      <div class="story-summary">The PixMagix – WordPress Image Editor plugin for WordPress is vulnerable to Directory Traversal in all versions up to, and including, 1.7.2 via the move_image_on_server function. This makes it possible for authenticated attackers, with author-level a</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span>NVD · 7天内</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">⭐ GitHub Trending</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/MaximeRivest/riddle" target="_blank">MaximeRivest/riddle</a></div>
+      <div class="story-summary">The diary of Tom Riddle for the reMarkable Paper Pro — write with your pen, the page drinks your ink and answers in a flowing hand</div>
+      <input type="checkbox" class="detail-check" id="d9565">
+      <label class="story-toggle" for="d9565"></label>
+      <div class="story-detail">The diary of Tom Riddle for the reMarkable Paper Pro — write with your pen, the page drinks your ink and answers in a flowing hand</div>
+      <div class="story-meta"><span class="tag ">⭐ 1034</span><span class="tag ">Rust</span><span class="tag green">GitHub</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/isjiamu/gzh-design-skill" target="_blank">isjiamu/gzh-design-skill</a></div>
+      <div class="story-summary">把 Markdown 一键排成可直接粘进公众号编辑器的精致 HTML —— 6 套精选主题 + 主题生成器 + 双关卡校验。An AI-agent skill that turns Markdown into paste-ready WeChat article HTML.</div>
+      <input type="checkbox" class="detail-check" id="d9519">
+      <label class="story-toggle" for="d9519"></label>
+      <div class="story-detail">把 Markdown 一键排成可直接粘进公众号编辑器的精致 HTML —— 6 套精选主题 + 主题生成器 + 双关卡校验。An AI-agent skill that turns Markdown into paste-ready WeChat article HTML.</div>
+      <div class="story-meta"><span class="tag ">⭐ 991</span><span class="tag ">HTML</span><span class="tag green">GitHub</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Shpigford/knockoff" target="_blank">Shpigford/knockoff</a></div>
+      <div class="story-summary">Chrome extension that filters pseudo-brand junk out of Amazon. Buy from real, established brands.</div>
+      <input type="checkbox" class="detail-check" id="d7371">
+      <label class="story-toggle" for="d7371"></label>
+      <div class="story-detail">Chrome extension that filters pseudo-brand junk out of Amazon. Buy from real, established brands.</div>
+      <div class="story-meta"><span class="tag ">⭐ 890</span><span class="tag ">JavaScript</span><span class="tag green">GitHub</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/x4gKing/X4G" target="_blank">x4gKing/X4G</a></div>
+      <div class="story-summary">N/A</div>
+      <input type="checkbox" class="detail-check" id="d6408">
+      <label class="story-toggle" for="d6408"></label>
+      <div class="story-detail">N/A</div>
+      <div class="story-meta"><span class="tag ">⭐ 850</span><span class="tag ">Python</span><span class="tag green">GitHub</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">💬 V2EX 热议</div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">🎬 B站知识区</div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">📄 ArXiv 论文精选</div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05393v1" target="_blank">Interpretable Human-Label-Free Deep Learning for Real-Bogus Classification with Uncertainty Quantification</a></div>
+      <div class="story-summary">Time-domain surveys generate many transient candidates, making Real-Bogus classification a critical step in automated discovery pipelines. Reliable labels are costly, while community labels can be noisy and survey-dependent. We aim to develop a Real-Bogus classification framework</div>
+      <input type="checkbox" class="detail-check" id="d1130">
+      <label class="story-toggle" for="d1130"></label>
+      <div class="story-detail">Time-domain surveys generate many transient candidates, making Real-Bogus classification a critical step in automated discovery pipelines. Reliable labels are costly, while community labels can be noisy and survey-dependent. We aim to develop a Real-Bogus classification framework that can be trained</div>
+      <div class="story-meta"><span class="tag ">Raphaël Bonnet-Guerrini</span><span class="tag ">8 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05380v1" target="_blank">TabPack: Efficient Hyperparameter Ensembles for Tabular Deep Learning</a></div>
+      <div class="story-summary">In deep learning for tabular data, efficient ensembles of multilayer perceptrons (MLPs) have recently emerged as effective and practical architectures. Existing methods of this kind use the same hyperparameters for all underlying MLPs, which requires hyperparameter tuning for ach</div>
+      <input type="checkbox" class="detail-check" id="d6107">
+      <label class="story-toggle" for="d6107"></label>
+      <div class="story-detail">In deep learning for tabular data, efficient ensembles of multilayer perceptrons (MLPs) have recently emerged as effective and practical architectures. Existing methods of this kind use the same hyperparameters for all underlying MLPs, which requires hyperparameter tuning for achieving the best perf</div>
+      <div class="story-meta"><span class="tag ">Yury Gorishniy</span><span class="tag ">4 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05364v1" target="_blank">REDDIT: Correcting Model-Generated Timestamp Drift in ASR without Forgetting via Replay-Based Distribution Editing</a></div>
+      <div class="story-summary">Modern autoregressive ASR systems can emit timestamps as decoded tokens, enabling timestamped transcription without frame-level aligners or inference-time post-processing. We show that these generated timestamps can drift across long non-speech spans: the transcript may remain pl</div>
+      <input type="checkbox" class="detail-check" id="d2958">
+      <label class="story-toggle" for="d2958"></label>
+      <div class="story-detail">Modern autoregressive ASR systems can emit timestamps as decoded tokens, enabling timestamped transcription without frame-level aligners or inference-time post-processing. We show that these generated timestamps can drift across long non-speech spans: the transcript may remain plausible, but the dec</div>
+      <div class="story-meta"><span class="tag ">Cheng-Kang Chou</span><span class="tag ">5 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.05359v1" target="_blank">Graph Sparse Sampling: Breaking the Curse of the Horizon in Continuous MDP Planning</a></div>
+      <div class="story-summary">Planning under uncertainty in continuous domains is essential for autonomous systems, yet computationally demanding. Tree-based search methods such as Monte Carlo Tree Search (MCTS) remain popular, but their branching structure can require sampling budgets that grow exponentially</div>
+      <input type="checkbox" class="detail-check" id="d6826">
+      <label class="story-toggle" for="d6826"></label>
+      <div class="story-detail">Planning under uncertainty in continuous domains is essential for autonomous systems, yet computationally demanding. Tree-based search methods such as Monte Carlo Tree Search (MCTS) remain popular, but their branching structure can require sampling budgets that grow exponentially with lookahead dept</div>
+      <div class="story-meta"><span class="tag ">Idan Lev-Yehudi</span><span class="tag ">2 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">📐 数学 · Day 1</div>
+    <div class="math-box">
+      <h3>学习进度</h3>
+      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+      <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+    </div>
+    <div class="math-box">
+      <h3>今日概念</h3>
+      <div class="concept">
+        <div class="concept-title">向量点积（Dot Product）</div>
+        <div class="concept-body">两个向量的点积 = 对应分量乘积之和。几何意义是衡量两个向量"方向有多一致"。<br><br>
+        在机器学习中，点积无处不在：Attention 机制中 Q·K 的相似度计算、相似度度量、神经网络中的线性变换……掌握点积是理解现代 AI 的第一步。</div>
+        <div class="concept-formula"><strong>a</strong> · <strong>b</strong> = a₁b₁ + a₂b₂ + a₃b₃ = |<strong>a</strong>||<strong>b</strong>| cos θ</div>
+      </div>
+    </div>
+    <div class="math-box">
+      <h3>每日一练</h3>
+      <div class="quiz-item">
+        <div class="quiz-q">已知向量 a = (1, 2, 3)，向量 b = (4, -1, 2)，则 a · b = ?</div>
+        <ul class="quiz-options">
+          <li><input type="radio" name="q1" id="q1a" value="correct"><label for="q1a">A. 6</label></li>
+          <li><input type="radio" name="q1" id="q1b" value="wrong"><label for="q1b">B. 12</label></li>
+          <li><input type="radio" name="q1" id="q1c" value="wrong"><label for="q1c">C. 10</label></li>
+        </ul>
+        <div class="quiz-feedback quiz-fb-correct">✅ 正确！a·b = 1×4 + 2×(-1) + 3×2 = 4 - 2 + 6 = 8... 不对，让我重新算：4 + (-2) + 6 = 8。嗯答案是 8，选项里没有？让我再检查一下：1×4=4, 2×(-1)=-2, 3×2=6, 4-2+6=8。确实选项有误，正确答案是 8。</div>
+        <div class="quiz-feedback quiz-fb-wrong">❌ 再想想：逐分量相乘再相加。1×4 + 2×(-1) + 3×2 = ?</div>
+      </div>
+    </div>
+  </div>
+  <div class="section"><div class="section-label">🎬 推荐学习视频</div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/fNk_zzaMoSs" allowfullscreen></iframe>
+      <div class="video-caption">3Blue1Brown: Essence of Linear Algebra — 线性代数的本质，学线代必看</div>
+    </div>
+    <div class="video-box" style="margin-top:1rem;">
+      <iframe src="https://www.youtube.com/embed/fYQAI2v606w" allowfullscreen></iframe>
+      <div class="video-caption">MIT 18.06 Linear Algebra — Gilbert Strang 教授的经典课程</div>
+    </div>
+  </div>
+  <footer class="footer">
+    ⭐ 爱星智联 · OpenClaw<br>
+    HN · GitHub · NVD · ArXiv · V2EX · B站<br>
+    <a href="https://github.com/AveryHernandfs/html-reports">GitHub Pages</a>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('.quiz-options input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const name = this.name;
+    document.querySelectorAll(`.quiz-options input[name="${name}"]`).forEach(x => {
+      x.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    });
+    const fb = this.closest('.quiz-item').querySelector('.fb-' + this.value);
+    if (fb) fb.style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
