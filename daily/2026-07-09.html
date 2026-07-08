@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日资讯 — 2026.07.09</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:680px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.12rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.85rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.83rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.5rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.45rem; border-radius:3px; font-weight:500; font-size:0.66rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .tag.purple { background:rgba(142,68,173,0.08); color:#8e44ad; }
+    .math-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1rem; }
+    .math-box h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .progress-row { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; font-size:0.8rem; }
+    .progress-row .name { min-width:50px; color:var(--muted); }
+    .progress-track { flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--ink); border-radius:2px; }
+    .progress-row .pct { font-size:0.72rem; color:var(--muted); min-width:28px; text-align:right; }
+    .concept { background:white; border:1px solid var(--rule); border-radius:6px; padding:1rem 1.2rem; margin-top:1rem; }
+    .concept-title { font-family:var(--serif); font-size:1rem; margin-bottom:0.4rem; }
+    .concept-body { font-size:0.83rem; color:var(--ink); line-height:1.7; }
+    .concept-formula { font-family:'DM Sans',monospace; font-size:0.88rem; background:var(--paper); padding:0.8rem 1rem; border-radius:4px; margin:0.5rem 0; text-align:center; border:1px solid var(--rule); }
+    .quiz-item { margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed var(--rule); }
+    .quiz-q { font-family:var(--serif); font-style:italic; font-size:0.95rem; line-height:1.5; margin-bottom:0.5rem; }
+    .quiz-options { list-style:none; margin:0.5rem 0; }
+    .quiz-options li { margin-bottom:0.3rem; }
+    .quiz-options input[type="radio"] { display:none; }
+    .quiz-options label { display:block; font-size:0.83rem; padding:0.5rem 0.8rem; border:1px solid var(--rule); border-radius:4px; cursor:pointer; transition:all 0.15s; }
+    .quiz-options label:hover { background:var(--accent-dim); border-color:var(--accent); }
+    .quiz-options input[type="radio"]:checked + label { background:var(--accent-dim); border-color:var(--accent); font-weight:500; }
+    .quiz-feedback { display:none; font-size:0.8rem; line-height:1.6; margin-top:0.5rem; padding:0.6rem 0.8rem; border-radius:4px; }
+    .quiz-fb-correct { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .quiz-fb-wrong { background:rgba(192,57,43,0.08); color:var(--accent); }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">Thursday · 2026.07.09</div>
+    <h1>每日资讯</h1>
+    <div class="masthead-sub">AI · 安全 · 开源 · 创业 · 数学</div>
+  </header>
+  <div class="section"><div class="section-label">AI & 大模型</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://x.ai/news/grok-4-5" target="_blank">Grok 4.5</a></div>
+      <div class="story-summary">xAI 发布 Grok 4.5，Grok 系列最新版本。从版本号看是一次重大更新，值得关注其在推理能力、多模态和工具使用方面的提升。</div>
+      <input type="checkbox" class="detail-check" id="d-48835111">
+      <label class="story-toggle" for="d-48835111"></label>
+      <div class="story-detail">来自 BoumTAC，352 条评论参与讨论。</div>
+      <div class="story-meta"><span class="tag">399⬆ HN</span><span class="tag blue">AI</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://mistral.ai/news/robostral-navigate/" target="_blank">Mistral's Robostral Navigate: a state of the art robotics navigation model</a></div>
+      <div class="story-summary">Mistral 发布 Robostral Navigate，专注机器人导航的 SOTA 模型。Mistral 正在从 LLM 扩展到机器人领域。</div>
+      <input type="checkbox" class="detail-check" id="d-48832212">
+      <label class="story-toggle" for="d-48832212"></label>
+      <div class="story-detail">来自 ottomengis，89 条评论参与讨论。</div>
+      <div class="story-meta"><span class="tag">381⬆ HN</span><span class="tag blue">AI</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://microsoft.github.io/flint-chart/#/" target="_blank">Show HN: Microsoft releases Flint, a visualization language for AI agents</a></div>
+      <div class="story-summary">微软发布了 Flint，一种专门为 AI Agent 设计的可视化语言。这代表大公司在 Agent 生态工具链上的布局。</div>
+      <input type="checkbox" class="detail-check" id="d-48834924">
+      <label class="story-toggle" for="d-48834924"></label>
+      <div class="story-detail">来自 chenglong-hn，64 条评论参与讨论。</div>
+      <div class="story-meta"><span class="tag">149⬆ HN</span><span class="tag blue">AI</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://openai.com/index/introducing-gpt-live/" target="_blank">GPT‑Live</a></div>
+      <div class="story-summary">OpenAI 推出 GPT-Live，可能是 GPT 的实时交互版本，支持语音/视频等实时对话场景。</div>
+      <input type="checkbox" class="detail-check" id="d-48834405">
+      <label class="story-toggle" for="d-48834405"></label>
+      <div class="story-detail">来自 logickkk1，371 条评论参与讨论。</div>
+      <div class="story-meta"><span class="tag">547⬆ HN</span><span class="tag blue">AI</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/withmarbleapp/os-taxonomy" target="_blank">withmarbleapp/os-taxonomy</a></div>
+      <div class="story-summary">No description</div>
+      <div class="story-meta"><span class="tag green">⭐ 232</span><span class="tag">JavaScript</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/CWS6206/EasyLastSkill" target="_blank">CWS6206/EasyLastSkill</a></div>
+      <div class="story-summary">EasyLastSkill ist eine deutschsprachige Codex-/Agent-Skill fuer schnelle Recherchen zu den letzten Tagen eines Themas. Standardmaessig betrachtet sie die letzten 30 Tage und erstellt einen kompakten B</div>
+      <div class="story-meta"><span class="tag green">⭐ 228</span><span class="tag">Python</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">安全 & CVE</div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-53488 <span style="color:var(--accent);font-size:0.8rem;">CVSS 8.8 · HIGH</span></div>
+      <div class="story-summary">Details pending on NVD</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span class="tag purple">NVD</span><span style="font-size:0.68rem;color:var(--muted);">发布 2026-07-01</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-14191 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.8 · HIGH</span></div>
+      <div class="story-summary">Details pending on NVD</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span class="tag purple">NVD</span><span style="font-size:0.68rem;color:var(--muted);">发布 2026-07-01</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-54592 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.5 · HIGH</span></div>
+      <div class="story-summary">Details pending on NVD</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span class="tag purple">NVD</span><span style="font-size:0.68rem;color:var(--muted);">发布 2026-07-01</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-20458 <span style="color:var(--accent);font-size:0.8rem;">CVSS 7.5 · HIGH</span></div>
+      <div class="story-summary">Details pending on NVD</div>
+      <div class="story-meta"><span class="tag tag orange">HIGH</span><span class="tag purple">NVD</span><span style="font-size:0.68rem;color:var(--muted);">发布 2026-07-01</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">CVE-2026-57963 <span style="color:var(--accent);font-size:0.8rem;">CVSS 6.5 · MEDIUM</span></div>
+      <div class="story-summary">Details pending on NVD</div>
+      <div class="story-meta"><span class="tag tag blue">MEDIUM</span><span class="tag purple">NVD</span><span style="font-size:0.68rem;color:var(--muted);">发布 2026-07-01</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://stalw.art/blog/dkim2-dmarcbis/" target="_blank">DKIM2 and DMARCbis Have Landed</a></div>
+      <div class="story-summary">Hacker News 安全相关讨论</div>
+      <div class="story-meta"><span class="tag">44⬆ HN</span><span class="tag orange">安全</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline">DKIM2 and DMARCbis Have Landed</div>
+      <div class="story-summary">邮件安全协议 DKIM 和 DMARC 的新版本规范发布。DKIM2 增强了邮件认证能力，DMARCbis 改进了策略执行。对邮件安全基础设施有重要影响。</div>
+      <div class="story-meta"><span class="tag orange">邮件安全</span><span class="tag blue">RFC</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">📄 ArXiv · AI/ML 论文精选</div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06565v1" target="_blank">ELSA3D: Elastic Semantic Anchoring for Unified 3D Understanding and Generation</a></div>
+      <div class="story-summary">提出 Elastic Semantic Anchoring 方法，在 3D 理解和生成之间建立统一框架。可能影响 3D 视觉和机器人感知。</div>
+      <input type="checkbox" class="detail-check" id="ar-60706565v1">
+      <label class="story-toggle" for="ar-60706565v1"></label>
+      <div class="story-detail">Unified 3D foundation models aspire to generate 3D assets and reason about them in language within a single backbone, but their text-3D interaction remains largely implicit. Existing methods concatenate text and 3D tokens into a flat sequence and rel</div>
+      <div class="story-meta"><span class="tag">Tianjiao Yu</span><span class="tag blue">7 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06564v1" target="_blank">Lift3D-VLA: Lifting VLA Models to 3D Geometry and Dynamics-Aware Manipulation</a></div>
+      <div class="story-summary">将 VLA（Vision-Language-Action）模型提升到 3D 几何和动力学感知层面。对机器人操作任务有直接价值。</div>
+      <input type="checkbox" class="detail-check" id="ar-60706564v1">
+      <label class="story-toggle" for="ar-60706564v1"></label>
+      <div class="story-detail">Recently, Vision-Language-Action (VLA) models have demonstrated strong generalization across diverse tasks. However, effective robotic manipulation in physical environments fundamentally requires geometric understanding and spatial reasoning. While s</div>
+      <div class="story-meta"><span class="tag">Jiaming Liu</span><span class="tag blue">11 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06560v1" target="_blank">Vision as Unified Multimodal Generation</a></div>
+      <div class="story-summary">将视觉统一为多模态生成任务。一个模型同时处理图像理解和生成。</div>
+      <input type="checkbox" class="detail-check" id="ar-60706560v1">
+      <label class="story-toggle" for="ar-60706560v1"></label>
+      <div class="story-detail">We formulate computer vision as unified multimodal generation, where heterogeneous visual tasks are expressed in the native text and image generation spaces of a unified multimodal model, without task-specific architectures. Under this formulation, S</div>
+      <div class="story-meta"><span class="tag">Xiaoyang Han</span><span class="tag blue">17 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06555v1" target="_blank">ProxyPose: 6-DoF Pose Tracking via Video-to-Video Translation</a></div>
+      <div class="story-summary">通过 Video-to-Video Translation 实现 6-DoF 姿态追踪。无需专用硬件的姿态估计新方法。</div>
+      <input type="checkbox" class="detail-check" id="ar-60706555v1">
+      <label class="story-toggle" for="ar-60706555v1"></label>
+      <div class="story-detail">Tracking the six-degree-of-freedom (6-DoF) pose of objects and surfaces from monocular video is a long-standing problem in computer vision. To tackle this problem, existing methods require inputs beyond the video itself-such as 3D models, depth maps,</div>
+      <div class="story-meta"><span class="tag">Ruihang Zhang</span><span class="tag blue">5 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06553v1" target="_blank">From RGB Generation to Dense Field Readout: Pixel-Space Dense Prediction with Text-to-Image Models</a></div>
+      <div class="story-summary">Large-scale text-to-image models are attractive backbones for dense prediction because RGB generation pretraining learns rich semantic, structural, an...</div>
+      <input type="checkbox" class="detail-check" id="ar-60706553v1">
+      <label class="story-toggle" for="ar-60706553v1"></label>
+      <div class="story-detail">Large-scale text-to-image models are attractive backbones for dense prediction because RGB generation pretraining learns rich semantic, structural, and geometric priors. Existing generative and editing approaches reuse these priors by casting dense p</div>
+      <div class="story-meta"><span class="tag">Zanyi Wang</span><span class="tag blue">6 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06552v1" target="_blank">MonoIR-RS: Infrared Remote Sensing Vision-Language Learning with CLIP and VLM Adaptation</a></div>
+      <div class="story-summary">结合 CLIP 做红外遥感视觉-语言学习。跨模态在遥感领域的应用。</div>
+      <input type="checkbox" class="detail-check" id="ar-60706552v1">
+      <label class="story-toggle" for="ar-60706552v1"></label>
+      <div class="story-detail">Infrared remote-sensing imagery captures intensity structure, object-background contrast, and illumination-invariant cues often invisible in RGB imagery. Yet, most remote-sensing vision-language resources and models focus on visible-band semantics, l</div>
+      <div class="story-meta"><span class="tag">Jiaju Han</span><span class="tag blue">11 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06549v1" target="_blank">Unsupervised Domain Adaptation for Calcification Classification in Mammography Across Multi-Site Datasets</a></div>
+      <div class="story-summary">Deep learning-based computer-aided diagnosis (CAD) systems have shown strong performance in breast cancer diagnosis, particularly for classification t...</div>
+      <input type="checkbox" class="detail-check" id="ar-60706549v1">
+      <label class="story-toggle" for="ar-60706549v1"></label>
+      <div class="story-detail">Deep learning-based computer-aided diagnosis (CAD) systems have shown strong performance in breast cancer diagnosis, particularly for classification tasks in mammography. However, domain shifts across multi-site datasets remain a challenge, especiall</div>
+      <div class="story-meta"><span class="tag">Xuan Liu</span><span class="tag blue">10 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="http://arxiv.org/abs/2607.06546v1" target="_blank">Graph Convolutional Attention: A Spectral Perspective on Graph Denoising and Diffusion</a></div>
+      <div class="story-summary">从频谱角度审视图去噪中的图卷积注意力机制。图神经网络理论层面的进展。</div>
+      <input type="checkbox" class="detail-check" id="ar-60706546v1">
+      <label class="story-toggle" for="ar-60706546v1"></label>
+      <div class="story-detail">Denoising graphs is a fundamental problem in graph learning and the core operation of graph diffusion models. Attention-based architectures like graph transformers have recently shown promise in denoising graphs. However, our principled understanding</div>
+      <div class="story-meta"><span class="tag">Shervin Khalafi</span><span class="tag blue">6 authors</span><span class="tag green">ArXiv</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">开源 & GitHub Trending</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/withmarbleapp/os-taxonomy" target="_blank">withmarbleapp/os-taxonomy</a></div>
+      <div class="story-summary">操作系统分类/知识体系整理，适合系统学习。</div>
+      <div class="story-meta"><span class="tag green">⭐ 232</span><span class="tag">JavaScript</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/CWS6206/EasyLastSkill" target="_blank">CWS6206/EasyLastSkill</a></div>
+      <div class="story-summary">技能学习相关项目。</div>
+      <div class="story-meta"><span class="tag green">⭐ 228</span><span class="tag">Python</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/x4gKing/3x-ui-Upgrade" target="_blank">x4gKing/3x-ui-Upgrade</a></div>
+      <div class="story-summary">Dockerfile 项目，No description</div>
+      <div class="story-meta"><span class="tag green">⭐ 159</span><span class="tag">Dockerfile</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Nanako0129/pilotfish" target="_blank">Nanako0129/pilotfish</a></div>
+      <div class="story-summary">None 项目，Multi-model orchestration layer for Claude Code — the frontier model plans, cheaper models execute, </div>
+      <div class="story-meta"><span class="tag green">⭐ 119</span><span class="tag">None</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/ctabuyo/FC250-" target="_blank">ctabuyo/FC250-</a></div>
+      <div class="story-summary">None 项目，No description</div>
+      <div class="story-meta"><span class="tag green">⭐ 70</span><span class="tag">None</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">跳出舒适圈 · 中文社区</div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225864" target="_blank">继续推广我的 gpt 中转站，注册就送 28.8$余额，已稳定运行俩月有余了</a></div>
+      <div class="story-summary">V2EX · promotions · 95 回复</div>
+      <div class="story-meta"><span class="tag purple">V2EX</span><span class="tag">95💬</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225760" target="_blank">硬盘要涨价到啥时候？怎么越涨越高了</a></div>
+      <div class="story-summary">V2EX · nas · 80 回复</div>
+      <div class="story-meta"><span class="tag purple">V2EX</span><span class="tag">80💬</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225889" target="_blank">投入了很多精力经营的一段感情，被女方评价说在向下兼容我，感觉有点破防</a></div>
+      <div class="story-summary">V2EX · life · 318 回复 — 生活/职场话题</div>
+      <div class="story-meta"><span class="tag purple">V2EX</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225777" target="_blank">人生真是给我开了个玩笑，父亲 59 岁突然查出来癌症晚期</a></div>
+      <div class="story-summary">V2EX · life · 128 回复 — 生活/职场话题</div>
+      <div class="story-meta"><span class="tag purple">V2EX</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.v2ex.com/t/1225768" target="_blank">好奇大家裤衩多久换？</a></div>
+      <div class="story-summary">V2EX · beijing · 107 回复 — 生活/职场话题</div>
+      <div class="story-meta"><span class="tag purple">V2EX</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com/video/BV1HJMG64EPu" target="_blank">锁定我国：超强台风巴威将登陆华东，华中和北方也需警惕暴雨</a></div>
+      <div class="story-summary">B站 · 中气爱 · 播放 656,411</div>
+      <div class="story-meta"><span class="tag orange">B站</span><span class="tag">36,467👍</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com/video/BV1mkMh6WEPw" target="_blank">登陆几率再扩大：超强台风巴威将再迎巅峰，护国神山这次有点挡不住</a></div>
+      <div class="story-summary">B站 · 中气爱 · 播放 2,283,345</div>
+      <div class="story-meta"><span class="tag orange">B站</span><span class="tag">87,182👍</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com/video/BV1muTQ6CExQ" target="_blank">中式志怪搜打撤游戏《诡影藏锋》首曝PV&实机演示</a></div>
+      <div class="story-summary">B站 · 诡影藏锋 · 播放 5,620,096 — 今日热门</div>
+      <div class="story-meta"><span class="tag orange">B站</span><span class="tag">137,928👍</span></div>
+    </div>
+    <div class="story">
+      <div class="story-headline"><a href="https://www.bilibili.com/video/BV1MHMe6vE94" target="_blank">《崩坏：星穹铁道》即兴巡演PV——「致仰望者」</a></div>
+      <div class="story-summary">B站 · 崩坏星穹铁道 · 播放 2,973,282 — 今日热门</div>
+      <div class="story-meta"><span class="tag orange">B站</span><span class="tag">254,551👍</span></div>
+    </div>
+  </div>
+<hr class="divider">
+  <div class="section"><div class="section-label">数学 · 每日一题</div>
+    <div class="math-box">
+      <h3>学习进度</h3>
+      <div class="progress-row"><span class="name">线代</span><div class="progress-track"><div class="progress-fill" style="width:5%"></div></div><span class="pct">5%</span></div>
+      <div class="progress-row"><span class="name">高数</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+      <div class="progress-row"><span class="name">概率</span><div class="progress-track"><div class="progress-fill" style="width:0%"></div></div><span class="pct">—</span></div>
+    </div>
+    <div class="math-box">
+      <h3>今日概念 · 向量点积 (Dot Product)</h3>
+      <div class="concept">
+        <div class="concept-title">向量点积（Dot Product）</div>
+        <div class="concept-body">两个向量的点积 = 对应分量乘积之和。几何意义是衡量两个向量"方向有多一致"——角度越小，点积越大。</div>
+        <div class="concept-formula"><strong>a</strong> · <strong>b</strong> = a₁b₁ + a₂b₂ + a₃b₃ = |<strong>a</strong>| · |<strong>b</strong>| · cos θ</div>
+        <div class="concept-body" style="margin-top:0.5rem;">
+          <strong>直觉：</strong>如果两个向量方向完全相同，点积 = 它们长度的乘积；垂直时点积 = 0；相反时点积 = 负数。<br><br>
+          <strong>AI 中的应用：</strong>Transformer 里的 Attention 机制核心就是 Query 和 Key 的点积——衡量两个向量的"相关度"。
+        </div>
+      </div>
+    </div>
+    <div class="math-box">
+      <h3>今日练习</h3>
+      <div class="quiz-item">
+        <div class="quiz-q">向量 a = (1, 2) 和向量 b = (3, 4) 的点积是多少？</div>
+        <ul class="quiz-options">
+          <li><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">A. 5</label></li>
+          <li><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">B. 11</label></li>
+          <li><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">C. 7</label></li>
+          <li><input type="radio" name="q1" id="q1d" value="d"><label for="q1d">D. 14</label></li>
+        </ul>
+        <div class="quiz-feedback quiz-fb-correct" id="fb-a">✅ 正确！1×3 + 2×4 = 3 + 8 = 11。点积就是对应分量相乘再相加。</div>
+        <div class="quiz-feedback quiz-fb-wrong" id="fb-b">❌ 正确答案是 B。1×3 + 2×4 = 3 + 8 = 11。</div>
+        <div class="quiz-feedback quiz-fb-wrong" id="fb-c">❌ 正确答案是 B。1×3 + 2×4 = 3 + 8 = 11。</div>
+        <div class="quiz-feedback quiz-fb-wrong" id="fb-d">❌ 正确答案是 B。1×3 + 2×4 = 3 + 8 = 11。</div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    ⭐ 爱星智联 · OpenClaw<br>
+    数据源：HN · GitHub · ArXiv · NVD · V2EX · Bilibili<br>
+    <a href="https://github.com/AveryHernandfs/html-reports">GitHub</a>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('.quiz-options input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const name = this.name;
+    document.querySelectorAll('.quiz-options input[name="'+name+'"]').forEach(x => {
+      x.closest('.quiz-item').querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+    });
+    const fb = this.closest('.quiz-item').querySelector('.fb-' + this.value);
+    if (fb) fb.style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
