@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开源世界导航 — Awesome Lists & 经典项目大全</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+    :root { --ink:#1a1714; --paper:#f5f0e8; --paper-alt:#ece6db; --accent:#c0392b; --accent-dim:rgba(192,57,43,0.08); --muted:#7a7168; --rule:#d4cdc2; --serif:'Instrument Serif','Noto Serif SC',Georgia,serif; --sans:'DM Sans','Noto Sans SC',system-ui,sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--paper); color:var(--ink); line-height:1.65; font-size:15px; -webkit-font-smoothing:antialiased; }
+    .page { max-width:720px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+    .masthead { text-align:center; padding:2rem 0 1.5rem; border-bottom:3px double var(--rule); margin-bottom:2rem; }
+    .masthead-date { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .masthead h1 { font-family:var(--serif); font-size:2.2rem; font-weight:400; font-style:italic; line-height:1.2; margin-bottom:0.3rem; }
+    .masthead-sub { font-size:0.78rem; color:var(--muted); letter-spacing:1px; }
+    .section { margin-bottom:2.2rem; }
+    .section-label { font-size:0.65rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; padding-bottom:0.4rem; border-bottom:1px solid var(--rule); }
+    .story { padding:1rem 0; border-bottom:1px solid var(--rule); }
+    .story:last-child { border-bottom:none; }
+    .story-headline { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.35; margin-bottom:0.35rem; }
+    .story-headline a { color:var(--ink); text-decoration:none; }
+    .story-headline a:hover { color:var(--accent); }
+    .story-summary { font-size:0.88rem; color:var(--muted); line-height:1.65; margin-bottom:0.4rem; }
+    .story-detail { display:none; font-size:0.85rem; color:var(--ink); line-height:1.7; margin-top:0.6rem; padding-top:0.6rem; border-top:1px dashed var(--rule); }
+    .story-toggle { display:inline-block; font-size:0.72rem; color:var(--accent); cursor:pointer; border:none; background:none; font-family:var(--sans); padding:0; letter-spacing:0.5px; }
+    .story-toggle:hover { text-decoration:underline; }
+    .detail-check { display:none; }
+    .detail-check:checked ~ .story-detail { display:block; }
+    .detail-check:checked ~ .story-toggle::after { content:'收起 ▴'; }
+    .story-toggle::after { content:'详情 ▾'; }
+    .story-meta { display:flex; align-items:center; gap:0.6rem; font-size:0.72rem; color:var(--muted); flex-wrap:wrap; margin-top:0.3rem; }
+    .tag { background:var(--accent-dim); color:var(--accent); padding:0.1rem 0.5rem; border-radius:3px; font-weight:500; font-size:0.68rem; letter-spacing:0.5px; }
+    .tag.green { background:rgba(39,174,96,0.08); color:#27ae60; }
+    .tag.blue { background:rgba(52,152,219,0.08); color:#2980b9; }
+    .tag.orange { background:rgba(230,126,34,0.08); color:#e67e22; }
+    .tag.red { background:rgba(192,57,43,0.08); color:#c0392b; }
+    .tag.purple { background:rgba(142,68,173,0.08); color:#8e44ad; }
+    .tag.teal { background:rgba(22,160,133,0.08); color:#16a085; }
+    .intro-box { background:var(--paper-alt); border:1px solid var(--rule); border-radius:6px; padding:1.2rem; margin-bottom:1.5rem; font-size:0.88rem; line-height:1.7; }
+    .intro-box strong { color:var(--accent); }
+    .divider { border:none; border-top:3px double var(--rule); margin:2rem 0; }
+    .footer { text-align:center; padding-top:1.5rem; border-top:1px solid var(--rule); font-size:0.72rem; color:var(--muted); line-height:1.8; }
+    .footer a { color:var(--ink); }
+    .stat { display:inline-block; background:var(--accent-dim); color:var(--accent); padding:0.15rem 0.5rem; border-radius:3px; font-size:0.7rem; font-weight:600; margin-left:0.3rem; }
+    .toc { background:white; border:1px solid var(--rule); border-radius:6px; padding:1.2rem 1.5rem; margin-bottom:2rem; }
+    .toc h3 { font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; }
+    .toc ul { list-style:none; columns:2; column-gap:1.5rem; }
+    .toc li { font-size:0.82rem; margin-bottom:0.3rem; break-inside:avoid; }
+    .toc a { color:var(--ink); text-decoration:none; }
+    .toc a:hover { color:var(--accent); }
+    @media (max-width:500px) { .toc ul { columns:1; } }
+    @media print { body { background:white; } .page { max-width:100%; padding:1rem; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-date">Special Report · 2026.07.08</div>
+    <h1>开源世界导航</h1>
+    <div class="masthead-sub">Awesome Lists · 经典项目 · 学习资源全景图</div>
+  </header>
+
+  <div class="intro-box">
+    <strong>📌 这份报告是什么？</strong><br>
+    GitHub 上几十年来积累的高质量 Awesome Lists 和经典开源项目的系统性梳理。涵盖操作系统、AI/ML、安全逆向、编程语言、自托管、创意编程等多个方向。每个条目附星数和简介，帮你快速定位感兴趣的方向深入学习。
+  </div>
+
+  <nav class="toc">
+    <h3>目录</h3>
+    <ul>
+      <li><a href="#master">🏆 总榜 Top 30</a></li>
+      <li><a href="#ai">🤖 AI & 大模型</a></li>
+      <li><a href="#os">🐧 操作系统</a></li>
+      <li><a href="#security">🔐 安全 & 逆向</a></li>
+      <li><a href="#lang">💻 编程语言</a></li>
+      <li><a href="#selfhost">🏠 自托管 & 运维</a></li>
+      <li><a href="#android">📱 Android & 移动</a></li>
+      <li><a href="#creative">🎨 创意编程 & 设计</a></li>
+      <li><a href="#cs">📚 计算机科学 & 课程</a></li>
+      <li><a href="#data">📊 数据科学</a></li>
+      <li><a href="#fun">🎪 趣味项目精选</a></li>
+      <li><a href="#howto">🔧 如何使用这些资源</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== 总榜 ==================== -->
+  <div class="section" id="master">
+    <div class="section-label">🏆 总榜 Top 30 — 最值得收藏的 Awesome Lists</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/sindresorhus/awesome" target="_blank">sindresorhus/awesome</a> <span class="stat">⭐ 482K</span></div>
+      <div class="story-summary">Awesome 的"祖师爷"。所有 awesome-* 列表的起点，涵盖几千个子分类。想找任何领域的资源，先来这里查目录。</div>
+      <input type="checkbox" class="detail-check" id="d1">
+      <label class="story-toggle" for="d1"></label>
+      <div class="story-detail">这个仓库本身就是个索引，链接到几百个子 awesome 列表。从编程语言到生活工具，从学术论文到硬件项目，应有尽有。建议收藏后按需深入子列表。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/vinta/awesome-python" target="_blank">vinta/awesome-python</a> <span class="stat">⭐ 307K</span></div>
+      <div class="story-summary">Python 生态最全的精选列表。Web 框架、爬虫、数据可视化、机器学习——你想得到的 Python 库这里都有分类。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/awesome-selfhosted/awesome-selfhosted" target="_blank">awesome-selfhosted/awesome-selfhosted</a> <span class="stat">⭐ 304K</span></div>
+      <div class="story-summary">自托管软件大全。上千个可以自己架设的开源替代品——从 Nextcloud 到 Gitea，从 Jellyfin 到 Vaultwarden。</div>
+      <input type="checkbox" class="detail-check" id="d2">
+      <label class="story-toggle" for="d2"></label>
+      <div class="story-detail">这个列表是自托管爱好者的圣经。按类别（文件存储、媒体、通讯、开发工具等）分类，每个项目标注 license、star 数、是否活跃维护。如果你有 NAS 或 VPS，这里能找到几百个好玩的东西。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/trimstray/the-book-of-secret-knowledge" target="_blank">trimstray/the-book-of-secret-knowledge</a> <span class="stat">⭐ 232K</span></div>
+      <div class="story-summary">秘密知识之书。黑客、pentester、安全研究者的宝藏库——工具、cheatsheet、one-liner、CLI 工具、web 工具，应有尽有。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/avelino/awesome-go" target="_blank">avelino/awesome-go</a> <span class="stat">⭐ 177K</span></div>
+      <div class="story-summary">Go 语言生态精选。框架、库、软件一应俱全。想学 Go 或找 Go 的工具，这是最好的起点。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/f/prompts.chat" target="_blank">f/prompts.chat</a> <span class="stat">⭐ 165K</span></div>
+      <div class="story-summary">ChatGPT 提示词大全（现为开源社区驱动）。各种场景的 prompt 模板，可以自托管，完全隐私。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/521xueweihan/HelloGitHub" target="_blank">521xueweihan/HelloGitHub</a> <span class="stat">⭐ 164K</span></div>
+      <div class="story-summary">GitHub 上有趣、入门级的开源项目月刊。每月推荐 25 个有趣项目，适合发现新奇玩意儿。中文社区维护。</div>
+      <input type="checkbox" class="detail-check" id="d3">
+      <label class="story-toggle" for="d3"></label>
+      <div class="story-detail">这个项目非常适合你——每月一期，推荐各种有趣的开源项目，从实用工具到奇葩玩具都有。中文撰写，附带项目简介和入门指引。已持续更新多年，积累了大量历史推荐。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank">Shubhamsaboo/awesome-llm-apps</a> <span class="stat">⭐ 117K</span></div>
+      <div class="story-summary">100+ 个可以实际运行的 AI Agent 和 RAG 应用。clone、定制、部署，实战导向。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Hack-with-Github/Awesome-Hacking" target="_blank">Hack-with-Github/Awesome-Hacking</a> <span class="stat">⭐ 116K</span></div>
+      <div class="story-summary">黑客资源大全。漏洞利用、渗透测试、逆向工程、CTF——安全方向学习者的导航图。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/papers-we-love/papers-we-love" target="_blank">papers-we-love/papers-we-love</a> <span class="stat">⭐ 108K</span></div>
+      <div class="story-summary">计算机科学经典论文合集。分布式系统、编程语言设计、数据库、网络——CS 的精华都在这里。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/jaywcjlove/awesome-mac" target="_blank">jaywcjlove/awesome-mac</a> <span class="stat">⭐ 107K</span></div>
+      <div class="story-summary">macOS 优质软件精选。按类别系统整理，从开发工具到日常应用，Mac 用户必备。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">punkpeye/awesome-mcp-servers</a> <span class="stat">⭐ 90K</span></div>
+      <div class="story-summary">MCP (Model Context Protocol) 服务器集合。AI Agent 与外部工具交互的最新生态。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/MunGell/awesome-for-beginners" target="_blank">MunGell/awesome-for-beginners</a> <span class="stat">⭐ 87K</span></div>
+      <div class="story-summary">新手友好项目大全。标注了 "good first issue" 的开源项目，想参与开源？从这里开始。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/DopplerHQ/awesome-interview-questions" target="_blank">DopplerHQ/awesome-interview-questions</a> <span class="stat">⭐ 83K</span></div>
+      <div class="story-summary">面试题大全。按语言/框架/领域分类的面试题集，求职备战利器。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/fighting41love/funNLP" target="_blank">fighting41love/funNLP</a> <span class="stat">⭐ 82K</span></div>
+      <div class="story-summary">中文 NLP 资源大全。几百个中文自然语言处理工具、数据集、模型的合集，中文 NLP 从业者的宝库。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/ruvnet/RuView" target="_blank">ruvnet/RuView</a> <span class="stat">⭐ 79K</span></div>
+      <div class="story-summary">用 WiFi 信号实现空间感知、生命体征监测和存在检测——不需要摄像头。物联网 + 信号处理的前沿项目。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/awesomedata/awesome-public-datasets" target="_blank">awesomedata/awesome-public-datasets</a> <span class="stat">⭐ 77K</span></div>
+      <div class="story-summary">公开数据集大全。按主题分类的高质量数据集，做 ML/数据分析的必备资源。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/josephmisiti/awesome-machine-learning" target="_blank">josephmisiti/awesome-machine-learning</a> <span class="stat">⭐ 73K</span></div>
+      <div class="story-summary">机器学习框架、库和软件精选。覆盖 Python、Java、C++、JS 等多语言的 ML 工具。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/binhnguyennus/awesome-scalability" target="_blank">binhnguyennus/awesome-scalability</a> <span class="stat">⭐ 72K</span></div>
+      <div class="story-summary">可扩展系统设计模式。大规模系统的架构、性能、可靠性——后端架构师必读。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/prakhar1989/awesome-courses" target="_blank">prakhar1989/awesome-courses</a> <span class="stat">⭐ 70K</span></div>
+      <div class="story-summary">大学 CS 课程精选。免费在线课程，涵盖系统、网络、AI、理论等方向。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== AI & 大模型 ==================== -->
+  <div class="section" id="ai">
+    <div class="section-label">🤖 AI & 大模型</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank">awesome-llm-apps</a> <span class="stat">⭐ 117K</span></div>
+      <div class="story-summary">100+ 个可运行的 AI Agent 和 RAG 应用。实战项目集合，clone 即用。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank">Hannibal046/Awesome-LLM</a> <span class="stat">⭐ 27K</span></div>
+      <div class="story-summary">大语言模型全景图。从 GPT 到 LLaMA，从训练到部署，LLM 技术栈完整梳理。</div>
+      <input type="checkbox" class="detail-check" id="d4">
+      <label class="story-toggle" for="d4"></label>
+      <div class="story-detail">这个列表按时间线和技术栈组织，覆盖了 LLM 的发展历程：预训练 → SFT → RLHF → 推理优化 → Agent。包含论文、开源实现、博客文章，是理解 LLM 全貌的最佳入口之一。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/WangRongsheng/awesome-LLM-resources" target="_blank">awesome-LLM-resources</a> <span class="stat">⭐ 8.7K</span></div>
+      <div class="story-summary">全世界最好的 LLM 资源总结。多模态、Agent、编程辅助、数据处理、模型训练/推理，中文社区维护。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/hijkzzz/Awesome-LLM-Strawberry" target="_blank">Awesome-LLM-Strawberry</a> <span class="stat">⭐ 6.9K</span></div>
+      <div class="story-summary">OpenAI o1 和推理技术专题。Chain-of-Thought、思维链、推理模型的论文和项目集合。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/tensorchord/Awesome-LLMOps" target="_blank">Awesome-LLMOps</a> <span class="stat">⭐ 5.9K</span></div>
+      <div class="story-summary">LLMOps 工具精选。模型训练、微调、部署、监控——大模型工程化实践指南。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/xlite-dev/Awesome-LLM-Inference" target="_blank">Awesome-LLM-Inference</a> <span class="stat">⭐ 5.4K</span></div>
+      <div class="story-summary">LLM 推理优化论文集。Flash-Attention、Paged-Attention、量化、并行推理——性能优化方向必看。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/atfortes/Awesome-LLM-Reasoning" target="_blank">Awesome-LLM-Reasoning</a> <span class="stat">⭐ 3.6K</span></div>
+      <div class="story-summary">从 Chain-of-Thought 到 OpenAI o1 和 DeepSeek-R1。推理能力研究的专题列表。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/josephmisiti/awesome-machine-learning" target="_blank">awesome-machine-learning</a> <span class="stat">⭐ 73K</span></div>
+      <div class="story-summary">经典 ML 框架和库精选。虽然偏传统 ML，但作为基础参考仍然非常有价值。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 操作系统 ==================== -->
+  <div class="section" id="os">
+    <div class="section-label">🐧 操作系统</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/inputsh/awesome-linux" target="_blank">inputsh/awesome-linux</a> <span class="stat">⭐ 5.1K</span></div>
+      <div class="story-summary">Linux 资源大全。项目、工具、教程、发行版——Linux 生态的全景图。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/luong-komorebi/Awesome-Linux-Software" target="_blank">Awesome-Linux-Software</a> <span class="stat">⭐ 25K</span></div>
+      <div class="story-summary">Linux 软件精选。按类别推荐 Linux 上的优质应用，从开发工具到日常软件。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/milabs/awesome-linux-rootkits" target="_blank">awesome-linux-rootkits</a> <span class="stat">⭐ 2.1K</span></div>
+      <div class="story-summary">Linux Rootkit 资源集合。内核级安全研究、rootkit 技术分析——安全方向深入学习。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Friz-zy/awesome-linux-containers" target="_blank">awesome-linux-containers</a> <span class="stat">⭐ 2.1K</span></div>
+      <div class="story-summary">Linux 容器技术资源。Docker、Podman、LXC、containerd——容器生态全覆盖。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/papers-we-love/papers-we-love" target="_blank">papers-we-love</a> <span class="stat">⭐ 108K</span></div>
+      <div class="story-summary">计算机经典论文。包含大量操作系统相关论文——UNIX、Linux 内核设计、分布式系统等。</div>
+      <input type="checkbox" class="detail-check" id="d5">
+      <label class="story-toggle" for="d5"></label>
+      <div class="story-detail">这里收录了 CS 历史上最有影响力的论文：Dijkstra 的 THE OS、Tanenbaum 的 MINIX、Linux 内核设计文档、Google 的三驾马车（GFS/MapReduce/BigTable）等。想深入理解操作系统原理，这些论文是第一手资料。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 安全 & 逆向 ==================== -->
+  <div class="section" id="security">
+    <div class="section-label">🔐 安全 & 逆向工程</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Hack-with-Github/Awesome-Hacking" target="_blank">Awesome-Hacking</a> <span class="stat">⭐ 116K</span></div>
+      <div class="story-summary">黑客资源大全。工具、资源、教程——安全方向的终极导航。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/trimstray/the-book-of-secret-knowledge" target="_blank">the-book-of-secret-knowledge</a> <span class="stat">⭐ 232K</span></div>
+      <div class="story-summary">秘密知识之书。黑客工具、CLI 工具、cheatsheet、pentest 资源——安全从业者的百科全书。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/wtsxDev/reverse-engineering" target="_blank">wtsxDev/reverse-engineering</a> <span class="stat">⭐ 10.3K</span></div>
+      <div class="story-summary">逆向工程资源大全。工具、教程、书籍——逆向工程学习路线图。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/alphaSeclab/awesome-reverse-engineering" target="_blank">awesome-reverse-engineering</a> <span class="stat">⭐ 5K</span></div>
+      <div class="story-summary">逆向工程深度资源。3500+ 开源工具和 2300+ 文章/视频，覆盖全平台（Windows/Linux/macOS/Android/iOS/IoT）。</div>
+      <input type="checkbox" class="detail-check" id="d6">
+      <label class="story-toggle" for="d6"></label>
+      <div class="story-detail">这个列表按平台和工具类型组织：二进制分析（IDA Pro、Ghidra、Binary Ninja）、动态调试（x64dbg、OllyDbg）、网络分析（Wireshark、tcpdump）、Android 逆向（apktool、JADX）等。非常全面，适合系统性学习逆向工程。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/brootware/awesome-cyber-security-university" target="_blank">awesome-cyber-security-university</a> <span class="stat">⭐ 3.1K</span></div>
+      <div class="story-summary">网络安全"大学"。免费课程、实验室、CTF 挑战——系统性学习网络安全。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/gmh5225/awesome-game-security" target="_blank">awesome-game-security</a> <span class="stat">⭐ 3.1K</span></div>
+      <div class="story-summary">游戏安全资源。反外挂、反作弊、游戏逆向——游戏安全方向的专题列表。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 编程语言 ==================== -->
+  <div class="section" id="lang">
+    <div class="section-label">💻 编程语言</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/vinta/awesome-python" target="_blank">awesome-python</a> <span class="stat">⭐ 307K</span></div>
+      <div class="story-summary">Python 生态最全精选。Web、爬虫、数据、ML、自动化——Python 开发者必备。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/avelino/awesome-go" target="_blank">awesome-go</a> <span class="stat">⭐ 177K</span></div>
+      <div class="story-summary">Go 语言生态精选。框架、库、软件一应俱全。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/rust-unofficial/awesome-rust" target="_blank">awesome-rust</a> <span class="stat">⭐ 58K</span></div>
+      <div class="story-summary">Rust 代码和资源精选。应用、库、开发工具——Rust 生态全景。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/fffaraz/awesome-cpp" target="_blank">awesome-cpp</a> <span class="stat">⭐ 72K</span></div>
+      <div class="story-summary">C/C++ 框架和库精选。从 Boost 到现代 C++ 工具链。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/sindresorhus/awesome-nodejs" target="_blank">awesome-nodejs</a> <span class="stat">⭐ 66K</span></div>
+      <div class="story-summary">Node.js 包和资源精选。包管理、框架、部署工具等。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/aalhour/awesome-compilers" target="_blank">awesome-compilers</a> <span class="stat">⭐ 9.8K</span></div>
+      <div class="story-summary">编译器、解释器和运行时资源精选。编译原理学习者的导航图。</div>
+      <input type="checkbox" class="detail-check" id="d7">
+      <label class="story-toggle" for="d7"></label>
+      <div class="story-detail">对编译原理感兴趣？这个列表收集了：教程（ Crafting Interpreters、LLVM Tutorial）、开源编译器（GCC、Clang、Rust）、解释器实现、词法/语法分析工具（ANTLR、Bison）、以及相关论文。适合从零开始学习编译器构造。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 自托管 ==================== -->
+  <div class="section" id="selfhost">
+    <div class="section-label">🏠 自托管 & 运维</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/awesome-selfhosted/awesome-selfhosted" target="_blank">awesome-selfhosted</a> <span class="stat">⭐ 304K</span></div>
+      <div class="story-summary">自托管软件大全。上千个开源替代品，从云存储到代码托管。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/binhnguyennus/awesome-scalability" target="_blank">awesome-scalability</a> <span class="stat">⭐ 72K</span></div>
+      <div class="story-summary">可扩展系统设计模式。后端架构师的技术图谱。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/xingshaocheng/architect-awesome" target="_blank">architect-awesome</a> <span class="stat">⭐ 61K</span></div>
+      <div class="story-summary">后端架构师技术图谱。中文，系统性梳理后端架构知识体系。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/jonico/awesome-runners" target="_blank">awesome-runners</a> <span class="stat">⭐ 880</span></div>
+      <div class="story-summary">自托管 CI/CD Runner 大对比。GitHub Actions、GitLab CI、Jenkins 的自托管方案对比。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/fffaraz/awesome-selfhosted-aws" target="_blank">awesome-selfhosted-aws</a> <span class="stat">⭐ 644</span></div>
+      <div class="story-summary">AWS 的自托管替代品。用开源方案替代 AWS 服务，降低成本。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== Android & 移动 ==================== -->
+  <div class="section" id="android">
+    <div class="section-label">📱 Android & 移动</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/wasabeef/awesome-android-ui" target="_blank">awesome-android-ui</a> <span class="stat">⭐ 57K</span></div>
+      <div class="story-summary">Android UI/UX 库精选。Material Design、动画、自定义视图——前端开发者必备。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/timschneeb/awesome-shizuku" target="_blank">awesome-shizuku</a> <span class="stat">⭐ 9.5K</span></div>
+      <div class="story-summary">Shizuku 应用集合。利用 Shizuku 实现免 root 权限操作的 Android 应用。</div>
+      <input type="checkbox" class="detail-check" id="d8">
+      <label class="story-toggle" for="d8"></label>
+      <div class="story-detail">Shizuku 是一个 Android 框架，允许普通应用通过 ADB 或 root 权限执行系统级操作。这个列表收集了利用 Shizuku 的各种应用——文件管理、应用管理、系统调优等。对 Android 系统级开发感兴趣的话，这是个很好的切入点。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/awesome-android-root/awesome-android-root" target="_blank">awesome-android-root</a> <span class="stat">⭐ 3.7K</span></div>
+      <div class="story-summary">Android Root 资源大全。Root 工具、Magisk 模块、KernelSu、LSPosed(Xposed)——玩机指南。</div>
+      <input type="checkbox" class="detail-check" id="d9">
+      <label class="story-toggle" for="d9"></label>
+      <div class="story-detail">你提到的"改定位"类项目通常需要 root 权限或 Xposed 框架。这个列表收集了各种 root 工具和模块，包括 GPS spoofing 相关的模块。Magisk 是目前最主流的 root 方案，LSPosed 是 Xposed 的现代继任者。注意：修改系统定位可能违反某些应用的服务条款。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/JStumpp/awesome-android" target="_blank">awesome-android</a> <span class="stat">⭐ 12K</span></div>
+      <div class="story-summary">Android 开发资源大全。库、工具、教程——Android 开发者的综合导航。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/Juude/awesome-android-performance" target="_blank">awesome-android-performance</a> <span class="stat">⭐ 2.9K</span></div>
+      <div class="story-summary">Android 性能优化教程、视频和工具。启动优化、内存优化、卡顿治理等。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 创意编程 ==================== -->
+  <div class="section" id="creative">
+    <div class="section-label">🎨 创意编程 & 设计</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/terkelg/awesome-creative-coding" target="_blank">awesome-creative-coding</a> <span class="stat">⭐ 15K</span></div>
+      <div class="story-summary">创意编程资源。生成艺术、数据可视化、交互设计——用代码创造视觉艺术。</div>
+      <input type="checkbox" class="detail-check" id="d10">
+      <label class="story-toggle" for="d10"></label>
+      <div class="story-detail">这个列表收集了 Processing、openFrameworks、Three.js、p5.js 等创意编程工具，以及各种生成艺术、数据可视化的库和教程。如果你对"用代码画画"感兴趣，这里是最好的起点。很多项目可以直接在浏览器里体验。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/jaywcjlove/awesome-mac" target="_blank">awesome-mac</a> <span class="stat">⭐ 107K</span></div>
+      <div class="story-summary">macOS 优质软件精选。设计工具、开发工具、效率工具。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/VoltAgent/awesome-design-md" target="_blank">awesome-design-md</a> <span class="stat">⭐ 97K</span></div>
+      <div class="story-summary">品牌设计系统分析合集。Drop 一个 DESIGN.md，让 AI coding agent 生成匹配的 UI。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 计算机科学 ==================== -->
+  <div class="section" id="cs">
+    <div class="section-label">📚 计算机科学 & 课程</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/prakhar1989/awesome-courses" target="_blank">awesome-courses</a> <span class="stat">⭐ 70K</span></div>
+      <div class="story-summary">大学 CS 课程精选。免费在线课程，涵盖系统、网络、AI、理论等。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/papers-we-love/papers-we-love" target="_blank">papers-we-love</a> <span class="stat">⭐ 108K</span></div>
+      <div class="story-summary">计算机经典论文合集。CS 历史上最有影响力的论文。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/anu0012/awesome-computer-science-opportunities" target="_blank">awesome-computer-science-opportunities</a> <span class="stat">⭐ 4.1K</span></div>
+      <div class="story-summary">CS 学生的活动和奖学金机会大全。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/MunGell/awesome-for-beginners" target="_blank">awesome-for-beginners</a> <span class="stat">⭐ 87K</span></div>
+      <div class="story-summary">新手友好项目。想参与开源？从 "good first issue" 开始。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 数据科学 ==================== -->
+  <div class="section" id="data">
+    <div class="section-label">📊 数据科学</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/academic/awesome-datascience" target="_blank">awesome-datascience</a> <span class="stat">⭐ 30K</span></div>
+      <div class="story-summary">数据科学学习和实战资源。从理论到实践的完整路径。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/awesomedata/awesome-public-datasets" target="_blank">awesome-public-datasets</a> <span class="stat">⭐ 77K</span></div>
+      <div class="story-summary">公开数据集大全。按主题分类的高质量数据集。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/fighting41love/funNLP" target="_blank">funNLP</a> <span class="stat">⭐ 82K</span></div>
+      <div class="story-summary">中文 NLP 资源大全。几百个中文 NLP 工具和数据集。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 趣味项目精选 ==================== -->
+  <div class="section" id="fun">
+    <div class="section-label">🎪 趣味项目精选 — 那些"神奇"的开源项目</div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/521xueweihan/HelloGitHub" target="_blank">HelloGitHub</a> <span class="stat">⭐ 164K</span></div>
+      <div class="story-summary">每月推荐 25 个有趣的开源项目。从实用工具到奇葩玩具，发现新奇玩意儿的最佳渠道。</div>
+      <input type="checkbox" class="detail-check" id="d11">
+      <label class="story-toggle" for="d11"></label>
+      <div class="story-detail">HelloGitHub 已经持续更新多年，每月一期。历史期刊中包含大量有趣的项目推荐，非常适合"大规模调查和学习"。建议翻阅历史期刊，按兴趣筛选。中文社区最活跃的开源项目推荐源之一。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/ruvnet/RuView" target="_blank">RuView — WiFi 感知</a> <span class="stat">⭐ 79K</span></div>
+      <div class="story-summary">用 WiFi 信号实现空间感知和生命体征监测。不需要摄像头，纯信号处理。物联网前沿项目。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/jaywcjlove/awesome-mac" target="_blank">awesome-mac</a> <span class="stat">⭐ 107K</span></div>
+      <div class="story-summary">macOS 软件精选。里面有很多"神奇"的小工具——快捷启动器、窗口管理、剪贴板工具等。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/awesome-android-root/awesome-android-root" target="_blank">awesome-android-root</a> <span class="stat">⭐ 3.7K</span></div>
+      <div class="story-summary">Android Root 工具和模块。包括你提到的"改定位"类项目——GPS spoofing、系统级修改等。</div>
+      <input type="checkbox" class="detail-check" id="d12">
+      <label class="story-toggle" for="d12"></label>
+      <div class="story-detail">Android 上修改 GPS 定位的常见方案：<br>1. <strong>Mock Location</strong>（开发者选项）— 最简单但很多 App 能检测<br>2. <strong>Xposed/LSPosed 模块</strong> — 如 MockMock、Hide Mock Location，可以绕过检测<br>3. <strong>Magisk 模块</strong> — 系统级修改，更难被检测<br>4. <strong>Shizuku</strong> — 免 root 方案，但功能有限<br><br>注意：修改定位可能违反某些应用（如游戏、打车软件）的服务条款，仅供学习研究。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/terkelg/awesome-creative-coding" target="_blank">awesome-creative-coding</a> <span class="stat">⭐ 15K</span></div>
+      <div class="story-summary">创意编程。用代码生成艺术、音乐、动画——程序员的文艺复兴。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/michelpereira/awesome-games-of-coding" target="_blank">awesome-games-of-coding</a> <span class="stat">⭐ 2.1K</span></div>
+      <div class="story-summary">用游戏学编程。各种可以教你编程语言的游戏——寓教于乐。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/ryanoasis/nerd-fonts" target="_blank">nerd-fonts</a> <span class="stat">⭐ 64K</span></div>
+      <div class="story-summary">图标字体聚合器。3600+ 图标，50+ 字体补丁——终端美化必备。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/alebcay/awesome-shell" target="_blank">awesome-shell</a> <span class="stat">⭐ 37K</span></div>
+      <div class="story-summary">Shell 工具和框架精选。命令行爱好者的技术栈。</div>
+    </div>
+
+    <div class="story">
+      <div class="story-headline"><a href="https://github.com/herrbischoff/awesome-command-line-apps" target="_blank">awesome-command-line-apps</a> <span class="stat">⭐ 4.2K</span></div>
+      <div class="story-summary">命令行应用精选。用终端做各种事情——文件管理、系统监控、数据处理。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ==================== 如何使用 ==================== -->
+  <div class="section" id="howto">
+    <div class="section-label">🔧 如何使用这些资源</div>
+
+    <div class="intro-box">
+      <strong>快速上手建议：</strong><br><br>
+      <strong>1. 按兴趣选 2-3 个列表深入</strong><br>
+      不要试图看完所有列表。先确定你当前最感兴趣的方向（比如 AI、安全、Android），深入 2-3 个核心列表。<br><br>
+      <strong>2. 用 GitHub Star 跟踪</strong><br>
+      给感兴趣的列表和项目点 Star，建立你自己的"阅读清单"。<br><br>
+      <strong>3. HelloGitHub 翻历史</strong><br>
+      想"大规模调查"？翻 HelloGitHub 的历史期刊（几百期），按兴趣筛选，效率最高。<br><br>
+      <strong>4. Awesome Lists 交叉引用</strong><br>
+      一个好的 awesome 列表会链接到更多子列表。顺着链接挖下去，往往能发现宝藏。<br><br>
+      <strong>5. 动手比看更重要</strong><br>
+      看到有趣的项目？clone 下来跑一遍。读源码比读文档学得快。<br><br>
+      <strong>6. 善用 GitHub Search</strong><br>
+      <code>gh search repos "关键词" --sort stars --limit 20</code> — 按星数排序找项目。
+    </div>
+  </div>
+
+  <footer class="footer">
+    ⭐ 开源世界导航 · 2026.07.08<br>
+    数据来源：GitHub API · 由星星自动生成<br>
+    共收录 <strong>50+</strong> 个 Awesome Lists · 覆盖 <strong>12</strong> 个主要方向
+  </footer>
+</div>
+</body>
+</html>
